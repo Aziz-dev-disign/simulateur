@@ -1,17 +1,15 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
-use App\ListDocuments;
+use App\ListDocument;
 use App\CategorieList;
 use App\TypeSimulation;
+use Illuminate\Http\Request;
 use App\Http\Requests\ListDocumentFormRequest;
 
-class ListDocumentsController extends Controller
+class ListDocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +18,10 @@ class ListDocumentsController extends Controller
      */
     public function index()
     {
-        $lists = ListDocuments::all();
-        return view('contact.list.index', compact('lists'));
+        $listDocuments = ListDocument::all();
+        $categories = CategorieList::all();
+        $types = TypeSimulation::all();
+        return view('contact.list.index', compact('listDocuments', 'categories', 'types'));
     }
 
     /**
@@ -30,10 +30,8 @@ class ListDocumentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-        $categorie = CategorieList::all();
-        $type = TypeSimulation::all();
-        return view('contact.list.create', compact('categorie','type'));
+    {
+        //
     }
 
     /**
@@ -44,17 +42,17 @@ class ListDocumentsController extends Controller
      */
     public function store(ListDocumentFormRequest $request)
     {
-        ListDocuments::create($request->all());
-        return redirect()->route('');
+        ListDocument::create($request->all());
+        return redirect()->route('admin.list-document.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ListDocuments  $listDocuments
+     * @param  \App\ListDocument  $listDocument
      * @return \Illuminate\Http\Response
      */
-    public function show(ListDocuments $listDocuments)
+    public function show(ListDocument $listDocument)
     {
         return view('contact.list.show',compact('listDocuments'));
     }
@@ -62,10 +60,10 @@ class ListDocumentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ListDocuments  $listDocuments
+     * @param  \App\ListDocument  $listDocument
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListDocuments $listDocuments)
+    public function edit(ListDocument $listDocument)
     {
         return view('contact.list.edit',compact('listDocuments'));
     }
@@ -74,24 +72,25 @@ class ListDocumentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ListDocuments  $listDocuments
+     * @param  \App\ListDocument  $listDocument
      * @return \Illuminate\Http\Response
      */
-    public function update(ListDocumentFormRequest $request, ListDocuments $listDocuments)
+    public function update(ListDocumentFormRequest $request, ListDocument $listDocument)
     {
-        ListDocuments::update($request->all());
-        return redirect()->route('');
+        $listDocument->update($request->all());
+        return redirect()->route('admin.list-document.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ListDocuments  $listDocuments
+     * @param  \App\ListDocument  $listDocument
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ListDocuments $listDocuments)
+    public function destroy($id)
     {
-        $listDocuments->delete();
-        return redirect()->route('');
+        $listDocument = ListDocument::find($id);
+        $listDocument->delete();
+        return redirect()->route('admin.list-document.index');
     }
 }

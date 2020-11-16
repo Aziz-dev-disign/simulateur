@@ -24,7 +24,9 @@ class ListDocumentFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nomDoc'            =>['request','string','min:3']
+            'type_id'           =>['required','integer'],
+            'categorie_id'      =>['required','integer'],
+            'nomDoc'            =>['required','string','min:3']
         ];
     }
 }

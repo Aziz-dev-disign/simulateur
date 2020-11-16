@@ -10,7 +10,7 @@ class TypeSimulation extends Model
 
     public function documents()
     {
-        return $this->hasMany(ListDocuments::class);
+        return $this->hasMany(ListDocument::class);
     }
 
     public function simulateur()

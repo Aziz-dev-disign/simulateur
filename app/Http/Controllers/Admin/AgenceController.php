@@ -17,7 +17,7 @@ class AgenceController extends Controller
     public function index()
     {
         $agences = Agence::all();
-        return view('contact.agence.index');
+        return view('contact.agence.index', compact('agences'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AgenceController extends Controller
     public function store(AgenceFormRequest $request)
     {
         Agence::create($request->all());
-        return redirect()->route('');
+        return redirect()->route('admin.agence.index');
     }
 
     /**
@@ -73,8 +73,8 @@ class AgenceController extends Controller
      */
     public function update(AgenceFormRequest $request, Agence $agence)
     {
-        Agence::update($request->all());
-        return redirect()->route('');
+        $agence->update($request->all());
+        return redirect()->route('admin.agence.index');
     }
 
     /**
@@ -83,9 +83,10 @@ class AgenceController extends Controller
      * @param  \App\Agence  $agence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agence $agence)
+    public function destroy($id)
     {
+        $agence = Agence::find($id);
         $agence->delete();
-        return redirect()-route('');
+        return redirect()->route('admin.agence.index');
     }
 }

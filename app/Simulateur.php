@@ -9,7 +9,7 @@ class Simulateur extends Model
     
     protected $fillable = ['id','type_id','nom','slug','montantMin','montantMax','taux','dureeMin','dureeMax','image','description'];
 
-    public function typeSimulations()
+    public function typeSimulation()
     {
         return $this->belongsTo(TypeSimulation::class, 'type_id','id');
     }

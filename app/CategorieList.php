@@ -10,6 +10,6 @@ class CategorieList extends Model
 
     public function list()
     {
-        return $this->hasMany(ListDocuments::class);
+        return $this->hasMany(ListDocument::class);
     }
 }

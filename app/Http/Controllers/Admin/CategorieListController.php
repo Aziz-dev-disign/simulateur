@@ -17,8 +17,8 @@ class CategorieListController extends Controller
      */
     public function index()
     {
-        $categories = CategorieList::all();
-        return view('contact.categorie.index', compact('categories'));
+        $categorieLists = CategorieList::all();
+        return view('contact.categorie.index', compact('categorieLists'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CategorieListController extends Controller
     public function store(Request $request)
     {
         CategorieList::create($request->all());
-        return redirect()-route('');
+        return redirect()-route('admin.categorie.index');
     }
 
     /**
@@ -74,8 +74,8 @@ class CategorieListController extends Controller
      */
     public function update(Request $request, CategorieList $categorieList)
     {
-        CategorieList::update($request->all());
-        return redirect()->route('');
+        $categorieList->update($request->all());
+        return redirect()->route('admin.categorie.index');
     }
 
     /**
@@ -84,9 +84,10 @@ class CategorieListController extends Controller
      * @param  \App\CategorieList  $categorieList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategorieList $categorieList)
+    public function destroy($id)
     {
+        $categorieList = CategorieList::find($id);
         $categorieList->delete();
-        return redirect()->route('');
+        return redirect()->route('admin.categorie.index');
     }
 }

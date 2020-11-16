@@ -21,6 +21,14 @@ Route::get('accueil', function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Route::resource('agence', 'AgenceController');
+    Route::resource('simulateur', 'SimulateurController');
+    Route::resource('list-document', 'ListDocumentController');
+    Route::resource('permission', 'PermissionController');
+    Route::resource('categorie', 'CategorieListController');
+    Route::resource('rendez-vous', 'RdvController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('type-simulateur', 'TypeSimulationController');
+    Route::resource('user', 'UserController');
 });
 
 

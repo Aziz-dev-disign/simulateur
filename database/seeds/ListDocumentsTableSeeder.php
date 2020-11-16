@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ListDocuments;
+use App\ListDocument;
 class ListDocumentsTableSeeder extends Seeder
 {
     /**
@@ -86,6 +86,6 @@ class ListDocumentsTableSeeder extends Seeder
             ],
         ];
 
-        ListDocuments::insert($list);
+        ListDocument::insert($list);
     }
 }

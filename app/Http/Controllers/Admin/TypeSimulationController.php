@@ -17,9 +17,9 @@ class TypeSimulationController extends Controller
      */
     public function index()
     {
-        $type = TypeSimulation::all();
+        $typeSimulations = TypeSimulation::all();
 
-        return view('contact.type.index',compact('type'));
+        return view('contact.type.index',compact('typeSimulations'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TypeSimulationController extends Controller
     public function store(TypeSimulationFormRequest $request)
     {
         TypeSimulation::create($request->all());
-        return redirect()->route('');
+        return redirect()->route('admin.type-simulateur.index');
     }
 
     /**
@@ -75,8 +75,8 @@ class TypeSimulationController extends Controller
      */
     public function update(TypeSimulationFormRequest $request, TypeSimulation $typeSimulation)
     {
-        TypeSimulation::update($request->all());
-        return redirect()->route('');
+        $typeSimulation->update($request->all());
+        return redirect()->route('admin.type-simulateur.index');
     }
 
     /**
@@ -85,10 +85,10 @@ class TypeSimulationController extends Controller
      * @param  \App\TypeSimulation  $typeSimulation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeSimulation $typeSimulation)
+    public function destroy($typeSimulation)
     {
+        $typeSimulation = TypeSimulation::find($typeSimulation);
         $typeSimulation->delete();
-
-        return redirect()->route('');
+        return redirect()->route('admin.type-simulateur.index');
     }
 }

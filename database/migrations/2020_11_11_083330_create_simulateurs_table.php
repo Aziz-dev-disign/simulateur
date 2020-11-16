@@ -20,11 +20,11 @@ class CreateSimulateursTable extends Migration
             $table->string('slug');
             $table->string('montantMin');
             $table->string('montantMax');
-            $table->decimal('taux', 8, 2);
-            $table->integer('dureeMin');
-            $table->integer('dureeMax');
+            $table->string('taux', 8, 2);
+            $table->string('dureeMin');
+            $table->string('dureeMax');
             $table->string('image');
-            $table->longText('description');
+            $table->text('description');
             $table->timestamps();
         });
         Schema::table('simulateurs', function (Blueprint $table) {

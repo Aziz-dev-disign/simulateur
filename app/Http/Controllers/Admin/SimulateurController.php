@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Simulateur;
 use App\TypeSimulation;
 use Illuminate\Http\Request;
+use App\Http\Requests\SimulateurFormRequest;
 
 class SimulateurController extends Controller
 {
@@ -41,8 +42,22 @@ class SimulateurController extends Controller
      */
     public function store(Request $request)
     {
-        Simulateur::create($request->all());
-        return redirect()->route('');
+        $imagePath = request('image')->store('simulateur','public');
+
+        Simulateur::create([
+            'type_id'=>$request->type_id,
+            'nom'=>$request->nom,
+            'slug'=>$request->slug,
+            'montantMin'=>$request->montantMin,
+            'montantMax'=>$request->montantMax,
+            'taux'=>$request->taux,
+            'dureeMin'=>$request->dureeMin,
+            'dureeMax'=>$request->dureeMax,
+            'image'=>$imagePath,
+            'description'=>$request->description,
+        ]);
+         
+        return redirect()->route('admin.simulateur.create');
     }
 
     /**
@@ -64,7 +79,8 @@ class SimulateurController extends Controller
      */
     public function edit(Simulateur $simulateur)
     {
-        return view('contact.simulateur.edit',compact('simulateur'));
+        $types = TypeSimulation::all();
+        return view('contact.simulateur.edit',compact('simulateur','types'));
     }
 
     /**
@@ -76,8 +92,16 @@ class SimulateurController extends Controller
      */
     public function update(Request $request, Simulateur $simulateur)
     {
-        Imulateur::update($request->all());
-        return redirect()->route('');
+        if (request('image')) {
+            
+            $imagePath = request('image')->store('simulateur','public');
+            $simulateur->update(array_merge($request->all(),['image'=>$imagePath]));
+            return redirect()->route('admin.simulateur.index');
+        }
+        else {
+            $simulateur->update($request->all());
+            return redirect()->route('admin.simulateur.index');
+        }
     }
 
     /**
@@ -86,9 +110,10 @@ class SimulateurController extends Controller
      * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Simulateur $simulateur)
+    public function destroy($id)
     {
+        $simulateur = Simulateur::find($id);
         $simulateur->delete();
-        return redirect()->route('');
+        return redirect()->route('admin.simulateur.index');
     }
 }

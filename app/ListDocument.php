@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ListDocuments extends Model
+class ListDocument extends Model
 {
-    protected $fillable = ['id','type_id', 'nomDoc','created_at','updated_at'];
+    protected $fillable = ['id','type_id', 'categorie_id', 'nomDoc','created_at','updated_at'];
 
     public function type()
     {

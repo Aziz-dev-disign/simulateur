@@ -194,7 +194,7 @@
     <script src="{{asset('admin/source/datatables/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('admin/source/datatables/pdfmake/build/vfs_fonts.js')}}"></script>
     <!--/ Datatables -->
-
+    @yield('script')
     {{-- <!-- Notify -->
       @notifyJs
     <!--/ Notify --> --}}
