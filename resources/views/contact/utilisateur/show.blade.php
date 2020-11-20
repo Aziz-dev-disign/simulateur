@@ -2,11 +2,11 @@
 
 @section('content')
 
-<h3 style="margin-bottom: 10px;">{{$titre ?? ''}} {{$agence->code}}</h3>
+<h3 style="margin-bottom: 10px;">{{$titre ?? ''}} {{$user->name}}</h3>
 
 <div class="form-group">
     <div class="form-group">
-        <a class="btn btn-primary" href="{{ route('admin.agence.edit',$agence->id) }}">
+        <a class="btn btn-primary" href="{{ route('admin.user.edit',$user->id) }}">
             Editer
         </a>
     </div>
@@ -17,15 +17,7 @@
                     Id
                 </th>
                 <td>
-                    {{ $agence->id }}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Code de l'agence
-                </th>
-                <td>
-                    {{ $agence->code }}
+                    {{ $user->id }}
                 </td>
             </tr>
             <tr>
@@ -33,7 +25,7 @@
                     Nom
                 </th>
                 <td>
-                    {{ $agence->nom }}
+                    {{ $user->name }}
                 </td>
             </tr>
             <tr>
@@ -41,29 +33,29 @@
                     Email
                 </th>
                 <td>
-                    {{ $agence->email }}
+                    {{ $user->email }}
                 </td>
             </tr>
             <tr>
                 <th>
-                    Téléphone
+                    Statut
                 </th>
                 <td>
-                    {{ $agence->telephone }}
+                    {{ $user->status }}
                 </td>
             </tr>
             <tr>
                 <th>
-                    Ville
+                    Role
                 </th>
                 <td>
-                    {{ $agence->ville }}
+                    {{ $user->roles->nom }}
                 </td>
             </tr>
         </tbody>
     </table>
     <div class="form-group">
-        <a class="btn btn-danger" href="{{ route('admin.agence.index') }}">
+        <a class="btn btn-danger" href="{{ route('admin.user.index') }}">
             Retour
         </a>
     </div>

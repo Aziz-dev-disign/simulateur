@@ -18,10 +18,12 @@ class ListDocumentController extends Controller
      */
     public function index()
     {
+        $titre = 'list des documents à fournir';
         $listDocuments = ListDocument::all();
         $categories = CategorieList::all();
         $types = TypeSimulation::all();
-        return view('contact.list.index', compact('listDocuments', 'categories', 'types'));
+        $listDocument = new ListDocument();
+        return view('contact.list.index', compact('listDocuments', 'categories', 'types', 'titre', 'listDocument'));
     }
 
     /**
@@ -54,7 +56,7 @@ class ListDocumentController extends Controller
      */
     public function show(ListDocument $listDocument)
     {
-        return view('contact.list.show',compact('listDocuments'));
+        return view('contact.list.index',compact('listDocument'));
     }
 
     /**
@@ -65,7 +67,10 @@ class ListDocumentController extends Controller
      */
     public function edit(ListDocument $listDocument)
     {
-        return view('contact.list.edit',compact('listDocuments'));
+        $titre = 'Editer: ';
+        $categories = CategorieList::all();
+        $types = TypeSimulation::all();
+        return view('contact.list.edit',compact('listDocument','titre','types','categories'));
     }
 
     /**

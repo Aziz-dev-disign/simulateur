@@ -17,8 +17,9 @@ class CategorieListController extends Controller
      */
     public function index()
     {
+        $titre = 'Catégorie de document';
         $categorieLists = CategorieList::all();
-        return view('contact.categorie.index', compact('categorieLists'));
+        return view('contact.categorie.index', compact('categorieLists','titre'));
     }
 
     /**
@@ -51,7 +52,8 @@ class CategorieListController extends Controller
      */
     public function show(CategorieList $categorieList)
     {
-        return view('contact.categorie.show', compact('categorieList'));
+        $titre = 'Détail de:';
+        return view('contact.categorie.show', compact('categorieList','titre'));
     }
 
     /**
@@ -60,9 +62,11 @@ class CategorieListController extends Controller
      * @param  \App\CategorieList  $categorieList
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategorieList $categorieList)
+    public function edit($categorieList)
     {
-        return view('contact.categorie.create', compact('categorieList'));
+        $titre = 'Editer: ';
+        $categorieList = CategorieList::findOrFail($categorieList);
+        return view('contact.categorie.edit',compact('categorieList', compact('titre')));
     }
 
     /**

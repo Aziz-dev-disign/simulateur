@@ -16,8 +16,9 @@ class AgenceController extends Controller
      */
     public function index()
     {
+        $titre = 'Agence';
         $agences = Agence::all();
-        return view('contact.agence.index', compact('agences'));
+        return view('contact.agence.index', compact('agences','titre'));
     }
 
     /**
@@ -50,7 +51,8 @@ class AgenceController extends Controller
      */
     public function show(Agence $agence)
     {
-        return view('contact.agence.show', compact('agence'));
+        $titre = 'Détail de ';
+        return view('contact.agence.show', compact('agence','titre'));
     }
 
     /**
@@ -61,7 +63,8 @@ class AgenceController extends Controller
      */
     public function edit(Agence $agence)
     {
-        return view('contact.agence.edit', compact('agence'));
+        $titre = 'Editer: ';
+        return view('contact.agence.edit', compact('agence','titre'));
     }
 
     /**

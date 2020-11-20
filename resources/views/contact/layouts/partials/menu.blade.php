@@ -5,8 +5,8 @@
         <ul class="nav side-menu">
             <li><a><i class="fa fa-users"></i> Utilisateurs <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#"><i class="fa fa-unlock-alt"></i> Roles</a></li>
-                    <li><a href="#"><i class="fa fa-user"></i> Permissions</a></li>
+                    <li><a href="{{route('admin.roles.index')}}"><i class="fa  fa-lock"></i> Roles</a></li>
+                    <li><a href="{{route('admin.permissions.index')}}"><i class="fa  fa-key"></i> Permissions</a></li>
                     <li><a href="{{route('admin.user.index')}}"><i class="fa fa-user"></i> Utilisateurs</a></li>
                 </ul>
             </li>

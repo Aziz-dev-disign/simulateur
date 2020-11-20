@@ -3,58 +3,60 @@
 @section('content')
 <h3 style="margin-bottom: 10px;">{{$titre ?? ''}}</h3>
 
-<form class="form-horizontal form-label-left"  method="POST" action="{{route('admin.agence.store')}}" enctype="multipart/form-data">
+<!-- Formulaire -->
+<form class="form-horizontal form-label-left formulaire"  method="POST" action="{{route('admin.agence.store')}}" enctype="multipart/form-data">
     @csrf
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="nom">Nom <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="nom"  required="required" class="form-control  @error('nom') is-invalid @enderror " name="nom" placeholder="Veillez entrer un nom"  value="{{ old('nom') }}" required autocomplete="nom" autofocus>            
-            @error('nom')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    
+
+    <div class="form-group">
+        <label class="required" for="code">Code</label>
+        <input class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" name="code" id="code" value="{{ old('code') }}" required>
+        @if($errors->has('code'))
+            <div class="invalid-feedback">
+                {{ $errors->first('code') }}
+            </div>
+        @endif
     </div>
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="email">Email<span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="email" id="email"  required="required" class="form-control  @error('email') is-invalid @enderror " name="email" placeholder="veillez entrer un email"  value="{{ old('email') }}" required autocomplete="email" autofocus>            
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class="form-group">
+        <label class="required" for="nom">Nom</label>
+        <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom') }}" required>
+        @if($errors->has('nom'))
+            <div class="invalid-feedback">
+                {{ $errors->first('nom') }}
+            </div>
+        @endif
     </div>
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="telephone">Téléphone<span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="telephone"  required="required" class="form-control  @error('telephone') is-invalid @enderror" name="telephone"  value="{{ old('telephone') }}" placeholder="Entrez un téléphone" required autofocus>            
-            @error('telephone')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class="form-group">
+        <label class="required" for="email">Email</label>
+        <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email') }}" required>
+        @if($errors->has('email'))
+            <div class="invalid-feedback">
+                {{ $errors->first('email') }}
+            </div>
+        @endif
     </div>
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="ville">Ville<span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="ville" name="ville"  required="required" class="form-control  @error('ville') is-invalid @enderror" placeholder="Entrez la ville" required autofocus>            
-            @error('ville')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
+    <div class="form-group">
+        <label class="required" for="telephone">Téléphone</label>
+        <input class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" type="text" name="telephone" id="telephone" value="{{ old('telephone') }}" required>
+        @if($errors->has('telephone'))
+            <div class="invalid-feedback">
+                {{ $errors->first('telephone') }}
+            </div>
+        @endif
     </div>
-    <div class="form-group row">
-        <div class="col-md-9 col-sm-9  offset-md-3">
-            <button type="submit" class="btn btn-success">Enregistrer</button>
-            <button class="btn btn-primary" type="reset">Réinitialiser</button>
-            <a href="{{route('admin.agence.index')}}" class="btn btn-danger">Retour</a>
-        </div>
+    <div class="form-group">
+        <label class="required" for="ville">Ville</label>
+        <input class="form-control {{ $errors->has('ville') ? 'is-invalid' : '' }}" type="text" name="ville" id="ville" value="{{ old('ville') }}" required>
+        @if($errors->has('ville'))
+            <div class="invalid-feedback">
+                {{ $errors->first('ville') }}
+            </div>
+        @endif
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{{route('admin.agence.index')}}" class="btn btn-danger">Retour</a>
     </div>
 </form>
+<div class="ln_solid formulaire"></div>
 @endsection

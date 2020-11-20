@@ -1,6 +1,7 @@
 @extends('contact.layouts.accueil')
 
 @section('content')
+<h3 style="margin-bottom: 10px;">{{$titre ?? ''}}</h3>
 
 <div class="col-md-6">
     <a href="{{route('admin.simulateur.create')}}" class="btn btn-primary">Ajouter un simulateur</a>
@@ -14,6 +15,7 @@
             <th>Image</th>
             <th>Nom</th>
             <th>Slug</th>
+            <th>Statut</th>
             <th>Type de simulateur</th>
             <th>Montant maximum</th>
             <th>Montant minimum</th>
@@ -33,6 +35,7 @@
                     <td><img src="{{asset('storage').'/'.$simulateur->image}}" alt="image" style="width:75px;height:75px;" class="rounded-circle"></td>
                     <td>{{$simulateur->nom}}</td>
                     <td>{{$simulateur->slug}}</td>
+                    <td>{{$simulateur->statut}}</td>
                     <td>{{$simulateur->typeSimulation->nom}}</td>
                     <td>{{$simulateur->montantMin}}</td>
                     <td>{{$simulateur->montantMax}}</td>
@@ -47,7 +50,9 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{route('admin.simulateur.edit', $simulateur->id)}}">Edit</a>
-                            <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('admin.simulateur.show', $simulateur->id)}}">Détail</a>
+                                <div class="dropdown-divider"></div>
                                 <div> 
                                     <form action="{{ route('admin.simulateur.destroy', $simulateur->id) }}" method="POST" onsubmit="return confirm('Etes vous sur'" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
@@ -64,3 +69,4 @@
     </table>
 </div>
 @endsection
+

@@ -19,9 +19,10 @@ class RdvController extends Controller
      */
     public function index()
     {
+        $titre = 'prise de rendez-vous';
         $rdvs = Rdv::all();
 
-        return view('contact.rdv.index', compact('rdvs'));
+        return view('contact.rdv.index', compact('rdvs','titre'));
     }
 
     /**

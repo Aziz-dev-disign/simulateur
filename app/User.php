@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_id','name', 'email', 'status', 'password',
     ];
 
     /**
@@ -40,6 +40,22 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsTo(Role::class, 'role_id','id');
+    }
+
+    public function scopeStatu($query)
+    {
+        return $query->where('status', 1)->get();
+    }
+
+    public function getStatuAttribut($attributes){
+        return $this->getStatuOptions()[$attributes];
+    }
+
+    public function getStatuOptions(){
+        return [
+            'actif'     =>'actif',
+            'inactif'     =>'inactif',
+        ];
     }
 }
 

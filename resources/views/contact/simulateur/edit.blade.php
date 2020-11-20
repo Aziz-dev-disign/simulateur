@@ -8,125 +8,116 @@
 <form class="form-horizontal form-label-left"  method="POST" action="{{route('admin.simulateur.update', $simulateur->id)}}" enctype="multipart/form-data">
     @csrf
     @method('patch')
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="type_id">Type de simulateur <span class="required">*</span></label>
-        <div class="col-md-7">
-            <select name="type_id" id="type_id" class="form-control">
-                @foreach ($types as $type)
-                    <option value="{{$type->id}} "{{$simulateur->type_id == $type->id ? "selected" : ' '}}>{{$type->nom}}</option>
-                @endforeach
-            </select>
-            @error('type_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="type_id">Type de simulateur <span class="required">*</span></label>
+        <select name="type_id" id="type_id" class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}">
+            @foreach ($types as $type)
+                <option value="{{$type->id}} "{{$simulateur->type_id == $type->id ? "selected" : ' '}}>{{$type->nom}}</option>
+            @endforeach
+        </select>          
+        @if($errors->has('type_id'))
+            <div class="invalid-feedback">
+                {{ $errors->first('type_id') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="nom">Nom <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="nom"  required="required" class="form-control  @error('nom') is-invalid @enderror " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}" required autocomplete="nom" autofocus>            
-            @error('nom')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="nom">Nom du simulateur <span class="required">*</span></label>
+        <input type="text" id="nom"  required="required" class="form-control  {{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}" required autocomplete="nom" autofocus>            
+        @if($errors->has('nom'))
+            <div class="invalid-feedback">
+                {{ $errors->first('nom') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="slug">slug <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="slug"  required="required" class="form-control  @error('slug') is-invalid @enderror " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}" required autocomplete="slug" autofocus>            
-            @error('slug')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="slug">Sous titre <span class="required">*</span></label>
+        <input type="text" id="slug"  required="required" class="form-control  {{ $errors->has('slug') ? 'is-invalid' : '' }} " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}" required autocomplete="slug" autofocus>            
+        @if($errors->has('slug'))
+            <div class="invalid-feedback">
+                {{ $errors->first('slug') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="montantMin">Montant minmum <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="number" id="montantMin"  required="required" class="form-control  @error('montantMin') is-invalid @enderror " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}" required autocomplete="montantMin" autofocus>            
-            @error('montantMin')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+    <div class=" form-group ">
+        <label class="required" for="Statut">Statut <span class="required">*</span></label>
+        <select name="statut" id="statut" class="form-control {{ $errors->has('statut') ? 'is-invalid' : '' }}">
+            @foreach ($simulateur->getStatusOptions() as $key => $value)
+                <option value="{{$key}}">{{$value}}</option>
+            @endforeach
+        </select>
+        @if($errors->has('slug'))
+        <div class="invalid-feedback">
+            {{ $errors->first('slug') }}
         </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="montantMax">Montant maximum <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="number" id="montantMax"  required="required" class="form-control  @error('montantMax') is-invalid @enderror " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}" required autocomplete="montantMax" autofocus>            
-            @error('montantMax')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="montantMin">Montant minmum <span class="required">*</span></label>
+        <input type="number" id="montantMin"  required="required" class="form-control  {{ $errors->has('montantMin') ? 'is-invalid' : '' }} " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}" required autocomplete="montantMin" autofocus>            
+        @if($errors->has('montantMin'))
+            <div class="invalid-feedback">
+                {{ $errors->first('montantMin') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="ùtaux">Taux <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="taux"  required="required" class="form-control  @error('taux') is-invalid @enderror " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}" required autocomplete="taux" autofocus>            
-            @error('taux')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="montantMax">Montant maximum <span class="required">*</span></label>
+        <input type="number" id="montantMax"  required="required" class="form-control  {{ $errors->has('montantMax') ? 'is-invalid' : '' }} " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}" required autocomplete="montantMax" autofocus>            
+        @if($errors->has('montantMax'))
+            <div class="invalid-feedback">
+                {{ $errors->first('montantMax') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="dureeMin">Durée minimum <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="number" id="dureeMin"  required="required" class="form-control  @error('dureeMin') is-invalid @enderror " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}" required autocomplete="dureeMin" autofocus>            
-            @error('dureeMin')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="taux">Taux <span class="required">*</span></label>
+        <input type="text" id="taux"  required="required" class="form-control  {{ $errors->has('taux') ? 'is-invalid' : '' }} " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}" required autocomplete="taux" autofocus>            
+        @if($errors->has('taux'))
+            <div class="invalid-feedback">
+                {{ $errors->first('taux') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="dureeMax">Durée maximum <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="number" id="dureeMax"  required="required" class="form-control  @error('dureeMax') is-invalid @enderror " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}" required autocomplete="dureeMax" autofocus>            
-            @error('dureeMax')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="dureeMin">Durée minimum <span class="required">*</span></label>
+        <input type="number" id="dureeMin"  required="required" class="form-control  {{ $errors->has('dureeMin') ? 'is-invalid' : '' }} " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}" required autocomplete="dureeMin" autofocus>            
+        @if($errors->has('dureeMin'))
+            <div class="invalid-feedback">
+                {{ $errors->first('dureeMin') }}
+            </div>
+        @endif
+    </div>
+    <div class=" form-group ">
+        <label class="required" for="dureeMax">Durée maximum <span class="required">*</span></label>
+        <input type="number" id="dureeMax"  required="required" class="form-control  {{ $errors->has('dureeMax') ? 'is-invalid' : '' }} " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}" required autocomplete="dureeMax" autofocus>            
+        @if($errors->has('dureeMax'))
+            <div class="invalid-feedback">
+                {{ $errors->first('dureeMax') }}
+            </div>
+        @endif
     </div>    
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="image">image <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="file" id="image"  required="required" class="form-control  @error('image') is-invalid @enderror " name="image"  value="{{ old('image') }}" required autocomplete="image" autofocus>            
-            @error('image')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="image">image <span class="required">*</span></label>
+        <input type="file" id="image"  required="required" class="form-control  {{ $errors->has('image') ? 'is-invalid' : '' }} " name="image"  value="{{ old('image') }}" required autocomplete="image" autofocus>            
+        @if($errors->has('image'))
+            <div class="invalid-feedback">
+                {{ $errors->first('image') }}
+            </div>
+        @endif
     </div>
-    <div class=" form-group row">
-        <label class="control-label col-md-3" for="decription">Decription<span class="required">*</span></label>
-        <div class="col-md-7">
-            <textarea name="description" id="description" rows="3" class="form-control @error('description') is-invalid @enderror" value="{{ old('description') ?? $simulateur->description }}"></textarea>
-            @error('decription')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class=" form-group ">
+        <label class="required" for="decription">Decription<span class="required">*</span></label>
+        <textarea name="description" id="description" s="3" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') ?? $simulateur->description }}"></textarea>
+        @if($errors->has('description'))
+            <div class="invalid-feedback">
+                {{ $errors->first('description') }}
+            </div>
+        @endif
     </div>    
-    <div class="form-group row">
-        <div class="col-md-9 col-sm-9  offset-md-3">
-            <button type="submit" class="btn btn-success">Enregistrer</button>
-            <a href="{{route('admin.simulateur.index')}}" class="btn btn-danger">Retour</a>
-        </div>
+    <div class="form-group ">
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{{route('admin.simulateur.index')}}" class="btn btn-danger">Retour</a>
     </div>
 </form>
 @endsection

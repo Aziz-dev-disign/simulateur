@@ -18,9 +18,10 @@ class SimulateurController extends Controller
      */
     public function index()
     {
+        $titre = 'Simulateur';
         $simulateurs = Simulateur::all();
 
-        return view('contact.simulateur.index',compact('simulateurs'));
+        return view('contact.simulateur.index',compact('simulateurs','titre'));
     }
 
     /**
@@ -30,8 +31,9 @@ class SimulateurController extends Controller
      */
     public function create()
     {
+        $titre = 'Ajouter un simulateur';
         $types = TypeSimulation::all();
-        return view('contact.simulateur.create',compact('types'));
+        return view('contact.simulateur.create',compact('types','titre'));
     }
 
     /**
@@ -48,6 +50,7 @@ class SimulateurController extends Controller
             'type_id'=>$request->type_id,
             'nom'=>$request->nom,
             'slug'=>$request->slug,
+            'statut'=>$request->statut,
             'montantMin'=>$request->montantMin,
             'montantMax'=>$request->montantMax,
             'taux'=>$request->taux,
@@ -68,7 +71,8 @@ class SimulateurController extends Controller
      */
     public function show(Simulateur $simulateur)
     {
-        return view('contact.simulateur.show',compact('simulateur'));
+        $titre = 'Détail de ';
+        return view('contact.simulateur.show',compact('simulateur','titre'));
     }
 
     /**
@@ -79,8 +83,9 @@ class SimulateurController extends Controller
      */
     public function edit(Simulateur $simulateur)
     {
+        $titre = 'Editer ';
         $types = TypeSimulation::all();
-        return view('contact.simulateur.edit',compact('simulateur','types'));
+        return view('contact.simulateur.edit',compact('simulateur','types','titre'));
     }
 
     /**

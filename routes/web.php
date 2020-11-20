@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::resource('agence', 'AgenceController');
     Route::resource('simulateur', 'SimulateurController');
     Route::resource('list-document', 'ListDocumentController');
-    Route::resource('permission', 'PermissionController');
+    Route::resource('permissions', 'PermissionController');
     Route::resource('categorie', 'CategorieListController');
     Route::resource('rendez-vous', 'RdvController');
     Route::resource('roles', 'RoleController');

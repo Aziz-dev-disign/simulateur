@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\Permission;
 use App\Http\Requests\RoleFormRequest;
 
 class RoleController extends Controller
@@ -17,7 +18,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $titre = 'Rôles';
+        $roles = Role::all();
+        $permissions = Permission::all()->pluck('nom','id');
+
+        return view('contact.role.index', compact('roles','permissions', 'titre'));
     }
 
     /**
@@ -38,7 +43,10 @@ class RoleController extends Controller
      */
     public function store(RoleFormRequest $request)
     {
-        //
+        $role = Role::create($request->all());
+        $role->permissions()->sync($request->input('permissions',[]));
+        
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -49,7 +57,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        $titre = 'détails de';
+        $role->load('permissions');
+        return rview('contact.role.show', compact('role', 'titre'));
     }
 
     /**
@@ -60,7 +70,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        $titre = 'éditer: ';
+        $permissions = Permission::all()->pluck('nom', 'id');
+        $role->load('permissions');
+        return view('contact.role.edit', compact('role','permissions','titre'));
     }
 
     /**
@@ -72,7 +85,10 @@ class RoleController extends Controller
      */
     public function update(RoleFormRequest $request, Role $role)
     {
-        //
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permissions',[]));
+
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -83,6 +99,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->permissions()->detach();
+        $role->delete();
+        return redirect()->route('admin.roles.index');
     }
 }

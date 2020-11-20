@@ -1,13 +1,13 @@
 @extends('contact.layouts.accueil')
 
 @section('content')
-
+<h3 style="margin-bottom: 10px;">{{$titre ?? ''}}</h3>
 
 <form method="POST" action="{{ route('admin.user.store') }}">
     @csrf
 
     <div class="form-group row">
-        <label for="role_id" class="col-md-4 col-form-label">{{ __('Role') }}</label>
+        <label for="role_id" class="col-md-4 col-form-label">{{ __('Role') }} <span>*</span></label>
         <div class="col-md-6">
             <select name="role_id" id="role_id" class="form-control">
                 <option value="">choisir un role</option>
@@ -23,9 +23,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label">{{ __('Nom') }}</label>
+        <label for="name" class="col-md-4 col-form-label">{{ __('Nom et Prénom(s)') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="nom et prénom" required autocomplete="name" autofocus>
             @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -34,9 +34,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="email" class="col-md-4 col-form-label">{{ __('E-Mail') }}</label>
+        <label for="email" class="col-md-4 col-form-label">{{ __('E-Mail') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="exemple@exemple.com" required autocomplete="email">
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -45,10 +45,13 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="statu" class="col-md-4 col-form-label">{{ __('Statut') }}</label>
+        <label for="status" class="col-md-4 col-form-label">{{ __('statut') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="statu" type="text" class="form-control @error('statu') is-invalid @enderror" name="statu" value="{{ old('statu') }}" required autocomplete="statu">
-            @error('statu')
+            <select id="status" type="text" class="form-control @error('status') is-invalid @enderror custom-select" name="status">
+                <option value="inactif">Inactif</option>
+                <option value="actif">Actif</option>
+            </select>
+            @error('status')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -56,9 +59,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="password" class="col-md-4 col-form-label">{{ __('Mot de passe') }}</label>
+        <label for="password" class="col-md-4 col-form-label">{{ __('Mot de passe') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="mot de passe" required autocomplete="new-password">
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -67,9 +70,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="password-confirm" class="col-md-4 col-form-label">{{ __('Confirmez le mot de passe') }}</label>
+        <label for="password-confirm" class="col-md-4 col-form-label">{{ __('Confirmez le mot de passe') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="confirmez mot de passe" required autocomplete="new-password">
         </div>
     </div>
     <div class="form-group row mb-0">
@@ -82,4 +85,8 @@
     </div>
 </form>
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

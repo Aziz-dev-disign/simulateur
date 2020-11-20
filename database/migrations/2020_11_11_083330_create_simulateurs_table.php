@@ -18,6 +18,7 @@ class CreateSimulateursTable extends Migration
             $table->bigInteger('type_id')->unsigned();
             $table->string('nom');
             $table->string('slug');
+            $table->string('statut');
             $table->string('montantMin');
             $table->string('montantMax');
             $table->string('taux', 8, 2);

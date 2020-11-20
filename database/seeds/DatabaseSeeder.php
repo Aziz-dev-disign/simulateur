@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSimulationTableSeeder::class);
         $this->call(CategorieListTableSeeder::class);
         $this->call(ListDocumentsTableSeeder::class);
+        $this->call(PermissionTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(Role_permission_foreign_keyTableSeeder::class);
     }
 }

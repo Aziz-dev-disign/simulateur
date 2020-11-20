@@ -27,6 +27,7 @@ class SimulateurFormRequest extends FormRequest
             'type_id'                           =>['required','integer'],
             'nom'                               =>['required','string'],
             'slug'                              =>['required','string','min:15'],
+            'statut'                            =>['required','string'],
             'montantMin'                        =>['required','string'],
             'montantMax'                        =>['required','string'],
             'taux'                              =>['required','string'],

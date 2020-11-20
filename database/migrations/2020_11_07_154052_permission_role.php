@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolePermissionForeignKeyTable extends Migration
+class PermissionRole extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateRolePermissionForeignKeyTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_permission_foreign_key', function (Blueprint $table) {
+        Schema::create('permission_role', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('role_id')->unsigned();
             $table->bigInteger('permission_id')->unsigned();
             $table->timestamps();
         });
-        Schema::table('role_permission_foreign_key', function (Blueprint $table) {
+        Schema::table('permission_role', function (Blueprint $table) {
             $table->foreign('role_id')->references('id')->on('roles');
-        $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->foreign('permission_id')->references('id')->on('permissions');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateRolePermissionForeignKeyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_permission_foreign_key');
+        Schema::dropIfExists('permission_role');
     }
 }

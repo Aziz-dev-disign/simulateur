@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\ROle;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,9 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $titre = 'List des utilistateurs';
         $users = User::all();
 
-        return view('contact.utilisateur.index', compact('users'));
+        return view('contact.utilisateur.index', compact('users', 'titre'));
     }
 
     /**
@@ -30,6 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $titre = 'Ajouter un utilisateur';
         $roles = Role::all();
         return view('contact.utilisateur.create', compact('roles'));
     }
@@ -45,13 +49,13 @@ class UserController extends Controller
         $mdp = $request['password'];
         $mdp2 = $request['password_confirmation'];
 
-        if ($mdp === $mdp2) {
+        if (request('password') === request('password_confirmation')) {
             User::create([
                 'role_id'=>$request->role_id,
-                'nom'=>$request->nom,
+                'name'=>$request->name,
                 'email'=>$request->email,
-                'statu'=>$request->statu,
-                'password'=>$request->password
+                'status'=>$request->status,
+                'password'=>Hash::make($request->password)
             ]);
             return redirect()->route('admin.user.create');
         }else {            
@@ -67,7 +71,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $titre = 'Détail de ';
+        return view('contact.utilisateur.show', compact('user', 'titre'));
     }
 
     /**
@@ -77,8 +82,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
-        //
+    {        
+        $titre = 'Editer ';
+        $roles = Role::all();
+        return view('contact.utilisateur.edit', compact('user', 'titre','roles'));
     }
 
     /**
@@ -90,7 +97,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update([
+            'role_id'=>$request->role_id,
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'status'=>$request->status,
+        ]);
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -99,8 +112,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.user.index');
     }
 }

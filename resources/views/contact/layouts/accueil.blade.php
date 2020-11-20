@@ -42,7 +42,6 @@
     <link href="{{asset('admin/source/datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/source/datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
     <!--/Datatables -->
-
     {{-- <!-- Notify -->
       @notifyCss
     <!--/ Notify --> --}}
@@ -134,7 +133,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Admin by <a href="">MamZakka-Dashbord</a>
+            Admin by <a href="">Société Générale Burkina Faso</a>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -4,7 +4,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Permission;
 use App\Http\Requests\PermissionFormRequest;
@@ -18,7 +17,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $titre = 'List des permissions';
+        $permissions = Permission::all();
+
+        return view('contact.permission.index', compact('permissions', 'titre'));
     }
 
     /**
@@ -39,7 +41,9 @@ class PermissionController extends Controller
      */
     public function store(PermissionFormRequest $request)
     {
-        //
+        Permission::create($request->all());
+
+        return redirect()->route('admin.permissions.index');
     }
 
     /**
@@ -50,7 +54,9 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        //
+        $titre = 'Détails de ';
+        $permission->load('permissionsRole');
+        return view('contact.permission.show', compact('permission', 'titre'));
     }
 
     /**
@@ -61,7 +67,8 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        //
+        $titre = 'Editer: ';
+        return view('contact.permission.edit', compact('permission', 'titre'));
     }
 
     /**
@@ -73,7 +80,8 @@ class PermissionController extends Controller
      */
     public function update(PermissionFormRequest $request, Permission $permission)
     {
-        //
+        $permission->update($request->all());
+        return redirect()->route('admin.permissions.index');
     }
 
     /**
@@ -84,6 +92,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return redirect()->route('admin.permissions.index');
     }
 }

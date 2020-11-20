@@ -17,9 +17,10 @@ class TypeSimulationController extends Controller
      */
     public function index()
     {
+        $titre = 'Type de simulateur';
         $typeSimulations = TypeSimulation::all();
 
-        return view('contact.type.index',compact('typeSimulations'));
+        return view('contact.type.index',compact('typeSimulations', 'titre'));
     }
 
     /**
@@ -29,7 +30,7 @@ class TypeSimulationController extends Controller
      */
     public function create()
     {
-        return view('contact.type.create');
+        return view('contact.type.create', compact());
     }
 
     /**
@@ -61,9 +62,11 @@ class TypeSimulationController extends Controller
      * @param  \App\TypeSimulation  $typeSimulation
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeSimulation $typeSimulation)
+    public function edit($typeSimulation)
     {
-        return view('contact.type.edit', compact('typeSimulation'));
+        $titre = 'Editer: ';
+        $typeSimulation = TypeSimulation::findOrFail($typeSimulation);
+        return view('contact.type.edit', compact('typeSimulation','titre'));
     }
 
     /**
