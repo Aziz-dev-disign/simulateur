@@ -14,6 +14,11 @@ class Simulateur extends Model
         return $this->belongsTo(TypeSimulation::class, 'type_id','id');
     }
 
+    public function scopeStatuActif($query)
+    {
+        return $query->where('statut', 'actif')->get();
+    }
+
     public function getStatusOptions(){
         return [
             'inactif'  =>'Inactif',

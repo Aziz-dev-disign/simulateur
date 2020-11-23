@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('accueil', function () {
-    return view('contact/layouts/accueil');
-})->name('index');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+
+Auth::routes(['register'=>false]);
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin','middleware' => ['auth']], function () {
+    Route::get('home', 'HomeController@index');
     Route::resource('agence', 'AgenceController');
     Route::resource('simulateur', 'SimulateurController');
     Route::resource('list-document', 'ListDocumentController');
@@ -30,6 +31,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::resource('type-simulateur', 'TypeSimulationController');
     Route::resource('user', 'UserController');
 });
+
+
 
 
 

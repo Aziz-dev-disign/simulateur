@@ -42,9 +42,14 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id','id');
     }
 
-    public function scopeStatu($query)
+    public function scopeStatuActif($query)
     {
-        return $query->where('status', 1)->get();
+        return $query->where('status', 'actif')->get();
+    }
+
+    public function scopeStatuInactif($query)
+    {
+        return $query->where('status', 'inactif')->get();
     }
 
     public function getStatuAttribut($attributes){

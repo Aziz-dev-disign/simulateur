@@ -14,7 +14,7 @@
                 </span>
                 <div class="wrap-input100 validate-input" data-validate = "Entrez un nom">
                     <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
-                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    <span class="focus-input100" data-placeholder="&#xf106;"></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Entrez un mot de passe">
                     <input type="password" class="input100" name="password" required autocomplete="current-password" placeholder="Mot de passe">
@@ -32,15 +32,6 @@
                     <button class="login100-form-btn">
                         Connexion
                     </button>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="justify-content-center">
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">S'inscrir ?</a>
-                            </li>
-                        @endif
-                    </div>
                 </div>
             </form>
         </div>

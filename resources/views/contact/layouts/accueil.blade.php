@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>SGBF | SIMULATEUR </title>
-    <!-- favicon -->
-    <link href="{{asset('assets/img/favicon2.png')}}" rel="icon">
-    <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <!-- favicon -->	
+    <link rel="icon" type="image/png" href="{{('assets/images/logo.png')}}"/>
+
     <!-- Bootstrap -->
     <link href="{{asset('admin/source/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/source/bootstrap/less/glyphicons.less')}}" rel="stylesheet">
@@ -54,7 +54,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="#" class="site_title"><i class="fa fa-home"></i> <span>Simulateur !</span></a>
+              <a href="{{route('admin.')}}" class="site_title"><i class="fa fa-home"></i> <span>Simulateur !</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -62,7 +62,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_info">
-                <span>Bienvenue, <strong>John Doe</strong></span>
+                <span>Bienvenue, <strong>{{ Auth::user()->name }}</strong></span>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -98,7 +98,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="clearfix"></div>
-
+            @yield('header')
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
@@ -133,7 +133,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Admin by <a href="">Société Générale Burkina Faso</a>
+            Admin by <a href="{{route('admin.')}}">Société Générale Burkina Faso</a>
           </div>
           <div class="clearfix"></div>
         </footer>
