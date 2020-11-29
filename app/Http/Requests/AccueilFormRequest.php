@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RdvFormRequest extends FormRequest
+class AccueilFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,21 @@ class RdvFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'simulation_id'                             =>['required','integer'],
             'agence_id'                                 =>['required','integer'],
             'identifiantClient'                         =>['required','string','min:3'],
             'etatCivil'                                 =>['required','string'],
+            'montant'                                   =>['required','string'],
+            'mensualite'                                =>['required','string'],
+            'taux'                                      =>['required','string'],
             'nom'                                       =>['required','string','min:3'],
             'prenom'                                    =>['required','string'],
-            'dateNaissance'                             =>['required','string|date'],
-            'email'                                     =>['required','string|email'],
+            'dateNaissance'                             =>['required','date'],
+            'email'                                     =>['required','email'],
             'pays'                                      =>['required','string'],
-            'telephone'                                 =>['required','number'],
+            'telephone'                                 =>['required'],
             'ville'                                     =>['required','string'],
             'motif'                                     =>['required','string'],
-            'dateRdv'                                   =>['required','string|date'],
-            'heure'                                     =>['required','string']
+            'dateRdv'                                   =>['required','date']
         ];
     }
 }

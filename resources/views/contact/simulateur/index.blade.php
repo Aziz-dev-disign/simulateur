@@ -40,8 +40,8 @@
                     <td>{{$simulateur->montantMin}}</td>
                     <td>{{$simulateur->montantMax}}</td>
                     <td>{{$simulateur->taux}}</td>
-                    <td>{{$simulateur->dureeMin}}</td>
                     <td>{{$simulateur->dureeMax}}</td>
+                    <td>{{$simulateur->dureeMin}}</td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger">Action</button>

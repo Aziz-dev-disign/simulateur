@@ -15,9 +15,12 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('simulation_id')->unsigned();
             $table->bigInteger('agence_id')->unsigned();
-            $table->string('identifiantClient');
+            $table->string('_token');
+            $table->string('identifiantClient')->nullable();
+            $table->string('montant')->nullable();
+            $table->string('mensualite')->nullable();
+            $table->string('taux')->nullable();
             $table->string('etatCivil');
             $table->string('nom');
             $table->string('prenom');
@@ -28,12 +31,7 @@ class CreateRdvsTable extends Migration
             $table->string('ville');
             $table->string('motif');
             $table->string('dateRdv');
-            $table->string('heure');
             $table->timestamps();
-        });
-        Schema::table('rdvs', function (Blueprint $table) {
-            $table->foreign('simulation_id')->references('id')->on('simulations');
-            $table->foreign('agence_id')->references('id')->on('agences');
         });
     }
 

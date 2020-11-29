@@ -96,25 +96,7 @@
                 {{ $errors->first('dureeMax') }}
             </div>
         @endif
-    </div>    
-    <div class=" form-group ">
-        <label class="required" for="image">image <span class="required">*</span></label>
-        <input type="file" id="image"  required="required" class="form-control  {{ $errors->has('image') ? 'is-invalid' : '' }} " name="image"  value="{{ old('image') }}" required autocomplete="image" autofocus>            
-        @if($errors->has('image'))
-            <div class="invalid-feedback">
-                {{ $errors->first('image') }}
-            </div>
-        @endif
-    </div>
-    <div class=" form-group ">
-        <label class="required" for="decription">Decription<span class="required">*</span></label>
-        <textarea name="description" id="description" s="3" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') ?? $simulateur->description }}"></textarea>
-        @if($errors->has('description'))
-            <div class="invalid-feedback">
-                {{ $errors->first('description') }}
-            </div>
-        @endif
-    </div>    
+    </div>     
     <div class="form-group ">
         <button type="submit" class="btn btn-success">Enregistrer</button>
         <a href="{{route('admin.simulateur.index')}}" class="btn btn-danger">Retour</a>

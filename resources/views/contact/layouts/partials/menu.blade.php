@@ -11,7 +11,7 @@
                 </ul>
             </li>
             <li><a href="{{route('admin.simulateur.index')}}"><i class="fa   fa-calculator"></i>Simulateur</a></li>
-            <li><a href="{{route('admin.rendez-vous.index')}}"><i class="fa  fa-comment"></i>Rendez-vous</a></li>
+            <li><a href="{{route('admin.contact.index')}}"><i class="fa  fa-comment"></i>Rendez-vous</a></li>
             <li><a href="{{route('admin.agence.index')}}"><i class="fa   fa-institution (alias)"></i>Agence</a></li>
         </ul>
     </div>

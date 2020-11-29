@@ -19,6 +19,11 @@ class Simulateur extends Model
         return $query->where('statut', 'actif')->get();
     }
 
+    public function scopeStatuInactif($query)
+    {
+        return $query->where('statut', 'inactif')->get();
+    }
+
     public function getStatusOptions(){
         return [
             'inactif'  =>'Inactif',

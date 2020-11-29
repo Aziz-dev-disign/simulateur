@@ -1,0 +1,26 @@
+.portfolio .portfolio-item {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    max-width: 25rem;
+    border: 1px solid red !important;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+.portfolio .portfolio-item .portfolio-item-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    background-color: rgba(7, 7, 7, 0.616) !important;
+  }
+
+.form-control.focus:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: red !important;
+  outline: 0;
+  box-shadow: none !important;
+}

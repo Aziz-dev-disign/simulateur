@@ -8,7 +8,7 @@ use App\Rdv;
 use App\Agence;
 use App\Simulation;
 use Illuminate\Http\Request;
-use App\Http\Requests\RdvFormRequest;
+use App\Http\Requests\AccueilFormRequest;
 
 class RdvController extends Controller
 {
@@ -33,9 +33,8 @@ class RdvController extends Controller
     public function create()
     {
         $agence = Agence::all();
-        $simulation = Simulation::all();
 
-        return view('contact.rdv.create', compact('agence','simulation'));
+        return view('welcome', compact('agence'));
     }
 
     /**
@@ -44,11 +43,11 @@ class RdvController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RdvFormRequest $request)
+    public function store(AccueilFormRequest $request)
     {
         Rdv::create($request->all());
 
-        return redirect()->route('');
+        return redirect()->route('admin.rendez-vous.create');
     }
 
     /**
@@ -82,8 +81,9 @@ class RdvController extends Controller
      */
     public function update(RdvFormRequest $request, Rdv $rdv)
     {
-        Rdv::update($request->all());
-        return redirect()->route('');
+        $rdv->update($request->all());
+
+        return redirect()->route('admin.rendez-vous.create');
     }
 
     /**
@@ -96,6 +96,6 @@ class RdvController extends Controller
     {
         $rdv->delete();
 
-        return redirect()->route('');
+        return redirect()->route('admin.rendez-vous.create');
     }
 }

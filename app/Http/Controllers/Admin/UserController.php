@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $titre = 'List des utilistateurs';
-        $users = User::all();
+        $users = User::with('roles')->get();
 
         return view('contact.utilisateur.index', compact('users', 'titre'));
     }
@@ -46,21 +46,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $mdp = $request['password'];
-        $mdp2 = $request['password_confirmation'];
+        $data = request()->validate([
+            'role_id'=>['required','integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'status'=>['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-        if (request('password') === request('password_confirmation')) {
-            User::create([
-                'role_id'=>$request->role_id,
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'status'=>$request->status,
-                'password'=>Hash::make($request->password)
-            ]);
-            return redirect()->route('admin.user.create');
-        }else {            
-            return redirect()->route('admin.user.create')->with('message','mot de passe incorrect');
-        }
+        User::create([
+            'role_id'=>$data['role_id'],
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'status'=>$data['status'],
+            'password'=>Hash::make($data['password'])
+        ]);
+        return redirect()->route('admin.user.create');
     }
 
     /**

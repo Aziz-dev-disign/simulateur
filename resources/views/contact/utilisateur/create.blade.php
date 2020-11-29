@@ -9,7 +9,7 @@
     <div class="form-group row">
         <label for="role_id" class="col-md-4 col-form-label">{{ __('Role') }} <span>*</span></label>
         <div class="col-md-6">
-            <select name="role_id" id="role_id" class="form-control">
+            <select name="role_id" id="role_id" class="form-control" required>
                 <option value="">choisir un role</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->nom}}</option>
@@ -36,26 +36,26 @@
     <div class="form-group row">
         <label for="email" class="col-md-4 col-form-label">{{ __('E-Mail') }} <span>*</span></label>
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="exemple@exemple.com" required autocomplete="email">
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <input id="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="exemple@exemple.com" required autocomplete="email">
+            @if($errors->has('email'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('email') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="form-group row">
         <label for="status" class="col-md-4 col-form-label">{{ __('statut') }} <span>*</span></label>
         <div class="col-md-6">
-            <select id="status" type="text" class="form-control @error('status') is-invalid @enderror custom-select" name="status">
+            <select id="status" type="text" class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" required name="status">
                 <option value="inactif">Inactif</option>
                 <option value="actif">Actif</option>
             </select>
-            @error('status')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            @if($errors->has('status'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('status') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="form-group row">
@@ -88,5 +88,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

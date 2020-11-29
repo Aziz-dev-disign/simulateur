@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'AccueilController');
 
+Route::group(['prefix' => 'simulateur', 'as' => 'simulateur.', 'namespace' => 'VueClient'], function () {
+    Route::resource('contact','ContactController');
+    Route::resource('credits','SimulateurCLientShowController');
+});
 
 Auth::routes(['register'=>false]);
 
@@ -30,11 +32,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin','mid
     Route::resource('roles', 'RoleController');
     Route::resource('type-simulateur', 'TypeSimulationController');
     Route::resource('user', 'UserController');
+    Route::resource('contact','ContactController');
 });
 
 
 
 
 
-Auth::routes();
 

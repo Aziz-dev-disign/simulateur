@@ -11,53 +11,45 @@
 <form class="form-horizontal form-label-left"  method="POST" action="{{route('admin.list-document.store')}}" enctype="multipart/form-data">
     @csrf
     
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="type">Type de documents <span class="required">*</span></label>
-        <div class="col-md-7">
-            <select name="type_id" id="type" class="form-control">
+    <div class="form-group">
+        <label class="required" for="type">Type de documents <span class="required">*</span></label>        
+            <select name="type_id" id="type" class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}">
                 <option value="">Choisir...</option>
                 @foreach ($types as $type)
                     <option value="{{$type->id}}">{{$type->nom}}</option>
                 @endforeach
             </select>
-            @error('type_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
+            @if($errors->has('type_id'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('type_id') }}
+                </div>
+            @endif
     </div>    
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="categorie">Catégorie de documents <span class="required">*</span></label>
-        <div class="col-md-7">
-            <select name="categorie_id" id="categorie" class="form-control">
+    <div class="form-group">
+        <label class="required" for="categorie">Catégorie de documents <span class="required">*</span></label>        
+            <select name="categorie_id" id="categorie" class="form-control {{ $errors->has('categorie_id') ? 'is-invalid' : '' }}">
                 <option value="">Choisir...</option>
                 @foreach ($categories as $categorie)
                     <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
                 @endforeach
             </select>
-            @error('categorie_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
+            @if($errors->has('categorie_id'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('categorie_id') }}
+                </div>
+            @endif
     </div>
-    <div class="item form-group row">
-        <label class="control-label col-md-3" for="nomDoc">Nom <span class="required">*</span></label>
-        <div class="col-md-7">
-            <input type="text" id="nomDoc"  required="required" class="form-control @error('nomDoc') is-invalid @enderror " name="nomDoc" placeholder="Veillez entrer le nom du document"  value="{{ old('nomDoc') }}" required autocomplete="nomDoc" autofocus>            
-            @error('nomDoc')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-        </div>
+    <div class="form-group">
+        <label class="required" for="nomDoc">Nom <span class="required">*</span></label>        
+        <input type="text" id="nomDoc" class="form-control{{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nomDoc" value="{{ old('nomDoc') }}" required autocomplete="nomDoc" autofocus>            
+        @if($errors->has('nom'))
+            <div class="invalid-feedback">
+                {{ $errors->first('nom') }}
+            </div>
+        @endif
     </div>
-    <div class="form-group row">
-        <div class="col-md-9 col-sm-9  offset-md-3">
-            <button type="submit" class="btn btn-success">Enregistrer</button>
-        </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Enregistrer</button>
     </div>
 </form>
 <div class="ln_solid"></div>

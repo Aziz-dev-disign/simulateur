@@ -19,7 +19,7 @@ class ListDocumentController extends Controller
     public function index()
     {
         $titre = 'list des documents à fournir';
-        $listDocuments = ListDocument::all();
+        $listDocuments = ListDocument::with(['type','categorie'])->get();
         $categories = CategorieList::all();
         $types = TypeSimulation::all();
         $listDocument = new ListDocument();

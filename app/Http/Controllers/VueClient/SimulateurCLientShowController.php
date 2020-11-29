@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\VueClient;
 
 use App\Http\Controllers\Controller;
+
+use App\Agence;
+use App\Simulateur;
 use Illuminate\Http\Request;
 
-class AccueilController extends Controller
+class SimulateurCLientShowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,10 @@ class AccueilController extends Controller
      */
     public function index()
     {
-        return view('contact.simulateur');
+        
+        $agences = Agence::all();
+        $simulateurs = Simulateur::statuActif();
+        return view('vueClient.simulateur.simulateur', compact('agences','simulateurs'));
     }
 
     /**
@@ -41,21 +47,22 @@ class AccueilController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $simulateur = Simulateur::findOrFail($id);
+        return view('vueClient.simulateur.show',compact('simulateur'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Simulateur $simulateur)
     {
         //
     }
@@ -64,10 +71,10 @@ class AccueilController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Simulateur $simulateur)
     {
         //
     }
@@ -75,10 +82,10 @@ class AccueilController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Simulateur $simulateur)
     {
         //
     }
