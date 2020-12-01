@@ -21,7 +21,7 @@ class Simulateur extends Model
 
     public function scopeStatuInactif($query)
     {
-        return $query->where('statut', 'inactif')->get();
+        return $query->where('statut', 'inactif')->orderBy('created_at','DESC')->get();
     }
 
     public function getStatusOptions(){

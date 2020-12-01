@@ -1,129 +1,281 @@
 @include('vueClient.partials.head')
 @include('vueClient.partials.menu')
 
-<section class="page-section portfolio" id="portfolio">
-
-    <div class="container mt-5">
-        <div class="row justify-content-between">
-            <div class="col-md-6 simulateur">
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-3">Simulation</h2>
-                <div class="col-md-12 mb-5">
-                    <div>
-                        <p>Renseignez votre salaire mensuel afin de calculer la quotité !</p>
-                        <span></span>
-                        <div class="input-group mb-3">
-                        <input type="text" class="form-control focus" placeholder="Renseignez votre salaire" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border-radius: 0px">Calculer</button>
-                    </div>
-                    <div>
-                        <p>Selectionnez la souhaiter pour le prêt !</p>
-                        <div class="input-group mb-3">
-                        <input type="date" class="form-control focus" placeholder="Renseignez votre salaire" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" id="button-addon2" style="border-radius: 0px">Date</button>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mainCol" role="main">
+            <h1 class="mainTitle page-section-heading text-uppercase text-secondary mb-5">{{$simulateur->typeSimulation->nom}}</h1>                
+            <div  class="ttcContent  default" >
+                <div id="c3430" class="frame frame-default frame-type-list frame-layout-0">
+                    <div class="tx_bisimulcredit" id="tx_bisimulcredit--3430">
+                        <div id="simulateurGlob" class="">
+                            <div id="simulateur" class="pt-10">      
+                                <div id="MontantDuCredit" class="MontantDuCredit">
+                                    <label for="montant">Montant crédit</label><span class="inputCred"><input type="text" value="" id="montant" class="montant" name="montant" /><span>FCFA</span></span>
+                                    <input type="text" id="range2" class="range2" max="{{$simulateur->montantMax}}" min="{{$simulateur->montantMin}}" value="" name="range2" />
+                                </div>
+                                <div id="DureeRange" class="DureeRange">
+                                    <label for="duree">Durée</label><span class="inputCred"><input type="text" value="" id="duree" class="duree" name="duree" /><span>Mois</span></span>
+                                    <input type="text" id="range3" class="range3" min="{{$simulateur->dureeMin}}" max="{{$simulateur->dureeMax}}" value="" name="range3" />
+                                </div>
+                                <input type="hidden" name="taux" value="{{$simulateur->taux}}">
+                                <input type="button" class="ButtonSimul ButtonSimul--launchSimul" value="Lancer la simulation" />
+                            </div>
+                            <div id="resultat" class="resultat" >   
+                                <p id="Montant" class="Montant-3430">
+                                    <span class="label">Montant crédit</span>
+                                    <span class="result"></span>
+                                </p>
+                                <p id="Mensu" class="Mensu-3430">
+                                    <span class="label">Mensualités</span>
+                                    <span class="result"></span>
+                                </p>
+                                <p id="Taux" class="Taux-3430">
+                                    <span class="label">Taux</span>
+                                    <span class="result"></span>
+                                </p>
+                                <p id="DureeCred" class="DureeCred">
+                                    <span class="label">Durée</span>
+                                    <span class="result"></span>
+                                </p>
+                                <p id="CoutTotal" class="CoutTotal-3430">
+                                    <span class="label">Coût total hors taxes</span>
+                                    <span class="result"></span>
+                                </p>
+                                <input type="button" class="ButtonSimul ButtonSimul--getPdf" value="Enregistrer au format pdf"  />
+                                <a class="ButtonSimul" href="http://societegenerale.bf/fr/votre-banque/nous-contacter/">Contacter</a>
+                            </div>
+                        </div>
+                    </div>	
                 </div>
-                <div class="col-md-12 my-5 p-0">
-                    <label for="montant">Montant</label><input type="text" name="" id="" class="form-control col-md-3 float-right" value="{{ $simulateur->montantMin }}"><br>
-                </div>
-                <div class="col-md-12 m-0 p-0">
-                    <div class="col-md-12 mb-2 p-0">                        
-                        <span>{{ $simulateur->montantMin }}</span>                         
-                        <span class="float-right">{{ $simulateur->montantMax }}<span>
-                    </div>
-                    <div class="col-md-12 m-0 p-0">
-                        <input type="range" name="" id="" min="{{ $simulateur->montantMin }}" max="{{ $simulateur->montantMax }}" value="{{$simulateur->montantMin}}" step="100" class="form-control-range  focus">
-                    </div>
-                </div>
-                <div class="col-md-12 mt-5 p-0">
-                    <label for="montant">Durée</label><input type="text" name="" id="" class="form-control col-md-3 float-right" value="{{$simulateur->dureeMin}}"><br>
-                </div>
-                <div class="col-md-12 mt-4 p-0">
-                    <span>{{$simulateur->dureeMin}}</span>
-                    <span class="float-right">{{$simulateur->dureeMax}}</span>
-                    <div class="input-group mb-3">
-                        <input type="range" name="" id="" min="{{$simulateur->dureeMin}}" max="{{$simulateur->dureeMax}}" step="1" value="{{$simulateur->dureeMin}}" class="form-control focus">
-                    </div>
-                </div>
-                <button id="btn" class="btn btn-danger mt-3 lancer" type="submit">Lancer la simulation !</button>
             </div>
         </div>
     </div>
-    <div class="col-md-6 justify-content-between resultat">
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-3">Résultat</h2>
-        <div class="col-md-12 justify-content-between border">
-            <dt class="col-md-6 d-inline">Montant du crédit</dt>
-            <span class="col-md-6 float-right">1000000<span> FCFA</span></span>
-        </div>
-        <div class="col-md-12 border ">
-            <dt class="col-md-6 d-inline">Mensualité</dt>
-            <span class="col-md-6 d-inline result float-right">422523<span> FCFA</span></span>
-        </div>
-        <div class="col-md-12 border">
-            <dt class="col-md-6 d-inline">Taux</dt>
-            <span class="col-md-6  d-inline result float-right">{{ $simulateur->taux }}<span> %</span></span>
-        </div>
-        <div class="col-md-12 border">
-            <dt class="col-md-6 d-inline">Durée</dt>
-            <span class="col-md-6  d-inline result float-right">1<span> Mois</span></span>
-        </div>
-        <div class="col-md-12 border">
-            <dt class="col-md-6 d-inline">Montant Total</dt>
-            <span class="col-md-6  d-inline result float-right">10.000.000<span> FCFA</span></span>
-        </div>
-        <h5 class="page-section-heading text-center text-uppercase text-secondary my-3">Tableau d'amortissement</h5>
-        <div class="col-md-12 mb-5 p-0">
-            <table class="table table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Dates</th>
-                    <th scope="col">Capital</th>
-                    <th scope="col">Échéances</th>
-                    <th scope="col">Intérêts</th>
-                    <th scope="col">Capital remboursé</th>
-                    <th scope="col">Capital restant</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <a href="#" class="btn btn-secondary">Enregistrer le Pdf !</a>
-        <a href="{{route('simulateur.credits.index')}}" class="btn btn-danger">Prendre un rendez-vous !</a>
-    </div>
-</section>
-
+</div>
 @include('vueClient.partials.footer')
 
 <script>
     $('.resultat').hide();
     $('.lancer').click(function() {
         $('.resultat').show();
-    });
+    }); 
+
+</script>
+
+<script>
+    (function(window, $) {
+
+        var $simul = $('#tx_bisimulcredit--3430');
+        var $montant = $simul.find(".montant");
+        var $duree = $simul.find(".duree");
+        var $range2 = $simul.find(".range2");
+        var $range3 = $simul.find(".range3");
+        var $resultat = $simul.find(".resultat");
+        var $DureeCred = $simul.find(".DureeCred");
+        var isModeTranche = 0;
+        var trancheDureeDatas = JSON.parse('[{"begin":"1","end":"24","taux":"10.5"},{"begin":"25","end":"84","taux":"10.5"}]');
+        var contactLink = "fr/particuliers/credits/simulateurs/simulateur-pret-personnel-ordinaire/";
+
+        function getTauxFromDuree(duree){
+            var taux = false;
+            trancheDureeDatas.forEach( function(tranche){
+                if(duree >= tranche.begin && duree <= tranche.end){
+                    if(isModeTranche){
+                        var trancheId = $simul.find('#tranche').val();
+                        taux = tranche['tauxTranche'+trancheId];
+                    } else {
+                        taux = tranche.taux;
+                    }
+                }
+            });
+            return taux;
+        }
+
+        $simul.find('.ButtonSimul--getPdf').on('click', function(){
+            window.open(getAjaxLink(false));
+            return false;
+        });
+
+        $simul.find('.ButtonSimul--sendPdf').on('click', function(){
+            sendPdfLink();
+        });
+
+        function getAjaxLink(saveFile){
+            return encodeURI(document.location.href + "?tx_bisimulcredit[tranche]=" + $simul.find('#tranche option:selected').text() + "&tx_bisimulcredit[MontantCredit]="+$(".Montant-3430 .result").html()+"&tx_bisimulcredit[Mensualite]="+$(".Mensu-3430 .result").html()+"&tx_bisimulcredit[Taux]="+$(".Taux-3430 .result").html()+"&tx_bisimulcredit[Duree]="+$DureeCred.find('.result').html()+"&tx_bisimulcredit[CoutTotal]="+$(".CoutTotal-3430 .result").html()+"&tx_bisimulcredit[savePdf]="+saveFile);
+        }
+        function sendPdfLink(){
+            var link = getAjaxLink(true);
+            $simul.find('.loader--sendPdf').addClass('loader--sendPdf--visible');
+            $.post( link, function( data ) {
+                document.location.href = contactLink;
+            });
+        }
+
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+
+        $resultat.hide();
+
+        var minimum = '100000';
+        var maximum= '400000000';
+        var dureemin = '1';
+        dureemin = dureemin.replaceAll(' ','');
+        minimum = minimum.replaceAll(' ','');
+        maximum= maximum.replaceAll(' ',''); // @replaceAll() est une fonction Jquery qui remplace les éléments selectionner par de nouveaux html
+
+
+        $range2.ionRangeSlider({
+            grid: true,
+            min: parseInt(minimum), //@parsenInt est une fonction js qui recupere une valeur et l'affiche
+            max: parseInt(maximum),
+            step: 1000
+        });
+
+        $range3.ionRangeSlider({
+            grid: true,
+            min: parseInt(dureemin),
+            max: 84,
+            step: 1
+        });
+
+        $montant.on("change", function() {
+            var new_val = parseInt(String($(this).val()).replaceAll(' ',''));
+            if(new_val < parseInt(minimum)){
+                $(this).val(parseInt(minimum));
+            } else if(new_val > parseInt(maximum)){
+                $(this).val(parseInt(maximum));
+            }
+
+            $range2.data("ionRangeSlider").update({
+                from: $montant.val(),
+            });
+            calculSimul();
+        });
+
+        $duree.on("change", function(){
+
+            new_val = parseInt(String($(this).val()).replaceAll(' ',''));
+            if(new_val < parseInt(dureemin)){
+                $(this).val(dureemin);
+            }
+
+            $range3.data("ionRangeSlider").update({
+                from: $duree.val(),
+            });
+            calculSimul();
+        });
+
+        $range2.on("change", function () {
+            $montant.val($(this).prop("value")); // @val() renvoie ou définit l'attribut value des éléments sélectionnés
+            calculSimul();
+        });
+
+        $range3.on("change", function () {
+            $duree.val($(this).prop("value"));//jquery @prop() définie ou renvoie les propriétés et valeurs des léments sélectionnées
+            calculSimul();
+        });
+ 
+        $simul.find('#trancheSalaire').on('change', function(){
+            calculSimul();
+        }); // renvoie les éléments descendants de l'élément sélectionné.
+        $simul.find('.ButtonSimul--launchSimul').on('click', function(){
+            calculSimul();
+        });
+
+
+
+
+        var valueMontantDuCredit = $simul.find('.MontantDuCredit').find('span.irs-single').html();
+        $montant.attr('value',valueMontantDuCredit);
+
+        var valueDureeRange = $simul.find('.DureeRange').find('span.irs-single').html();
+        $duree.attr('value',valueDureeRange);
+
+        function calculSimul(){
+
+            console.log('calculSimul');
+
+            $DureeCred.find('.result').html($duree.val()+' Mois');
+
+            var duree = parseInt(String($duree.val()).replaceAll(' ',''));
+            var montant = parseInt(String($montant.val()).replaceAll(' ',''));
+            var tauxDiv = '';
+
+            taux = getTauxFromDuree(duree);
+            tauxDiv = taux * 0.01;
+
+
+        
+
+            var calculH = tauxDiv / 12;
+            calculH = calculH * montant;
+
+            var calculB = tauxDiv / 12;
+            calculB = 1 + calculB;
+
+            calculB = Math.pow(calculB, - duree);
+            calculB = 1 - calculB;
+
+            var mensu = calculH / calculB;
+            mensu = mensu.toFixed(2);
+
+            var tauxA = (tauxDiv *100).toFixed(2);
+
+            
+                    jQuery(".Taux-3430 .result").html(tauxA +'%');
+                
+
+                var CoutTotal = mensu * duree;
+                CoutTotal = CoutTotal.toFixed(2);
+
+            
+                    jQuery(".Montant-3430 .result").html( format(parseInt($montant.val().replaceAll(' ','')),2,' ',',')+' FCFA');
+                    jQuery(".Mensu-3430 .result").text(format(mensu,2,' ',',') +' FCFA');
+                    jQuery(".CoutTotal-3430 .result").text( format(CoutTotal,2,' ',',') +' FCFA');
+                
+
+            if(isModeTranche) {
+                $simul.find('#resultatTranche .result').html($simul.find('#tranche option:selected').text());
+            }
+
+            // sauvegardes des resutlats pour lévolution "demander un pret"
+            var simulToSave = [];
+            $simul.find('.resultat p').each(function(){
+                simulToSave.push({
+                    'label' : $(this).find('.label').html(),
+                    'result' : $(this).find('.result').html(),
+                });
+            });
+            localStorage.setItem('simulCredit', JSON.stringify(simulToSave));
+
+            $resultat.show();
+        }
+
+        function format(valeur,decimal,separateur,dsep) {
+
+            var deci=Math.round( Math.pow(10,decimal)*(Math.abs(valeur)-Math.floor(Math.abs(valeur)))) ;
+            var val=Math.floor(Math.abs(valeur));
+            if ((decimal==0)||(deci==Math.pow(10,decimal))) {val=Math.floor(Math.abs(valeur)); deci=0;}
+            var val_format=val+"";
+            var nb=val_format.length;
+            for (var i=1;i<4;i++) {
+                if (val>=Math.pow(10,(3*i))) {
+                    val_format=val_format.substring(0,nb-(3*i))+separateur+val_format.substring(nb-(3*i));
+                }
+            }
+            if (decimal>0) {
+                var decim="";
+                for (var j=0;j<(decimal-deci.toString().length);j++) {decim+="0";}
+                deci=decim+deci.toString();
+                val_format=val_format+dsep+deci;
+            }
+            if (parseFloat(valeur)<0) {val_format="-"+val_format;}
+            return val_format;
+        }
+
+
+    })(window, jQuery)
+
 </script>

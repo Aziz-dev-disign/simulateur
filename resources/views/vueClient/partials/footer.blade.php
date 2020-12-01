@@ -9,4 +9,8 @@
         <script src="{{asset('assets/mail/contact_me.js')}}"></script>
         <!-- Core theme JS-->
         <script src="{{asset('js/scripts.js')}}"></script>
+        <script src="{{asset('js/range.js')}}"></script>
+        <script src="{{asset('js/stimul.js')}}"></script>
+        <script src="{{asset('js/stimul2.js')}}"></script>
+        <script src="{{asset('js/form.js')}}"></script>
     </body>

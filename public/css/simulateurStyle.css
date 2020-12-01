@@ -2,7 +2,7 @@
     cursor: pointer;
     position: relative;
     display: block;
-    max-width: 25rem;
+    max-width: 100%;
     border: 1px solid red !important;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -20,7 +20,30 @@
 .form-control.focus:focus {
   color: #495057;
   background-color: #fff;
-  border-color: red !important;
+  border-color:#ced4da !important;
   outline: 0;
   box-shadow: none !important;
+}
+.col-md-12.mainCol {
+  position: relative;
+    width: 100%;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  padding-top: 10rem !important;
+}
+
+span.result{
+  font-size: 18px;
+}
+
+input#montant, input#duree {
+  font-size: 15px;
+}
+
+h6.text-center.text-uppercase.text-secondary.mb-5 {
+  font-size: 14px;
+}
+
+div#simulateur {
+  margin-right: 0;
 }

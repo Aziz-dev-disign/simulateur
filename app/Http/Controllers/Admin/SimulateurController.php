@@ -19,7 +19,7 @@ class SimulateurController extends Controller
     public function index()
     {
         $titre = 'Simulateur';
-        $simulateurs = Simulateur::all();
+        $simulateurs = Simulateur::select('*')->orderBy('id','desc')->get();
 
         return view('contact.simulateur.index',compact('simulateurs','titre'));
     }
