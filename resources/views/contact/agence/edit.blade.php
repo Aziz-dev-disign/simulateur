@@ -8,8 +8,8 @@
     @csrf
     @method('patch')
     <div class="form-group">
-        <label class="required" for="code">Code</label>
-        <input class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" name="code" id="code" value="{{ old('code') ?? $agence->code}}" required>
+        <label  for="code">Code</label>
+        <input class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" type="text" name="code" id="code" value="{{ old('code') ?? $agence->code}}" >
         @if($errors->has('code'))
             <div class="invalid-feedback">
                 {{ $errors->first('code') }}
@@ -17,8 +17,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="nom">Nom</label>
-        <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom') ?? $agence->nom }}" required>
+        <label  for="nom">Nom</label>
+        <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom') ?? $agence->nom }}" >
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}
@@ -26,8 +26,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="email">Email</label>
-        <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email') ?? $agence->email}}" required>
+        <label  for="email">Email</label>
+        <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="text" name="email" id="email" value="{{ old('email') ?? $agence->email}}" >
         @if($errors->has('email'))
             <div class="invalid-feedback">
                 {{ $errors->first('email') }}
@@ -35,8 +35,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="telephone">Téléphone</label>
-        <input class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" type="text" name="telephone" id="telephone" value="{{ old('telephone') ?? $agence->telephone}}" required>
+        <label  for="telephone">Téléphone</label>
+        <input class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" type="text" name="telephone" id="telephone" value="{{ old('telephone') ?? $agence->telephone}}" >
         @if($errors->has('telephone'))
             <div class="invalid-feedback">
                 {{ $errors->first('telephone') }}
@@ -44,8 +44,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="ville">Ville</label>
-        <input class="form-control {{ $errors->has('ville') ? 'is-invalid' : '' }}" type="text" name="ville" id="ville" value="{{ old('ville') ?? $agence->ville}}" required>
+        <label  for="ville">Ville</label>
+        <input class="form-control {{ $errors->has('ville') ? 'is-invalid' : '' }}" type="text" name="ville" id="ville" value="{{ old('ville') ?? $agence->ville}}" >
         @if($errors->has('ville'))
             <div class="invalid-feedback">
                 {{ $errors->first('ville') }}

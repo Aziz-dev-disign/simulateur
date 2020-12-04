@@ -12,7 +12,7 @@
     @csrf
     
     <div class="form-group">
-        <label class="required" for="type">Type de documents <span class="required">*</span></label>        
+        <label for="type">Type de documents <span class="required">*</span></label>        
             <select name="type_id" id="type" class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}">
                 <option value="">Choisir...</option>
                 @foreach ($types as $type)
@@ -26,7 +26,7 @@
             @endif
     </div>    
     <div class="form-group">
-        <label class="required" for="categorie">Catégorie de documents <span class="required">*</span></label>        
+        <label for="categorie">Catégorie de documents <span class="required">*</span></label>        
             <select name="categorie_id" id="categorie" class="form-control {{ $errors->has('categorie_id') ? 'is-invalid' : '' }}">
                 <option value="">Choisir...</option>
                 @foreach ($categories as $categorie)
@@ -40,8 +40,8 @@
             @endif
     </div>
     <div class="form-group">
-        <label class="required" for="nomDoc">Nom <span class="required">*</span></label>        
-        <input type="text" id="nomDoc" class="form-control{{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nomDoc" value="{{ old('nomDoc') }}" required autocomplete="nomDoc" autofocus>            
+        <label for="nomDoc">Nom <span class="required">*</span></label>        
+        <input type="text" id="nomDoc" class="form-control{{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nomDoc" value="{{ old('nomDoc') }}" autocomplete="nomDoc" autofocus>            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}

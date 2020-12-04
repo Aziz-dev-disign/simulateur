@@ -41,9 +41,17 @@ class PermissionController extends Controller
      */
     public function store(PermissionFormRequest $request)
     {
-        Permission::create($request->all());
+        $permission = Permission::create($request->all());
 
-        return redirect()->route('admin.permissions.index');
+        if ($permission) {
+            emotify('success','La permission a été enregistrer avec succès');
+            return redirect()->route('admin.permissions.index');
+        } else {
+            emotify('error','La permission n\'a pas pas été enregistrer. Veillez réessayer !');
+            return back();
+        }
+        
+
     }
 
     /**
@@ -81,7 +89,14 @@ class PermissionController extends Controller
     public function update(PermissionFormRequest $request, Permission $permission)
     {
         $permission->update($request->all());
-        return redirect()->route('admin.permissions.index');
+        if ($permission) {
+            emotify('success','La permission a été modifier avec succès');
+            return redirect()->route('admin.permissions.index');
+        } else {
+            emotify('error','La permission n\'a pas été modifier. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -93,6 +108,13 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->route('admin.permissions.index');
+        if ($permission) {
+            emotify('success','La permission a été supprimer avec succès');
+            return redirect()->route('admin.permissions.index');
+        } else {
+            emotify('error','La permission n\'a pas été supprimer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 }

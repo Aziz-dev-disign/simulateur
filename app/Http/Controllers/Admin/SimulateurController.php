@@ -42,11 +42,11 @@ class SimulateurController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SimulateurFormRequest $request)
     {
         $imagePath = request('image')->store('simulateur','public');
 
-        Simulateur::create([
+        $simulateur = Simulateur::create([
             'type_id'=>$request->type_id,
             'nom'=>$request->nom,
             'slug'=>$request->slug,
@@ -59,8 +59,16 @@ class SimulateurController extends Controller
             'image'=>$imagePath,
             'description'=>$request->description,
         ]);
+
+        if ($simulateur) {
+            emotify('success','Les informations du simulateur ont été enregistrer avec succès');
+            return redirect()->route('admin.simulateur.create');
+        } else {
+            emotify('success','Les informations du simulateur n\'ont pas été enregistrer avec succès');
+            return back();
+        }
+        
          
-        return redirect()->route('admin.simulateur.create');
     }
 
     /**
@@ -95,17 +103,31 @@ class SimulateurController extends Controller
      * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Simulateur $simulateur)
+    public function update(SimulateurFormRequest $request, Simulateur $simulateur)
     {
         if (request('image')) {
             
             $imagePath = request('image')->store('simulateur','public');
             $simulateur->update(array_merge($request->all(),['image'=>$imagePath]));
-            return redirect()->route('admin.simulateur.index');
+            if ($simulateur) {
+                emotify('success','Les informations du simulateur ont été modifier avec succès');
+                return redirect()->route('admin.simulateur.index');
+            } else {
+                emotify('success','Les informations du simulateur n\'ont pas été modifier avec succès');
+                return back();
+            }
+            
         }
         else {
             $simulateur->update($request->all());
-            return redirect()->route('admin.simulateur.index');
+            if ($simulateur) {
+                emotify('success','Les informations du simulateur ont été modifier avec succès');
+                return redirect()->route('admin.simulateur.index');
+            } else {
+                emotify('success','Les informations du simulateur n\'ont pas été modifier avec succès');
+                return back();
+            }
+            
         }
     }
 
@@ -119,6 +141,13 @@ class SimulateurController extends Controller
     {
         $simulateur = Simulateur::find($id);
         $simulateur->delete();
-        return redirect()->route('admin.simulateur.index');
+        if ($simulateur) {
+            emotify('success','Les informations du simulateur ont été supprimer avec succès');
+            return redirect()->route('admin.simulateur.index');
+        } else {
+            emotify('error','Le simulateur n\'a pas été supprimer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 }

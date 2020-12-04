@@ -25,7 +25,7 @@
     <div class="form-group row">
         <label for="name" class="col-md-4 col-form-label">{{ __('Nom') }}</label>
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $user->name}}" required autocomplete="name" autofocus>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $user->name}}"  autocomplete="name" autofocus>
             @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
     <div class="form-group row">
         <label for="email" class="col-md-4 col-form-label">{{ __('E-Mail') }}</label>
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email}}" required autocomplete="email">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email}}"  autocomplete="email">
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
     <div class="form-group row">
         <label for="status" class="col-md-4 col-form-label">{{ __('statut') }}</label>
         <div class="col-md-6">
-            <select name="status" class="form-control @error('status') is-invalid @enderror custom-select" required id="status">
+            <select name="status" class="form-control @error('status') is-invalid @enderror custom-select"  id="status">
                 @foreach ($user->getstatuOptions() as $key => $value)
                     <option value="{{$key}}">{{$value}}</option>
                 @endforeach

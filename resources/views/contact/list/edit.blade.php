@@ -8,8 +8,8 @@
         @method('patch')
         @csrf
         <div class="form-group">
-            <label class="required" for="type_id">Type de documents</label>
-            <select class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}" name="type_id" id="type_id"  required>
+            <label for="type_id">Type de documents</label>
+            <select class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}" name="type_id" id="type_id"  >
                 @foreach($types as $type)
                     <option value="{{ $type->id }}" {{$listDocument->type_id == $type->id ? 'selected' : ' '}}>{{ $type->nom }}</option>
                 @endforeach
@@ -21,8 +21,8 @@
             @endif
         </div>
         <div class="form-group">
-            <label class="required" for="categorie_id">Catégorie de document</label>
-            <select class="form-control {{ $errors->has('categorie_id') ? 'is-invalid' : '' }}" name="categorie_id" id="categorie_id"  required>
+            <label for="categorie_id">Catégorie de document</label>
+            <select class="form-control {{ $errors->has('categorie_id') ? 'is-invalid' : '' }}" name="categorie_id" id="categorie_id"  >
                 @foreach($categories as $categorie)
                     <option value="{{ $categorie->id }}" {{$listDocument->categorie_id == $categorie->id ? 'selected' : ' '}}>{{ $categorie->nom }}</option>
                 @endforeach
@@ -34,8 +34,8 @@
             @endif
         </div>
         <div class="form-group">
-            <label class="required" for="nomDoc">nomDoc</label>
-            <input class="form-control {{ $errors->has('nomDoc') ? 'is-invalid' : '' }}" type="text" name="nomDoc" id="nomDoc" value="{{ old('nomDoc', $listDocument->nomDoc) }}" required>
+            <label for="nomDoc">nomDoc</label>
+            <input class="form-control {{ $errors->has('nomDoc') ? 'is-invalid' : '' }}" type="text" name="nomDoc" id="nomDoc" value="{{ old('nomDoc', $listDocument->nomDoc) }}" >
             @if($errors->has('nomDoc'))
                 <div class="invalid-feedback">
                     {{ $errors->first('nomDoc') }}

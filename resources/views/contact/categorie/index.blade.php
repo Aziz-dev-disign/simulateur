@@ -12,8 +12,8 @@
 <form class="form-horizontal form-label-left"  method="POST" action="{{route('admin.categorie.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label class="required" for="nom">Nom <span class="required">*</span></label>
-        <input type="text" id="nom" class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" name="nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus>            
+        <label for="nom">Nom <span class="required">*</span></label>
+        <input type="text" id="nom" class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" name="nom" value="{{ old('nom') }}" autocomplete="nom" autofocus>            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}

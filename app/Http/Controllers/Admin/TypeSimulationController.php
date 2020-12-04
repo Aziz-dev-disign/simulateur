@@ -41,8 +41,15 @@ class TypeSimulationController extends Controller
      */
     public function store(TypeSimulationFormRequest $request)
     {
-        TypeSimulation::create($request->all());
-        return redirect()->route('admin.type-simulateur.index');
+        $type = TypeSimulation::create($request->all());
+        if ($type) {
+            emotify('success','Le type a été enregistrer avec succès');
+            return redirect()->route('admin.type-simulateur.index');
+        } else {
+            emotify('error','La type n\'a pas été enregistrer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -79,7 +86,14 @@ class TypeSimulationController extends Controller
     public function update(TypeSimulationFormRequest $request, TypeSimulation $typeSimulation)
     {
         $typeSimulation->update($request->all());
-        return redirect()->route('admin.type-simulateur.index');
+        if ($typeSimulation) {
+            emotify('success','Le type a été modifier avec succès');
+            return redirect()->route('admin.type-simulateur.index');
+        } else {
+            emotify('error','La type n\'a pas été modifier. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -92,6 +106,13 @@ class TypeSimulationController extends Controller
     {
         $typeSimulation = TypeSimulation::find($typeSimulation);
         $typeSimulation->delete();
-        return redirect()->route('admin.type-simulateur.index');
+        if ($typeSimulation) {
+            emotify('success','Le type a été enregistrer avec succès');
+            return redirect()->route('admin.type-simulateur.index');
+        } else {
+            emotify('error','La type n\'a pas été supprimer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 }

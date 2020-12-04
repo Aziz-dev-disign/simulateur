@@ -42,9 +42,9 @@
     <link href="{{asset('admin/source/datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/source/datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
     <!--/Datatables -->
-    {{-- <!-- Notify -->
-      @notifyCss
-    <!--/ Notify --> --}}
+    <!-- Notify -->
+    @notifyCss
+    <!--/ Notify -->
 
   </head>
 
@@ -108,7 +108,7 @@
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                       <li class="dropdown">
-                        
+                        @include('notify::messages')                        
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Settings 1</a>
@@ -194,9 +194,9 @@
     <script src="{{asset('admin/source/datatables/pdfmake/build/vfs_fonts.js')}}"></script>
     <!--/ Datatables -->
     @yield('script')
-    {{-- <!-- Notify -->
-      @notifyJs
-    <!--/ Notify --> --}}
+    <!-- Notify -->
+          @notifyJs
+        <!--/ Notify -->
   
   </body>
 </html>

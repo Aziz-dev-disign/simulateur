@@ -7,8 +7,8 @@
         @method('patch')
         @csrf
         <div class="form-group">
-            <label class="required" for="nom">Categorie</label>
-            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom') ?? $categorieList->nom }}" required>
+            <label for="nom">Categorie</label>
+            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom') ?? $categorieList->nom }}" >
             @if($errors->has('nom'))
                 <div class="invalid-feedback">
                     {{ $errors->first('nom') }}

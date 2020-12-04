@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\CategorieList;
 use Illuminate\Http\Request;
+use App\Http\Requests\categorieFormRequest;
 
 class CategorieListController extends Controller
 {
@@ -38,10 +39,17 @@ class CategorieListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(categorieFormRequest $request)
     {
-        CategorieList::create($request->all());
-        return redirect()-route('admin.categorie.index');
+        $categorie = CategorieList::create($request->all());
+
+        if ($categorie) {
+            emotify('success','Les informations de la catégorie ont été enregistrer avec succès');
+            return redirect()-route('admin.categorie.index');
+        } else {
+            emotify('error','Les informations de la catégorie n\'ont été enregistrer. Veillez réessayer !');
+            return back();
+        }        
     }
 
     /**
@@ -76,7 +84,7 @@ class CategorieListController extends Controller
      * @param  \App\CategorieList  $categorieList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategorieList $categorieList)
+    public function update(categorieFormRequest $request, CategorieList $categorieList)
     {
         $categorieList->update($request->all());
         return redirect()->route('admin.categorie.index');

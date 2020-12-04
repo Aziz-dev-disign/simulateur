@@ -119,23 +119,23 @@
 
     var base_html =
         '<span class="irs">' +
-        '<span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span>' +
+        '<span class="irs-line" tabindex="-1" style="background: url("asset("assets/images/sprite-skin-flat.png")")"><span class="irs-line-left" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span><span class="irs-line-mid" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span><span class="irs-line-right" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span></span>' +
         '<span class="irs-min">0</span><span class="irs-max">1</span>' +
         '<span class="irs-from">0</span><span class="irs-to">0</span><span class="irs-single">0</span>' +
         '</span>' +
         '<span class="irs-grid"></span>' +
-        '<span class="irs-bar"></span>';
+        '<span class="irs-bar" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span>';
 
     var single_html =
-        '<span class="irs-bar-edge"></span>' +
+        '<span class="irs-bar-edge" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span>' +
         '<span class="irs-shadow shadow-single"></span>' +
         '<span class="irs-slider single"></span>';
 
     var double_html =
         '<span class="irs-shadow shadow-from"></span>' +
         '<span class="irs-shadow shadow-to"></span>' +
-        '<span class="irs-slider from"></span>' +
-        '<span class="irs-slider to"></span>';
+        '<span class="irs-slider from" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span>' +
+        '<span class="irs-slider to" style="background: url("asset("assets/images/sprite-skin-flat.png")")"></span>';
 
     var disable_html =
         '<span class="irs-disable-mask"></span>';

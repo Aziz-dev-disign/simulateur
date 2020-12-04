@@ -13,12 +13,22 @@
                     Se connecter
                 </span>
                 <div class="wrap-input100 validate-input" data-validate = "Entrez un nom">
-                    <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
+                    <input id="email" type="email" class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
                     <span class="focus-input100" data-placeholder="&#xf106;"></span>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Entrez un mot de passe">
-                    <input type="password" class="input100" name="password" required autocomplete="current-password" placeholder="Mot de passe">
+                    <input type="password" class="input100 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Mot de passe">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="contact100-form-checkbox row">
                     <div class="col-md-6">

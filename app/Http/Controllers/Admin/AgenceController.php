@@ -39,8 +39,15 @@ class AgenceController extends Controller
      */
     public function store(AgenceFormRequest $request)
     {
-        Agence::create($request->all());
-        return redirect()->route('admin.agence.index');
+         $agence = Agence::create($request->all());
+         if ($agence) {
+            emotify('success','Les informations de l\'agence ont été enregistrer avec succès');
+            return redirect()->route('admin.agence.index');             
+         } else {
+            emotify('error','Les informations de l\'article n\'ont été enregistrer. Veillez réessayer!');
+            return redirect()->back();
+         }
+         
     }
 
     /**
@@ -77,7 +84,16 @@ class AgenceController extends Controller
     public function update(AgenceFormRequest $request, Agence $agence)
     {
         $agence->update($request->all());
-        return redirect()->route('admin.agence.index');
+
+        if ($agence) {
+            emotify('success','Les informations de l\'article ont été modifier avec succès');
+            return redirect()->route('admin.agence.index');
+        } else {
+            emotify('error','Les informations de l\'article n\'ont été modifier. Veillez réessayer!');
+            return back();
+        }
+        
+
     }
 
     /**
@@ -90,6 +106,13 @@ class AgenceController extends Controller
     {
         $agence = Agence::find($id);
         $agence->delete();
-        return redirect()->route('admin.agence.index');
+        if ($agence) {
+            emotify('success','Les informations de l\'article ont été supprimer avec succès');
+            return redirect()->route('admin.agence.index');
+        } else {
+            emotify('error','Les informations de l\'article n\'ont été supprimer. Veillez réessayer!');
+            return back();
+        }
+        
     }
 }

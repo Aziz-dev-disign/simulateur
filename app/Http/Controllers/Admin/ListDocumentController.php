@@ -44,8 +44,15 @@ class ListDocumentController extends Controller
      */
     public function store(ListDocumentFormRequest $request)
     {
-        ListDocument::create($request->all());
-        return redirect()->route('admin.list-document.index');
+        $list = ListDocument::create($request->all());
+        if ($list) {
+            emotify('success','La liste a été enregistrer avec succès');
+            return redirect()->route('admin.list-document.index');
+        } else {
+            emotify('error','La permission n\'a pas pas été enregistrer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -83,7 +90,14 @@ class ListDocumentController extends Controller
     public function update(ListDocumentFormRequest $request, ListDocument $listDocument)
     {
         $listDocument->update($request->all());
-        return redirect()->route('admin.list-document.index');
+        if ($listDocument) {
+            emotify('success','La liste a été modifier avec succès');
+            return redirect()->route('admin.list-document.index');
+        } else {
+            emotify('error','La permission n\'a pas pas été modifier. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -96,6 +110,13 @@ class ListDocumentController extends Controller
     {
         $listDocument = ListDocument::find($id);
         $listDocument->delete();
-        return redirect()->route('admin.list-document.index');
+        if ($listDocument) {
+            emotify('success','La list a été supprimer avec succès');
+            return redirect()->route('admin.list-document.index');
+        } else {
+            emotify('error','La list n\'a pas pas été supprimer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 }

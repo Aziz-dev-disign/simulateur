@@ -45,8 +45,14 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
+        if ($role) {
+            emotify('success','Le catégorie a été enregistrer avec succès');
+            return redirect()->route('admin.roles.index');
+        } else {
+            emotify('error','Le catégorie n\'a pas été enregistrer. Veillez réessayer !');
+            return back();
+        }
         
-        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -87,8 +93,14 @@ class RoleController extends Controller
     {
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
-
-        return redirect()->route('admin.roles.index');
+        if ($role) {
+            emotify('success','Le role a été modifier avec succès');
+            return redirect()->route('admin.roles.index');
+        } else {
+            emotify('error','La role n\'a pas été modifier. Veillez réessayer !');
+            return back();
+        }
+        
     }
 
     /**
@@ -101,6 +113,13 @@ class RoleController extends Controller
     {
         $role->permissions()->detach();
         $role->delete();
-        return redirect()->route('admin.roles.index');
+        if ($role) {
+            emotify('success','Le role a été enregistrer avec succès');
+            return redirect()->route('admin.roles.index');
+        } else {
+            emotify('error','La role n\'a pas été supprimer. Veillez réessayer !');
+            return back();
+        }
+        
     }
 }

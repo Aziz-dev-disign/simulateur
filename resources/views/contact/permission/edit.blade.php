@@ -9,7 +9,7 @@
         @csrf
         <div class="form-group">
             <label class="required" for="nom">Permission</label>
-            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom', $permission->nom) }}" required>
+            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom', $permission->nom) }}">
             @if($errors->has('nom'))
                 <div class="invalid-feedback">
                     {{ $errors->first('nom') }}

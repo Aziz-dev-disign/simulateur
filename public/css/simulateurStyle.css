@@ -40,10 +40,28 @@ input#montant, input#duree {
   font-size: 15px;
 }
 
+h6.text-center.text-uppercase.text-secondary.mb-5{
+  font-size: 20px;
+  margin-bottom: 0;
+}
 h6.text-center.text-uppercase.text-secondary.mb-5 {
-  font-size: 14px;
+  font-size: 20px;
+  margin-bottom: 0px !important;
 }
 
 div#simulateur {
+  box-shadow: 0px 2px 5px #777474 !important;
   margin-right: 0;
 }
+
+.h-25 {
+  height: 12%;
+}
+
+p.font-italic {
+  font-size: 13px !important;
+}
+input.inputMensu {
+  font-size: 17px;
+}
+

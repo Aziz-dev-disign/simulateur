@@ -9,7 +9,7 @@
     @csrf
 
     <div class=" form-group row">
-        <label class="required" for="type_id">Type de simulateur <span class="required">*</span></label>
+        <label  for="type_id">Type de simulateur <span >*</span></label>
         <select name="type_id" id="type_id" class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}">
             <option value="">Choisir...</option>
             @foreach ($types as $type)
@@ -22,16 +22,16 @@
             </div>
         @endif
     </div><div class="form-group">
-        <label class="required" for="nom">Nom du simulateur <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom')}}" required>
+        <label  for="nom">Nom du simulateur <span >*</span></label>
+        <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom')}}" >
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}
             </div>
         @endif
     </div><div class="form-group">
-        <label class="required" for="slug">Sous titre <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug')}}" required>
+        <label  for="slug">Sous titre <span >*</span></label>
+        <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug')}}" >
         @if($errors->has('slug'))
             <div class="invalid-feedback">
                 {{ $errors->first('slug') }}
@@ -39,8 +39,9 @@
         @endif
     </div>
     <div class=" form-group row">
-        <label class="required" for="Statut">Statut <span class="required">*</span></label>
+        <label  for="Statut">Statut <span >*</span></label>
         <select name="statut" id="statut" class="form-control {{ $errors->has('statut') ? 'is-invalid' : '' }}">
+            <option value="">choisir un statut</option>
             <option value="inactif">Inactif</option>
             <option value="actif">Actif</option>
         </select>
@@ -51,8 +52,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="montantMin">Monatant minimum <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('montantMin') ? 'is-invalid' : '' }}" type="text" name="montantMin" id="montantMin" value="{{ old('montantMin')}}" required>
+        <label  for="montantMin">Monatant minimum <span >*</span></label>
+        <input class="form-control {{ $errors->has('montantMin') ? 'is-invalid' : '' }}" type="text" name="montantMin" id="montantMin" value="{{ old('montantMin')}}" >
         @if($errors->has('montantMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMin') }}
@@ -60,8 +61,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="montantMax">Monatant Max <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('montantMax') ? 'is-invalid' : '' }}" type="text" name="montantMax" id="montantMax" value="{{ old('montantMax')}}" required>
+        <label  for="montantMax">Monatant Max <span >*</span></label>
+        <input class="form-control {{ $errors->has('montantMax') ? 'is-invalid' : '' }}" type="text" name="montantMax" id="montantMax" value="{{ old('montantMax')}}" >
         @if($errors->has('montantMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMax') }}
@@ -69,8 +70,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="taux">Taux <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('taux') ? 'is-invalid' : '' }}" type="text" name="taux" id="taux" value="{{ old('taux')}}" required>
+        <label  for="taux">Taux <span >*</span></label>
+        <input class="form-control {{ $errors->has('taux') ? 'is-invalid' : '' }}" type="text" name="taux" id="taux" value="{{ old('taux')}}" >
         @if($errors->has('taux'))
             <div class="invalid-feedback">
                 {{ $errors->first('taux') }}
@@ -78,8 +79,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="dureeMin">Durée minimum <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('dureeMin') ? 'is-invalid' : '' }}" type="text" name="dureeMin" id="dureeMin" value="{{ old('dureeMin')}}" required>
+        <label  for="dureeMin">Durée minimum <span >*</span></label>
+        <input class="form-control {{ $errors->has('dureeMin') ? 'is-invalid' : '' }}" type="text" name="dureeMin" id="dureeMin" value="{{ old('dureeMin')}}" >
         @if($errors->has('dureeMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMin') }}
@@ -87,8 +88,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="dureeMax">Durée maximum <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('dureeMax') ? 'is-invalid' : '' }}" type="text" name="dureeMax" id="dureeMax" value="{{ old('dureeMax')}}" required>
+        <label  for="dureeMax">Durée maximum <span >*</span></label>
+        <input class="form-control {{ $errors->has('dureeMax') ? 'is-invalid' : '' }}" type="text" name="dureeMax" id="dureeMax" value="{{ old('dureeMax')}}" >
         @if($errors->has('dureeMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMax') }}
@@ -96,8 +97,8 @@
         @endif
     </div>
     <div class="form-group">
-        <label class="required" for="image">Image <span class="required">*</span></label>
-        <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="file" name="image" id="image" value="{{ old('image')}}" required>
+        <label  for="image">Image <span >*</span></label>
+        <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" type="file" name="image" id="image" value="{{ old('image')}}" >
         @if($errors->has('image'))
             <div class="invalid-feedback">
                 {{ $errors->first('image') }}
@@ -105,7 +106,7 @@
         @endif
     </div>
     <div class=" form-group">
-        <label class="required" for="decription">Description<span class="required">*</span></label>
+        <label  for="decription">Description<span >*</span></label>
         <textarea name="description" id="description" rows="3" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"></textarea>
         @if($errors->has('description'))
             <div class="invalid-feedback">

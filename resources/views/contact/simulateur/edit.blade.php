@@ -9,7 +9,7 @@
     @csrf
     @method('patch')
     <div class=" form-group ">
-        <label class="required" for="type_id">Type de simulateur <span class="required">*</span></label>
+        <label for="type_id">Type de simulateur <span>*</span></label>
         <select name="type_id" id="type_id" class="form-control {{ $errors->has('type_id') ? 'is-invalid' : '' }}">
             @foreach ($types as $type)
                 <option value="{{$type->id}} "{{$simulateur->type_id == $type->id ? "selected" : ' '}}>{{$type->nom}}</option>
@@ -22,8 +22,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="nom">Nom du simulateur <span class="required">*</span></label>
-        <input type="text" id="nom"  required="required" class="form-control  {{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}" required autocomplete="nom" autofocus>            
+        <label for="nom">Nom du simulateur <span>*</span></label>
+        <input type="text" id="nom"  ="" class="form-control  {{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}"  autocomplete="nom" autofocus>            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}
@@ -31,8 +31,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="slug">Sous titre <span class="required">*</span></label>
-        <input type="text" id="slug"  required="required" class="form-control  {{ $errors->has('slug') ? 'is-invalid' : '' }} " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}" required autocomplete="slug" autofocus>            
+        <label for="slug">Sous titre <span>*</span></label>
+        <input type="text" id="slug"  ="" class="form-control  {{ $errors->has('slug') ? 'is-invalid' : '' }} " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}"  autocomplete="slug" autofocus>            
         @if($errors->has('slug'))
             <div class="invalid-feedback">
                 {{ $errors->first('slug') }}
@@ -40,7 +40,7 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="Statut">Statut <span class="required">*</span></label>
+        <label for="Statut">Statut <span>*</span></label>
         <select name="statut" id="statut" class="form-control {{ $errors->has('statut') ? 'is-invalid' : '' }}">
             @foreach ($simulateur->getStatusOptions() as $key => $value)
                 <option value="{{$key}}">{{$value}}</option>
@@ -53,8 +53,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="montantMin">Montant minmum <span class="required">*</span></label>
-        <input type="number" id="montantMin"  required="required" class="form-control  {{ $errors->has('montantMin') ? 'is-invalid' : '' }} " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}" required autocomplete="montantMin" autofocus>            
+        <label for="montantMin">Montant minmum <span>*</span></label>
+        <input type="number" id="montantMin"  ="" class="form-control  {{ $errors->has('montantMin') ? 'is-invalid' : '' }} " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}"  autocomplete="montantMin" autofocus>            
         @if($errors->has('montantMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMin') }}
@@ -62,8 +62,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="montantMax">Montant maximum <span class="required">*</span></label>
-        <input type="number" id="montantMax"  required="required" class="form-control  {{ $errors->has('montantMax') ? 'is-invalid' : '' }} " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}" required autocomplete="montantMax" autofocus>            
+        <label for="montantMax">Montant maximum <span>*</span></label>
+        <input type="number" id="montantMax"  ="" class="form-control  {{ $errors->has('montantMax') ? 'is-invalid' : '' }} " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}"  autocomplete="montantMax" autofocus>            
         @if($errors->has('montantMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMax') }}
@@ -71,8 +71,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="taux">Taux <span class="required">*</span></label>
-        <input type="text" id="taux"  required="required" class="form-control  {{ $errors->has('taux') ? 'is-invalid' : '' }} " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}" required autocomplete="taux" autofocus>            
+        <label for="taux">Taux <span>*</span></label>
+        <input type="text" id="taux"  ="" class="form-control  {{ $errors->has('taux') ? 'is-invalid' : '' }} " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}"  autocomplete="taux" autofocus>            
         @if($errors->has('taux'))
             <div class="invalid-feedback">
                 {{ $errors->first('taux') }}
@@ -80,8 +80,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="dureeMin">Durée minimum <span class="required">*</span></label>
-        <input type="number" id="dureeMin"  required="required" class="form-control  {{ $errors->has('dureeMin') ? 'is-invalid' : '' }} " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}" required autocomplete="dureeMin" autofocus>            
+        <label for="dureeMin">Durée minimum <span>*</span></label>
+        <input type="number" id="dureeMin"  ="" class="form-control  {{ $errors->has('dureeMin') ? 'is-invalid' : '' }} " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}"  autocomplete="dureeMin" autofocus>            
         @if($errors->has('dureeMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMin') }}
@@ -89,8 +89,8 @@
         @endif
     </div>
     <div class=" form-group ">
-        <label class="required" for="dureeMax">Durée maximum <span class="required">*</span></label>
-        <input type="number" id="dureeMax"  required="required" class="form-control  {{ $errors->has('dureeMax') ? 'is-invalid' : '' }} " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}" required autocomplete="dureeMax" autofocus>            
+        <label for="dureeMax">Durée maximum <span>*</span></label>
+        <input type="number" id="dureeMax"  ="" class="form-control  {{ $errors->has('dureeMax') ? 'is-invalid' : '' }} " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}"  autocomplete="dureeMax" autofocus>            
         @if($errors->has('dureeMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMax') }}

@@ -38,7 +38,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+/**
+ * @redirectTo() est une function qui pemet de rediriger vers le /home
+ */
     protected function redirectTo(){
         if (Auth::user()->roles()->pluck('nom')) {
             return '/admin/home';
