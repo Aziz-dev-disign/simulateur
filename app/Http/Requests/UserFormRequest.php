@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 class UserFormRequest extends FormRequest
 {
     /**

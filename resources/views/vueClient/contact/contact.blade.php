@@ -1,14 +1,14 @@
 @include('vueClient.partials.head')
 @include('vueClient.partials.menu')
     
-<section class="page-section" id="contact">
-    <div class="container mt-10">
+<section class="page-section sections" id="contact">
+    <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0  mt-30">Contact Me</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-icon"></div>
             <div class="divider-custom-line"></div>
         </div>
 
@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Agence Souhaitée</label><br>
-                                <select name="agence_id" class="form-control" id="agence" placeholder="Agence" required="required" data-validation-required-message="ce champ est obligatoir." style="border: none;">
+                                <select name="agence_id" class="form-control selects" id="agence" placeholder="Agence" required="required" data-validation-required-message="ce champ est obligatoir." style="border: none;">
                                     <option value="">Choisir une agence</option>
                                     @foreach ($agences as $agence)
                                         <option value="{{$agence->id}}">{{$agence->nom}}</option>
@@ -83,7 +83,7 @@
                         <div class="form-group row floating-label-form-group controls mb-0 pb-2">
                             <div class="col-md-6">
                                 <label>Civilité</label><br>
-                                <select class="form-control" name="etatCivil"  id="date" required="required" data-validation-required-message="ce champ est obligatoir !." style="border: none;" autofocus>
+                                <select class="form-control selects" name="etatCivil"  id="date" required="required" data-validation-required-message="ce champ est obligatoir !." style="border: none;" autofocus>
                                     <option value="">Genre</option>
                                     <option value="mme">Madame</option>
                                     <option value="mr">Monsieur</option>
@@ -110,6 +110,7 @@
                 </form>
             </div>
         </div>
+        @include('vueClient.partials.footer')
 
     </div>
 </section>

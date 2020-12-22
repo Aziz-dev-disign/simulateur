@@ -27,6 +27,43 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /**
+         * @OA\Get(
+         *      path="/admin/home",
+         *      operationId="getStatistics",
+         *      tags={"home"},
+         *      security={
+         *  {"passport": {}},
+         *   },
+         *      summary="Get elements",
+         *      description="LA fonction index() permet d'afficher les statistiques",
+         *      @OA\Response(
+         *          response=200,
+         *          description="Successful operation",
+         *          @OA\MediaType(
+         *           mediaType="application/json",
+         *      )
+         *      ),
+         *      @OA\Response(
+         *          response=401,
+         *          description="Unauthenticated",
+         *      ),
+         *      @OA\Response(
+         *          response=403,
+         *          description="Forbidden"
+         *      ),
+         * @OA\Response(
+         *      response=400,
+         *      description="Bad Request"
+         *   ),
+         * @OA\Response(
+         *      response=404,
+         *      description="not found"
+         *   ),
+         *  )
+         */
+
+
         $users = User::all();
         $usersInactifs = User::statuInactif();
         $usersActifs = User::statuActif();

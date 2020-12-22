@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="limiter">
-    <div class="container-login100" style="background-image: url('{{asset('assets/images/societe-generale-ethereum.jpg')}}');">
+    <div class="container-login100" style="background-image: url('{{asset('assets/images/societe-generale-ethereum2.jpg')}}');">
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="POST" action="{{route('login')}}">
                 @csrf

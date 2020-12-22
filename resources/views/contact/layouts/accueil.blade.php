@@ -42,6 +42,10 @@
     <link href="{{asset('admin/source/datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/source/datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
     <!--/Datatables -->
+    <!-- Style -->        
+      <link href="{{asset('css/adminStyle.css')}}" rel="stylesheet">
+    <!-- /Style -->
+
     <!-- Notify -->
     @notifyCss
     <!--/ Notify -->

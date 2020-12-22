@@ -39,11 +39,13 @@
             </div>
         @endif
     </div>
-    <div class="form-group">
-        <button class="btn btn-success" type="submit">
-            Enregistrer
-        </button>
-    </div>
+    @can('role_create')        
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">
+                Enregistrer
+            </button>
+        </div>
+    @endcan
 </form>
 
 <div class="ln_solid"></div>
@@ -78,15 +80,19 @@
                             <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('admin.roles.edit', $role->id)}}">Edit</a>
-                            <div class="dropdown-divider"></div>
-                                <div> 
-                                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Etes vous sur'" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="dropdown-item" value="Supprimer">
-                                    </form>
-                                </div>
+                                @can('role_edit')                                    
+                                    <a class="dropdown-item" href="{{route('admin.roles.edit', $role->id)}}">Edit</a>
+                                @endcan
+                                <div class="dropdown-divider"></div>
+                                @can('role_delete')                                
+                                    <div> 
+                                        <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Etes vous sur'" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="dropdown-item" value="Supprimer">
+                                        </form>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
                     </td>

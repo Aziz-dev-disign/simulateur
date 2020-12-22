@@ -29,7 +29,7 @@
     width: 100%;
     padding-right: 1.5rem;
     padding-left: 1.5rem;
-  padding-top: 10rem !important;
+  padding-top: 5rem !important;
 }
 
 span.result{
@@ -63,5 +63,21 @@ p.font-italic {
 }
 input.inputMensu {
   font-size: 17px;
+}
+.page-section.sections {
+  padding: 6rem 0;
+  margin-top: 80px !important;
+  font-size: 15px;
+}
+select.selects{
+  font-size: 1.7rem;
+  border: none !important;
+  border-radius: 0px;
+}
+
+select.selects:focus{
+  border: none !important;
+  border-radius: 0px;
+  border-color: white !important;
 }
 

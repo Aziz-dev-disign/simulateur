@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
 use App\Http\Requests\RoleFormRequest;
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoleController extends Controller
 {
@@ -18,6 +20,43 @@ class RoleController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        /**
+         * @OA\Get(
+         *      path="/admin/role",
+         *      operationId="getRoleList",
+         *      tags={"rôle"},
+         * security={
+         *  {"passport": {}},
+         *   },
+         *      summary="Get list of roles",
+         *      description="La fonction index() renvoie une liste des rôles.",
+         *      @OA\Response(
+         *          response=200,
+         *          description="Successful operation",
+         *          @OA\MediaType(
+         *           mediaType="application/json",
+         *      )
+         *      ),
+         *      @OA\Response(
+         *          response=401,
+         *          description="Unauthenticated",
+         *      ),
+         *      @OA\Response(
+         *          response=403,
+         *          description="Forbidden"
+         *      ),
+         * @OA\Response(
+         *      response=400,
+         *      description="Bad Request"
+         *   ),
+         * @OA\Response(
+         *      response=404,
+         *      description="not found"
+         *   ),
+         *  )
+         */
+
         $titre = 'Rôles';
         $roles = Role::all();
         $permissions = Permission::all()->pluck('nom','id');
@@ -43,13 +82,57 @@ class RoleController extends Controller
      */
     public function store(RoleFormRequest $request)
     {
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        /**
+        * @OA\Post(
+        * path="/admin/role/{role}",
+        *   tags={"rôle"},
+        *   summary="roles store",
+        *   operationId="putRoleStore",
+        *   description="La fonction store() permet d'enregistrer un rôle.",
+        *
+        * @OA\Parameter(
+        *      name="nom",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * 
+        *   @OA\Response(
+        *      response=201,
+        *       description="Success",
+        *      @OA\MediaType(
+        *           mediaType="application/json",
+        *      )
+        *   ),
+        *   @OA\Response(
+        *      response=401,
+        *       description="Unauthenticated"
+        *   ),
+        *   @OA\Response(
+        *      response=400,
+        *      description="Bad Request"
+        *   ),
+        *   @OA\Response(
+        *      response=404,
+        *      description="not found"
+        *   ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+        *)
+        **/
+
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
         if ($role) {
-            emotify('success','Le catégorie a été enregistrer avec succès');
+            emotify('success','Le rôle a été enregistrer avec succès');
             return redirect()->route('admin.roles.index');
         } else {
-            emotify('error','Le catégorie n\'a pas été enregistrer. Veillez réessayer !');
+            emotify('error','Le rôle n\'a pas été enregistrer. Veillez réessayer !');
             return back();
         }
         
@@ -63,6 +146,50 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        /**
+     * @OA\Get(
+     ** path="/admin/role/{role}",
+     *   tags={"rôle"},
+     *   summary="role détail",
+     *   operationId="roleDetails",
+     *   description="La fonction show() permet d'afficher les informations d'un rôle.",
+     *
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
+
+        abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $titre = 'détails de';
         $role->load('permissions');
         return rview('contact.role.show', compact('role', 'titre'));
@@ -91,13 +218,59 @@ class RoleController extends Controller
      */
     public function update(RoleFormRequest $request, Role $role)
     {
+
+        /**
+        * @OA\Put(
+        * path="/admin/role/{role}",
+        *   tags={"rôle"},
+        *   summary="Update roles",
+        *   operationId="putRoleUpdate",
+        *   description="La fonction update() renvoie une mis à jour des informations d'un rôle.",
+        *
+        * @OA\Parameter(
+        *      name="nom",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * 
+        *   @OA\Response(
+        *      response=201,
+        *       description="Success",
+        *      @OA\MediaType(
+        *           mediaType="application/json",
+        *      )
+        *   ),
+        *   @OA\Response(
+        *      response=401,
+        *       description="Unauthenticated"
+        *   ),
+        *   @OA\Response(
+        *      response=400,
+        *      description="Bad Request"
+        *   ),
+        *   @OA\Response(
+        *      response=404,
+        *      description="not found"
+        *   ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+        *)
+        **/
+
+
+        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
         if ($role) {
-            emotify('success','Le role a été modifier avec succès');
+            emotify('success','Le rôle a été modifier avec succès');
             return redirect()->route('admin.roles.index');
         } else {
-            emotify('error','La role n\'a pas été modifier. Veillez réessayer !');
+            emotify('error','La rôle n\'a pas été modifier. Veillez réessayer !');
             return back();
         }
         
@@ -111,13 +284,58 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        /**
+     * @OA\Delete(
+     * path="/admin/role/{role}",
+     *   tags={"rôle"},
+     *   summary="role delete",
+     *   operationId="roleDelete",
+     *   description="La fonction delete() permet de supprimer les informations d'un rôle.",
+     *
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
+
+
+        abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $role->permissions()->detach();
         $role->delete();
         if ($role) {
-            emotify('success','Le role a été enregistrer avec succès');
+            emotify('success','Le rôle a été enregistrer avec succès');
             return redirect()->route('admin.roles.index');
         } else {
-            emotify('error','La role n\'a pas été supprimer. Veillez réessayer !');
+            emotify('error','La rôle n\'a pas été supprimer. Veillez réessayer !');
             return back();
         }
         

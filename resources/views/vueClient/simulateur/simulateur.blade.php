@@ -1,15 +1,14 @@
-@extends('welcome')
+@include('vueClient.partials.head')
+@include('vueClient.partials.menu')
 
-@section('content')
-
-<section class="page-section" id="contact">
+<section class="page-section sections" id="contact">
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mt-100">Contacter nous</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-icon"></i></div>
             <div class="divider-custom-line"></div>
         </div>
 
@@ -17,7 +16,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                <form  method="POST" action="{{route('admin.contact.store')}}">
+                <form  method="POST" action="{{route('simulateur.credits.store')}}">
                     @csrf
                     <div class="control-group">
                         <div class="form-group row floating-label-form-group controls mb-0 pb-2">
@@ -96,7 +95,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Agence Souhaitée</label><br>
-                                <select name="agence_id" class="form-control" id="agence" placeholder="Agence" required="required" data-validation-required-message="ce champ est obligatoir." style="border: none;">
+                                <select name="agence_id" class="form-control selects" id="agence" placeholder="Agence" required="required" data-validation-required-message="ce champ est obligatoir." style="border: none;">
                                     <option value="">Choisir une agence</option>
                                     @foreach ($agences as $agence)
                                         <option value="{{$agence->id}}">{{$agence->nom}}</option>
@@ -110,7 +109,7 @@
                         <div class="form-group row floating-label-form-group controls mb-0 pb-2">
                             <div class="col-md-6">
                                 <label>Civilité</label><br>
-                                <select class="form-control" name="etatCivil"  id="date" required="required" data-validation-required-message="ce champ est obligatoir !." style="border: none;" autofocus>
+                                <select class="form-control selects" name="etatCivil"  id="date" required="required" data-validation-required-message="ce champ est obligatoir !." style="border: none;" autofocus>
                                     <option value="">Genre</option>
                                     <option value="mme">Madame</option>
                                     <option value="mr">Monsieur</option>
@@ -140,4 +139,4 @@
 
     </div>
 </section>
-@endsection
+    @include('vueClient.partials.footer')

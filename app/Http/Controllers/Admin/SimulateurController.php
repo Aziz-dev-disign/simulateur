@@ -18,6 +18,42 @@ class SimulateurController extends Controller
      */
     public function index()
     {
+        /**
+         * @OA\Get(
+         *      path="/admin/simulateur",
+         *      operationId="getSimulateurListe",
+         *      tags={"simulateur"},
+         *      security={
+         *  {"passport": {}},
+         *   },
+         *      summary="Get simulateur elements list",
+         *      description="La fonction index() renvoie une liste des simulateurs.",
+         *      @OA\Response(
+         *          response=200,
+         *          description="Successful operation",
+         *          @OA\MediaType(
+         *           mediaType="application/json",
+         *      )
+         *      ),
+         *      @OA\Response(
+         *          response=401,
+         *          description="Unauthenticated",
+         *      ),
+         *      @OA\Response(
+         *          response=403,
+         *          description="Forbidden"
+         *      ),
+         * @OA\Response(
+         *      response=400,
+         *      description="Bad Request"
+         *   ),
+         * @OA\Response(
+         *      response=404,
+         *      description="not found"
+         *   ),
+         *  )
+         */
+
         $titre = 'Simulateur';
         $simulateurs = Simulateur::select('*')->orderBy('id','desc')->get();
 
@@ -44,6 +80,130 @@ class SimulateurController extends Controller
      */
     public function store(SimulateurFormRequest $request)
     {
+
+        /**
+        * @OA\Post(
+        * path="/admin/simulateur",
+        *   tags={"simulateur"},
+        *   summary="Store simulateurs",
+        *   operationId="postSimulateur",
+        *   description="La fonction store() permet d'enregistere les informations d'un simulateur.",
+        *
+        * @OA\Parameter(
+        *      name="type_id",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="integer"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="nom",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="slug",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="statut",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="montantMin",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="montantMax",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="taux",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="dureeMin",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="dureeMax",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="image",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="file"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="description",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * 
+        *   @OA\Response(
+        *      response=201,
+        *       description="Success",
+        *      @OA\MediaType(
+        *           mediaType="application/json",
+        *      )
+        *   ),
+        *   @OA\Response(
+        *      response=401,
+        *       description="Unauthenticated"
+        *   ),
+        *   @OA\Response(
+        *      response=400,
+        *      description="Bad Request"
+        *   ),
+        *   @OA\Response(
+        *      response=404,
+        *      description="not found"
+        *   ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+        *)
+        **/
+        
         $imagePath = request('image')->store('simulateur','public');
 
         $simulateur = Simulateur::create([
@@ -79,6 +239,49 @@ class SimulateurController extends Controller
      */
     public function show(Simulateur $simulateur)
     {
+        /**
+     * @OA\Get(
+     * path="/admin/simulateur/{simulateur}",
+     *   tags={"simulateur"},
+     *   summary="simulateur show",
+     *   operationId="LA fonction show() permet d'afficher les informations d'un simulateur.",
+     *
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
+
+
         $titre = 'Détail de ';
         return view('contact.simulateur.show',compact('simulateur','titre'));
     }
@@ -105,6 +308,131 @@ class SimulateurController extends Controller
      */
     public function update(SimulateurFormRequest $request, Simulateur $simulateur)
     {
+
+
+        /**
+        * @OA\Put(
+        * path="/admin/simulateur/{simulateur}",
+        *   tags={"simulateur"},
+        *   summary="Update simulateur",
+        *   operationId="postSimulateur",
+        *   description="La fonction update() permet de mettre à jour les informations d'un simulateur.",
+        *
+        * @OA\Parameter(
+        *      name="type_id",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="integer"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="nom",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="slug",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="statut",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="montantMin",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="montantMax",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="taux",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="dureeMin",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="dureeMax",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="image",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="file"
+        *      )
+        *   ),
+        * @OA\Parameter(
+        *      name="description",
+        *      in="query",
+        *      required=true,
+        *      @OA\Schema(
+        *           type="text"
+        *      )
+        *   ),
+        * 
+        *   @OA\Response(
+        *      response=201,
+        *       description="Success",
+        *      @OA\MediaType(
+        *           mediaType="application/json",
+        *      )
+        *   ),
+        *   @OA\Response(
+        *      response=401,
+        *       description="Unauthenticated"
+        *   ),
+        *   @OA\Response(
+        *      response=400,
+        *      description="Bad Request"
+        *   ),
+        *   @OA\Response(
+        *      response=404,
+        *      description="not found"
+        *   ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+        *)
+        **/
+
         if (request('image')) {
             
             $imagePath = request('image')->store('simulateur','public');
@@ -139,6 +467,50 @@ class SimulateurController extends Controller
      */
     public function destroy($id)
     {
+
+    /**
+     * @OA\Delete(
+     * path="/admin/simulateur/{simulateur}",
+     *   tags={"simulateur"},
+     *   summary="simulateur delete",
+     *   operationId="simulateurDelete",
+     *   description="La fonction delete() permet de supprimer les informations d'un simulateur.",
+     *
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *      description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
+
         $simulateur = Simulateur::find($id);
         $simulateur->delete();
         if ($simulateur) {

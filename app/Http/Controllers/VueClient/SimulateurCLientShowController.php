@@ -19,7 +19,7 @@ class SimulateurCLientShowController extends Controller
     {
         
         $agences = Agence::all();
-        $simulateurs = Simulateur::statuActif();
+        $simulateurs = Simulateur::all();
         return view('vueClient.simulateur.simulateur', compact('agences','simulateurs'));
     }
 

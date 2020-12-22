@@ -3,7 +3,7 @@
 @section('content')
 <h3 style="margin-bottom: 10px;">{{$titre ?? ''}}</h3>
 
-<div class="col-md-6">
+<div class="col-md-12">
     <a href="{{route('admin.simulateur.create')}}" class="btn btn-primary">Ajouter un simulateur</a>
     <a href="{{route('admin.type-simulateur.index')}}" class="btn btn-primary">Ajouter une catégorie de simulateur</a>
 </div>

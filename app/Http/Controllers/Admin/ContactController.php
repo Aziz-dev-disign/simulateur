@@ -16,6 +16,43 @@ class ContactController extends Controller
      */
     public function index()
     {
+        /**
+         * @OA\Get(
+         *      path="/admin/contact",
+         *      operationId="getRendezList",
+         *      tags={"rendez-vous"},
+         * security={
+         *  {"passport": {}},
+         *   },
+         *      summary="Get rendez-vous list",
+         *      description="la fonction index() affiche les rendez-vous faites par les clients.",
+         *      @OA\Response(
+         *          response=200,
+         *          description="Successful operation",
+         *          @OA\MediaType(
+         *           mediaType="application/json",
+         *      )
+         *      ),
+         *      @OA\Response(
+         *          response=401,
+         *          description="Unauthenticated",
+         *      ),
+         *      @OA\Response(
+         *          response=403,
+         *          description="Forbidden"
+         *      ),
+         * @OA\Response(
+         *      response=400,
+         *      description="Bad Request"
+         *   ),
+         * @OA\Response(
+         *      response=404,
+         *      description="not found"
+         *   ),
+         *  )
+         */
+
+
         $titre = 'Inbox';
         $rdvs = Rdv::all();
 
@@ -29,7 +66,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**

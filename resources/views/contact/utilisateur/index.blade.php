@@ -3,9 +3,12 @@
 @section('content')
 <h3 style="margin-bottom: 10px;">{{$titre ?? ''}}</h3>
 
-<div class="col-md-12">
-    <a href="{{route('admin.user.create')}}" class="btn btn-primary">Ajouter un utilisateur</a>
-</div><br><br><br>
+@can('user_create')
+    <div class="col-md-12">
+        <a href="{{route('admin.user.create')}}" class="btn btn-primary">Ajouter un utilisateur</a>
+    </div>
+@endcan
+<br><br><br>
 <div class="ln_solid"></div>
 
 <div class="card-box table-responsive">
@@ -40,17 +43,23 @@
                             <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" id="edit" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
+                                @can('user_create')                                
+                                    <a class="dropdown-item" id="edit" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
+                                @endcan
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" id="edit" href="{{route('admin.user.show', $user->id)}}">Détail</a>
+                                @can('user_show')                                    
+                                    <a class="dropdown-item" id="edit" href="{{route('admin.user.show', $user->id)}}">Détail</a>
+                                @endcan
                                 <div class="dropdown-divider"></div>
-                            <div> 
-                                <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Etes vous sur'" style="display: inline-block;">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="submit" class="dropdown-item" value="Supprimer">
-                                </form>
-                            </div>
+                                @can('user_delete')
+                                    <div> 
+                                        <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Etes vous sur'" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" class="dropdown-item" value="Supprimer">
+                                        </form>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
                     </td>

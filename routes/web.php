@@ -21,7 +21,7 @@ Route::group(['prefix' => 'simulateur', 'as' => 'simulateur.', 'namespace' => 'V
 
 Auth::routes(['register'=>false]);
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin','middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','permission']], function () {
     Route::get('home', 'HomeController@index');
     Route::resource('agence', 'AgenceController');
     Route::resource('simulateur', 'SimulateurController');
