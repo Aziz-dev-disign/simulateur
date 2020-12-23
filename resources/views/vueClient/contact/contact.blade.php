@@ -15,7 +15,7 @@
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form  method="POST" action="{{route('admin.contact.store')}}">
+                <form  method="POST" action="{{route('simulateur.contact.store')}}">
                     @csrf
 
                     <div class="control-group">

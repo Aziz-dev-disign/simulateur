@@ -25,11 +25,12 @@ class AccueilFormRequest extends FormRequest
     {
         return [
             'agence_id'                                 =>['required','integer'],
-            'identifiantClient'                         =>['required','string','min:3'],
+            '_token'                                    =>['required'],
+            'identifiantClient'                         =>['string','min:3'],
             'etatCivil'                                 =>['required','string'],
-            'montant'                                   =>['required','string'],
-            'mensualite'                                =>['required','string'],
-            'taux'                                      =>['required','string'],
+            'montant'                                   =>['string'],
+            'mensualite'                                =>['string'],
+            'taux'                                      =>['string'],
             'nom'                                       =>['required','string','min:3'],
             'prenom'                                    =>['required','string'],
             'dateNaissance'                             =>['required','date'],

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\VueClient;
 
 use App\Http\Controllers\Controller;
 
+use App\Rdv;
 use App\Agence;
 use App\Simulateur;
 use Illuminate\Http\Request;
+use App\Http\Requests\AccueilFormRequest;
 
 class SimulateurCLientShowController extends Controller
 {
@@ -39,9 +41,11 @@ class SimulateurCLientShowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccueilFormRequest $request)
     {
-        //
+        Rdv::create($request->all());
+
+        return redirect()->route('simulateur.credits.index');
     }
 
     /**

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rdv extends Model
 {
-    protected $filable = [
-                            '_token',
+    protected $fillable = [
                             'agence_id',
+                            '_token',
                             'identifiantClient',
                             'montant',
                             'mensualite',
@@ -20,6 +20,7 @@ class Rdv extends Model
                             'pays',
                             'telephone',
                             'motif',
+                            'ville',
                             'dateRdv'
                         ];
 

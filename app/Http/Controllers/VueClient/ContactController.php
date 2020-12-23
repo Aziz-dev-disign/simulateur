@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Agence;
 use App\Simulateur;
+use App\Rdv;
+use App\Http\Requests\AccueilFormRequest;
 
 class ContactController extends Controller
 {
@@ -38,9 +40,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccueilFormRequest $request)
     {
-        //
+        Rdv::create($request->all());
+
+        return redirect()->route('simulateur.contact.index');
     }
 
     /**
