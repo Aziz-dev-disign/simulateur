@@ -1,3 +1,7 @@
+
+/*
+    Mis en page des cadres de simulation.
+*/
 .portfolio .portfolio-item {
     cursor: pointer;
     position: relative;
@@ -30,6 +34,10 @@
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   padding-top: 5rem !important;
+}
+
+.mainTitle{
+  padding-top: 35px;
 }
 
 span.result{
@@ -69,18 +77,26 @@ input.inputMensu {
   margin-top: 80px !important;
   font-size: 15px;
 }
-select.selects{
-  font-size: 1.7rem;
-  border: none !important;
-  border-radius: 0px;
-}
 
-select.selects:focus{
-  border: none !important;
-  border-radius: 0px;
-  border-color: white !important;
-}
-
+/*
+  le font size de la quotitée
+*/
 #qte {
   font-size: 14px;
+}
+
+/*
+    Span.irs-single cursor pointer;
+*/
+
+.irs-from, .irs-to, .irs-single {
+  cursor: pointer !important;
+}
+
+/*
+    Menu items font size;
+*/
+
+.menuItemsFontSize{
+  font-size: 15px;
 }

@@ -56,7 +56,7 @@ class PermissionController extends Controller
          *  )
          */
 
-        abort_if(Gate::denies('permission_acces'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('permission_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $titre = 'List des permissions';
         $permissions = Permission::all();
 

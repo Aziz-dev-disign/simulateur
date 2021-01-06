@@ -7,6 +7,8 @@
 
 
     (function(window, $) {
+        
+        // Déclaration des variables 
 
         var $simul = $('#tx_bisimulcredit--3430');
         var $montant = $simul.find(".montant");
@@ -18,6 +20,8 @@
         var isModeTranche = 0;
         var trancheDureeDatas = JSON.parse('[{"begin":"1","end":"24","taux":"7.5"},{"begin":"25","end":"600","taux":"7.5"}]');
         var contactLink = "fr/particuliers/credits/simulateurs/simulateur-pret-personnel-ordinaire/";
+
+        // @function qui permet de récuperé le taux. 
 
         function getTauxFromDuree(duree){
             var taux = false;
@@ -33,7 +37,7 @@
             });
             return taux;
         }
-
+        // Convertir en PDF
         $simul.find('.ButtonSimul--getPdf').on('click', function(){
             window.open(getAjaxLink(false));
             return false;
@@ -61,6 +65,8 @@
 
         $resultat.hide();
 
+        // Récuperé les données dans des variables.
+
         var minimum = $('#montant').val();
         var maximum= $('#range4').val();
         var dureemin = $('#duree').val();
@@ -87,6 +93,8 @@
             step: 1
         });
 
+
+        //Récupere et affiche le montant lorsqu'on change les valeurs
         $montant.on("change", function() {
             var new_val = parseInt(String($(this).val()).replaceAll(' ',''));
             if(new_val < parseInt(minimum)){
@@ -101,13 +109,12 @@
             calculSimul();
         });
 
+        //Récupere et affiche la durée lorsqu'on change les valeurs
         $duree.on("change", function(){
-
             new_val = parseInt(String($(this).val()).replaceAll(' ',''));
             if(new_val < parseInt(dureemin)){
                 $(this).val(dureemin);
             }
-
             $range3.data("ionRangeSlider").update({
                 from: $duree.val(),
             });
@@ -140,6 +147,8 @@
         var valueDureeRange = $simul.find('.DureeRange').find('span.irs-single').html();
         $duree.attr('value',valueDureeRange);
 
+        // @Function CalculSimul permet d'effectuer le calcul lors de la simulation.
+
         function calculSimul(){
 
             console.log('calculSimul');
@@ -151,10 +160,7 @@
             var tauxDiv = '';
 
             taux = getTauxFromDuree(duree);
-            tauxDiv = taux * 0.01;
-
-
-        
+            tauxDiv = taux * 0.01;        
 
             var calculH = tauxDiv / 12;
             calculH = calculH * montant;
@@ -170,19 +176,16 @@
 
             var tauxA = (tauxDiv *100).toFixed(2);
 
-            
-                    jQuery(".Taux-3430 .result").html(tauxA +'%');
+            jQuery(".Taux-3430 .result").html(tauxA +'%');
                 
-
-                var CoutTotal = mensu * duree;
-                CoutTotal = CoutTotal.toFixed(2);
-
-            
-                    jQuery(".Montant-3430 .result").html( format(parseInt($montant.val().replaceAll(' ','')),2,' ',',')+' FCFA');
-                    jQuery(".Mensu-3430 .result").text(format(mensu,2,' ',',') +' FCFA');
-                    jQuery(".CoutTotal-3430 .result").text( format(CoutTotal,2,' ',',') +' FCFA');
+            var CoutTotal = mensu * duree;
+            CoutTotal = CoutTotal.toFixed(2);
                 
-
+            // Affiche les resultats obtenus.
+            jQuery(".Montant-3430 .result").html( format(parseInt($montant.val().replaceAll(' ','')),2,' ',',')+' FCFA');
+            jQuery(".Mensu-3430 .result").text(format(mensu,2,' ',',') +' FCFA');
+            jQuery(".CoutTotal-3430 .result").text( format(CoutTotal,2,' ',',') +' FCFA');
+               
             if(isModeTranche) {
                 $simul.find('#resultatTranche .result').html($simul.find('#tranche option:selected').text());
             }
@@ -197,6 +200,18 @@
             });
             localStorage.setItem('simulCredit', JSON.stringify(simulToSave));
 
+            //Calculer le tableau d'amortissement.
+
+            var interetPay = montant * (tauxA / 12);
+            //capital payé
+            var capitalPAy =  - (- interetPay - mensu);
+            //Solde restant
+            var soldeRestant = montant - capitalPAy;
+
+            jQuery(".interetPayTA .result").text(format(interetPay,2,' ',',') +' FCFA');
+            jQuery(".soldeRestantTA .result").text(format(soldeRestant,2,' ',',') +' FCFA');
+            jQuery(".CapitalPay .result").text(format(capitalPAy,2,' ',',') +' FCFA');
+            
             $resultat.show();
         }
 

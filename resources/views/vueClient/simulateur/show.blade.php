@@ -15,7 +15,7 @@
                                     <p class="font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam at odio quod, doloribus dolor veniam voluptate suscipit rerum sed cum sint nulla animi iusto accusantium alias corrupti repellat! Beatae, rerum.</p>
                                 </div>
                                 <div id="DureeRange" class="DureeRange">
-                                    <label for="duree">Date de demande</label><span class="inputCred"><input type="text" class="inputMensu" placeholder="02/2020" /><span>Mois</span></span>
+                                    <label for="duree">Date de demande</label><span class="inputCred"><input type="text" id="inputDate" class="inputMensu" placeholder="02/2020" /><span>Mois</span></span>
                                     <p class="font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et saepe consectetur, dicta aliquam autem a eligendi non, quibusdam harum, accusantium debitis ipsum architecto. Molestias, repudiandae velit modi sint mollitia corrupti?</p>
                                 </div>
                                 <input type="button" class="btn ButtonSimul ButtonSimul--launchSimu mb-2" value="Calculer la quotitée mensuelle" />
@@ -50,7 +50,7 @@
                                     </p>
                                     <p id="Mensu" class="col-md-12 Mensu-3430">
                                         <span class="label">Mensualités</span>
-                                        <span class="result"></span>
+                                        <span class="result" id="mensu"></span>
                                     </p>
                                     <p id="Taux" class="col-md-12 Taux-3430">
                                         <span class="label">Taux</span>
@@ -68,8 +68,29 @@
                                     <a class="col-md-3 ml-4 btn ButtonSimul" href="{{route('simulateur.credits.index')}}">Contacter</a>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                
+                            <div class="col-md-6 resultat  mt-5">
+                                <table class="table table-border border-danger table-responsive  w-100">
+                                    <thead>
+                                      <tr>
+                                        <th>Date</th>
+                                        <th>Mensualitée</th>
+                                        <th>Interêt payé</th>
+                                        <th>Solde restant</th>
+                                        <th>Montant total emprunté</th>
+                                        <th>Interêt</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td class="dateTA"><span class="result"></span></td>
+                                        <td class="Mensu-3430"><span class="result"></span></td>
+                                        <td class="interetPayTA"><span class="result"></span></td>
+                                        <td class="soldeRestantTA"><span class="result"></span></td>
+                                        <td class="CoutTotal-3430"><span class="result"></span></td>
+                                        <td class="CapitalPay"><span class="result"></span></td>
+                                      </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -81,5 +102,5 @@
 @include('vueClient.partials.footer')
 
 <script src="{{asset('js/qte.js')}}"></script>
-<script src="{{asset('js/simulateurJS.js')}}"></script>
 <script src="{{asset('js/TableauDarmortissement.js')}}"></script>
+<script src="{{asset('js/simulateurJS.js')}}"></script>

@@ -8,6 +8,7 @@ use App\Simulateur;
 use App\TypeSimulation;
 use Illuminate\Http\Request;
 use App\Http\Requests\SimulateurFormRequest;
+use Intervention\Image\Facades\Image;
 
 class SimulateurController extends Controller
 {
@@ -205,6 +206,8 @@ class SimulateurController extends Controller
         **/
         
         $imagePath = request('image')->store('simulateur','public');
+        $image = Image::make(public_path("/storage/{$imagePath}"))->fit(348, 197);
+        $image->save();
 
         $simulateur = Simulateur::create([
             'type_id'=>$request->type_id,
@@ -436,6 +439,8 @@ class SimulateurController extends Controller
         if (request('image')) {
             
             $imagePath = request('image')->store('simulateur','public');
+            $image = Image::make(public_path("/storage/{$imagePath}"))->fit(348, 197);
+             $image->save();
             $simulateur->update(array_merge($request->all(),['image'=>$imagePath]));
             if ($simulateur) {
                 emotify('success','Les informations du simulateur ont été modifier avec succès');

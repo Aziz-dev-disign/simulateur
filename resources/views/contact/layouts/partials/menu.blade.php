@@ -9,7 +9,7 @@
                     @can('role_access')                    
                         <li><a href="{{route('admin.roles.index')}}"><i class="fa  fa-lock"></i> Roles</a></li>
                     @endcan
-                    @can('permission_acces')
+                    @can('permission_access')
                         <li><a href="{{route('admin.permissions.index')}}"><i class="fa  fa-key"></i> Permissions</a></li>
                     @endcan
                     @can('user_access')                    

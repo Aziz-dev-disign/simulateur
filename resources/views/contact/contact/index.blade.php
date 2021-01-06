@@ -22,7 +22,7 @@
                 <tr data-entry-id="{{$rdv->id}}">
                     <td>{{$i}}</td>
                     <td>{{$rdv->nom}} {{$rdv->prenom}}</td>
-                    <td><a href="{{route('admin.contact.show', $rdv->id)}}">{{$rdv->motif}}</a></td>
+                    <td><a href="{{route('admin.contact.show', $rdv->id)}}" class="rdvActive">{{$rdv->motif}}</a></td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger">Action</button>

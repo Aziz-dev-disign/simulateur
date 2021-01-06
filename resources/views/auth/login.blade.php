@@ -13,7 +13,7 @@
                     Se connecter
                 </span>
                 <div class="wrap-input100 validate-input" data-validate = "Entrez un nom">
-                    <input id="email" type="email" class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-mail">
+                    <input id="email" type="email" class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="E-mail">
                     <span class="focus-input100" data-placeholder="&#xf106;"></span>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
