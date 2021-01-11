@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
 use App\Http\Requests\RoleFormRequest;
+use App\Http\Requests\MassDestroye\RoleMassDestroye;
 use Gate;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -340,4 +341,6 @@ class RoleController extends Controller
         }
         
     }
+
+
 }

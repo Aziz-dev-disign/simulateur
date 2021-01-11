@@ -12,11 +12,8 @@
         <thead>
         <tr>
             <th>N°</th>
-            <th>Image</th>
-            <th>Nom</th>
-            <th>Slug</th>
-            <th>Statut</th>
             <th>Type de simulateur</th>
+            <th>Statut</th>
             <th>Montant maximum</th>
             <th>Montant minimum</th>
             <th>Taux</th>
@@ -32,11 +29,8 @@
             <?php $i++;?>
                 <tr data-entry-id="{{$simulateur->id}}">
                     <td>{{$i}}</td>
-                    <td><img src="{{asset('storage').'/'.$simulateur->image}}" alt="image" style="width:75px;height:75px;" class="rounded-circle"></td>
-                    <td>{{$simulateur->nom}}</td>
-                    <td>{{$simulateur->slug}}</td>
-                    <td>{{$simulateur->statut}}</td>
                     <td>{{$simulateur->typeSimulation->nom}}</td>
+                    <td>{{$simulateur->statut}}</td>
                     <td>{{$simulateur->montantMin}}</td>
                     <td>{{$simulateur->montantMax}}</td>
                     <td>{{$simulateur->taux}}</td>

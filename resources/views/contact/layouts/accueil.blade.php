@@ -101,10 +101,10 @@
         {{-- @include('notify::messages') --}}
         <!-- page content -->
         <div class="right_col" role="main">
-            <div class="clearfix"></div>
             @yield('header')
+            <div class="clearfix"></div>
             <div class="row">
-              <div class="col-md-12 col-sm-12  ">
+              <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>@yield('titre')</h2>
@@ -136,7 +136,7 @@
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
+          <div class="pull-right w-100">
             Admin by <a href="{{route('admin.')}}">Société Générale Burkina Faso</a>
           </div>
           <div class="clearfix"></div>
@@ -148,7 +148,10 @@
     <!-- jQuery --> 
     <script src="{{asset('admin/source/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
-   <script src="{{asset('admin/source/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{asset('admin/source/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>   
+    <!-- Parsley -->
+    <script src="{{asset('admin/source/parsley/parsley.js')}}"></script>
+    <script src="{{asset('admin/source/parsley/parsley.min.js.map')}}"></script>
     <!-- FastClick -->
     <script src="{{asset('admin/source/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
@@ -170,10 +173,8 @@
     <script src="{{asset('admin/source/switchery/switchery.min.js')}}"></script>
     <!-- Select2 -->
     <script src="{{asset('admin/source/select2/select2.full.min.js')}}"></script>
-    <!-- Parsley -->
-    <script src="{{asset('admin/source/parsleyjs/dist/parsley.min.js')}}"></script>
     <!-- Autosize -->
-    <script src="{{asset('admin/source/autosize/dist/autosize.min.js')}}"></script>
+    <script src="{{asset('admin/source/autosize/autosize.min.js')}}"></script>
     <!-- starrr -->
     <script src="{{asset('admin/source/starrr/starrr.js')}}"></script>    
     <!-- Custom Theme Scripts -->

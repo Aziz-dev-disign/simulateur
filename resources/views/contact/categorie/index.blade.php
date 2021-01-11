@@ -13,7 +13,7 @@
     @csrf
     <div class="form-group">
         <label for="nom">Nom <span class="required">*</span></label>
-        <input type="text" id="nom" class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" name="nom" value="{{ old('nom') }}" autocomplete="nom" autofocus>            
+        <input type="text" id="nom" class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" name="nom" value="{{ old('nom') }}" autocomplete="nom">            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}

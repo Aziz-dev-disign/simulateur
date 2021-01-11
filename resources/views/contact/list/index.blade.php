@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
         <label for="nomDoc">Nom <span class="required">*</span></label>        
-        <input type="text" id="nomDoc" class="form-control{{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nomDoc" value="{{ old('nomDoc') }}" autocomplete="nomDoc" autofocus>            
+        <input type="text" id="nomDoc" class="form-control{{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nomDoc" value="{{ old('nomDoc') }}" autocomplete="nomDoc">            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}

@@ -87,9 +87,10 @@ class ContactController extends Controller
      * @param  \App\Rdv  $rdv
      * @return \Illuminate\Http\Response
      */
-    public function show(Rdv $rdv)
+    public function show($rdv)
     {
-        //
+        $rdv = Rdv::findOrFail($rdv);
+        return view('contact.contact.show',compact('rdv'));
     }
 
     /**

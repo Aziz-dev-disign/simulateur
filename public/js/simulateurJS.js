@@ -118,15 +118,18 @@
             $range3.data("ionRangeSlider").update({
                 from: $duree.val(),
             });
+            calculQte();
             calculSimul();
         });
 
         $range2.on("change", function () {
+            calculQte();
             $montant.val($(this).prop("value")); // @val() renvoie ou définit l'attribut value des éléments sélectionnés
             calculSimul();
         });
 
         $range3.on("change", function () {
+            calculQte();
             $duree.val($(this).prop("value"));//jquery @prop() définie ou renvoie les propriétés et valeurs des léments sélectionnées
             calculSimul();
         });
@@ -135,11 +138,22 @@
             calculSimul();
         }); // renvoie les éléments descendants de l'élément sélectionné.
         $simul.find('.ButtonSimul--launchSimul').on('click', function(){
+            calculQte();
             calculSimul();
         });
 
 
+        /**
+         * Calcul de la quotitée mensuelle.
+         */
 
+
+        function calculQte() {
+            console.log('calculQte');
+            var inputMensu = $('#inputMensu').val();
+            var test = inputMensu / 2 ;
+                jQuery(".inputMensu-001 .result").text(format(test,2,' ',',') +' FCFA');
+        }
 
         var valueMontantDuCredit = $simul.find('.MontantDuCredit').find('span.irs-single').html();
         $montant.attr('value',valueMontantDuCredit);
@@ -199,21 +213,12 @@
                 });
             });
             localStorage.setItem('simulCredit', JSON.stringify(simulToSave));
-
-            //Calculer le tableau d'amortissement.
-
-            var interetPay = montant * (tauxA / 12);
-            //capital payé
-            var capitalPAy =  - (- interetPay - mensu);
-            //Solde restant
-            var soldeRestant = montant - capitalPAy;
-
-            jQuery(".interetPayTA .result").text(format(interetPay,2,' ',',') +' FCFA');
-            jQuery(".soldeRestantTA .result").text(format(soldeRestant,2,' ',',') +' FCFA');
-            jQuery(".CapitalPay .result").text(format(capitalPAy,2,' ',',') +' FCFA');
             
             $resultat.show();
         }
+
+        
+
 
         function format(valeur,decimal,separateur,dsep) {
 

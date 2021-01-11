@@ -1,6 +1,6 @@
-.container.body {
+.container{
     margin-left: 0px !important;
-    margin-right: 0px !important;
+    padding-right: 0px;
   }
   a.rdvActive{
     color: blue;
@@ -8,3 +8,11 @@
   a.rdvActive:visited {
     color: green;
   }
+
+  footer {
+    width: 87.5%;
+    height: 100%;
+}
+.right_col, .top_nav{
+  width: 87.5%;
+}

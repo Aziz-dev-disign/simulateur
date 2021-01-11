@@ -6,7 +6,7 @@
 
     (function (window, $) {
             
-            $('.ButtonSimul--launchSimu').click(function () {
+            $('.ButtonSimul--lauimul').click(function () {
                 calculQte();
             });
 
