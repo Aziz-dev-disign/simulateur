@@ -255,7 +255,13 @@ class CategorieListController extends Controller
         **/
 
         $categorieList->update($request->all());
-        return redirect()->route('admin.categorie.index');
+        if ($categorie) {
+            emotify('success','Les informations de la catégorie ont été modifier avec succès');
+            return redirect()-route('admin.categorie.index');
+        } else {
+            emotify('error','Les informations de la catégorie n\'ont été modifier. Veillez réessayer !');
+            return back();
+        }  
     }
 
     /**

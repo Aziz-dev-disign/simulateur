@@ -19,7 +19,12 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route('admin.');
+            if ($request->session()->forget('user.status','inactif')) {
+                return '/login';
+            }
+            else {
+                return redirect()->route('admin.');
+            }
         }
 
         return $next($request);

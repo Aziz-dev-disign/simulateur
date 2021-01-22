@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Gate;
-use Symfony\Component\HttpFoundation\Response;
-class UserFormRequest extends FormRequest
+class AgenceUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +24,11 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'role_id'  => [
-                'integer'],
-            'name'     => [
-                'required'],
-            'email'    => [
-                'required',
-                'unique:users'],
-            'status' => [
-                'required'],
-            'password' => [
-                'required'],
+            'nom'       =>['required','string','min:3'],
+            'code'      =>['required','string','unique:agences,code,'. request()->route('agence')->id],
+            'email'     =>['required','email'],
+            'telephone' =>['required','string'],
+            'ville'     =>['required','string']
         ];
     }
 }

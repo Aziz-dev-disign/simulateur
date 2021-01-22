@@ -9,6 +9,7 @@ use App\User;
 use App\ROle;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\UserUpdateFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Gate;
 use Symfony\Component\HttpFoundation\Response;
@@ -192,11 +193,11 @@ class UserController extends Controller
         ]);
 
         if ($user) {
-            emotify('success','Les informations l\'utilisateur ont été enregistrer avec succès');
+            emotify('success','Les informations de l\'utilisateur ont été enregistrer avec succès');
             return redirect()->route('admin.user.create');
         } else {
             return back();
-            emotify('error','Les informations l\'utilisateur ,\'ont pas été enregistrer. Veillez Réessayer!!');
+            emotify('error','Les informations de l\'utilisateur n\'ont pas été enregistrer. Veillez Réessayer!!');
         }
         
     }
@@ -277,7 +278,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateFormRequest $request, User $user)
     {
         /**
      * @OA\Put(
@@ -367,28 +368,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        $data = request()->validate([
-            'role_id'=>['required','integer'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'status'=>['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        // $user->update([            
-        //     'role_id'=>$data['role_id'],
-        //     'name'=>$data['name'],
-        //     'email'=>$data['email'],
-        //     'status'=>$data['status'],
-        // ]);
-
-        dd($data);
+        $user->update($request->all());
 
         if ($user) {
+            emotify('success','Les informations de l\'utilisateur ont été modifier avec succès');
             return redirect()->route('admin.user.index');
-            emotify('success','Les informations l\'utilisateur ont été modifier avec succès');
         } else {
             return back();
-            emotify('error','Les informations l\'utilisateur n\'ont pas été modifier. Veillez réessayer!');
+            emotify('error','Les informations de l\'utilisateur n\'ont pas été modifier. Veillez réessayer!');
         }
         
     }
@@ -445,8 +432,14 @@ class UserController extends Controller
      *)
      **/
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('admin.user.index');
+        if ($user) {
+            emotify('success','Les informations de l\'utilisateur ont été supprimer avec succès');
+            return redirect()->route('admin.user.index');
+        } else {
+            emotify('error','Les informations de l\'utilisateur n\'ont pas été supprimer. Veillez réessayer!');
+            return back();
+        }
     }
 }

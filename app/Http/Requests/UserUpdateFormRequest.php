@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Gate;
-use Symfony\Component\HttpFoundation\Response;
-class UserFormRequest extends FormRequest
+class UserUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,11 +30,10 @@ class UserFormRequest extends FormRequest
                 'required'],
             'email'    => [
                 'required',
-                'unique:users'],
+                'unique:users,email,'. request()->route('user')->id],
             'status' => [
-                'required'],
-            'password' => [
-                'required'],
+                'required'
+                ]
         ];
     }
 }

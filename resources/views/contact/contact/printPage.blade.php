@@ -1,12 +1,11 @@
 @extends('contact.layouts.accueil')
 
 @section('content')
-<div class="preview">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-        <a class="navbar-brand"><img src="{{asset('assets/images/imagelogo2.png')}}" width="160px" alt=""></a>
+        <a class="navbar-brand"><img src="{{asset('assets/images/imagelogo2.png')}}" width="160px" alt="Logo de la SGBF"></a>
         </div>
-    </nav><br><br><hr>
+    </nav>
     
     <div class="container mt-10">
         <div class="row">
@@ -32,26 +31,5 @@
             </div>
         </div>
     </div>
-    <br><br>
-</div>
-
-    <div class="row">
-        <a href="{{route('admin.contact.index')}}" class="btn btn-danger">Retour</a>
-        <a href="{{route('admin.print_page', $rdv->id)}}" class="btn btn-info printPage">Imprimer le rendez-vous</a>
-    </div>
 @endsection
 
-@section('script')
-<script type="text/javascript">
-
-    // When the document is ready, initialize the link so
-    // that when it is clicked, the printable area of the
-    // page will print.
-    $(document).ready(function () {
-        $('.printPage').click(function () {
-            $('.preview').print();            
-        });
-    });
-
-</script>
-@endsection

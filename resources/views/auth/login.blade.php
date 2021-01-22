@@ -29,15 +29,11 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
+                </div><br>
                 <div class="contact100-form-checkbox row">
                     <div class="col-md-6">
-                        <input class="input-checkbox100" type="checkbox" name="remember" id="ckb1" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="label-checkbox100" for="ckb1">
-                            Se souvenir?
-                        </label>
                     </div>
-                </div>
+                </div><br>
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
                         Connexion

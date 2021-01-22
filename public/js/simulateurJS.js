@@ -4,8 +4,6 @@
 *Ce JavaScript permet de calculer la simulation.
 *
 */
-
-
     (function(window, $) {
         
         // Déclaration des variables 
@@ -63,10 +61,10 @@
             return target.replace(new RegExp(search, 'g'), replacement);
         };
 
-        $resultat.hide();
+        $resultat.show();
 
-        // Récuperé les données dans des variables.
-
+//===========================================================================================================================//
+        // Récuperé les données du simulateur rapide dans des variable.
         var minimum = $('#montant').val();
         var maximum= $('#range4').val();
         var dureemin = $('#duree').val();
@@ -78,6 +76,7 @@
         maximum= maximum.replaceAll(' ',''); // @replaceAll() est une fonction Jquery qui remplace les éléments selectionner par de nouveaux html
         taux = taux.replaceAll(' ','');
 
+//===========================================================================================================================//        
 
         $range2.ionRangeSlider({
             grid: true,
@@ -118,18 +117,15 @@
             $range3.data("ionRangeSlider").update({
                 from: $duree.val(),
             });
-            calculQte();
             calculSimul();
         });
 
-        $range2.on("change", function () {
-            calculQte();
+        $range2.on("change", function () {            
             $montant.val($(this).prop("value")); // @val() renvoie ou définit l'attribut value des éléments sélectionnés
             calculSimul();
         });
 
-        $range3.on("change", function () {
-            calculQte();
+        $range3.on("change", function () {            
             $duree.val($(this).prop("value"));//jquery @prop() définie ou renvoie les propriétés et valeurs des léments sélectionnées
             calculSimul();
         });
@@ -138,22 +134,8 @@
             calculSimul();
         }); // renvoie les éléments descendants de l'élément sélectionné.
         $simul.find('.ButtonSimul--launchSimul').on('click', function(){
-            calculQte();
             calculSimul();
         });
-
-
-        /**
-         * Calcul de la quotitée mensuelle.
-         */
-
-
-        function calculQte() {
-            console.log('calculQte');
-            var inputMensu = $('#inputMensu').val();
-            var test = inputMensu / 2 ;
-                jQuery(".inputMensu-001 .result").text(format(test,2,' ',',') +' FCFA');
-        }
 
         var valueMontantDuCredit = $simul.find('.MontantDuCredit').find('span.irs-single').html();
         $montant.attr('value',valueMontantDuCredit);
@@ -162,6 +144,8 @@
         $duree.attr('value',valueDureeRange);
 
         // @Function CalculSimul permet d'effectuer le calcul lors de la simulation.
+
+//===========================================================================================================================//        
 
         function calculSimul(){
 
@@ -185,7 +169,7 @@
             calculB = Math.pow(calculB, - duree);
             calculB = 1 - calculB;
 
-            var mensu = calculH / calculB;
+            mensu = calculH / calculB;
             mensu = mensu.toFixed(2);
 
             var tauxA = (tauxDiv *100).toFixed(2);
@@ -194,11 +178,18 @@
                 
             var CoutTotal = mensu * duree;
             CoutTotal = CoutTotal.toFixed(2);
-                
+
+            // frais des dossiers
+            var fraisDoc = CoutTotal *(1.3/100);
+
+
+            //Echéances
+            
             // Affiche les resultats obtenus.
             jQuery(".Montant-3430 .result").html( format(parseInt($montant.val().replaceAll(' ','')),2,' ',',')+' FCFA');
             jQuery(".Mensu-3430 .result").text(format(mensu,2,' ',',') +' FCFA');
             jQuery(".CoutTotal-3430 .result").text( format(CoutTotal,2,' ',',') +' FCFA');
+            jQuery("#Fdocs .result").text( format(fraisDoc,2,' ',',') +' FCFA');
                
             if(isModeTranche) {
                 $simul.find('#resultatTranche .result').html($simul.find('#tranche option:selected').text());
@@ -217,9 +208,8 @@
             $resultat.show();
         }
 
-        
-
-
+//===========================================================================================================================//        
+        // Le formatage.
         function format(valeur,decimal,separateur,dsep) {
 
             var deci=Math.round( Math.pow(10,decimal)*(Math.abs(valeur)-Math.floor(Math.abs(valeur)))) ;

@@ -8,6 +8,7 @@ use App\Simulateur;
 use App\TypeSimulation;
 use Illuminate\Http\Request;
 use App\Http\Requests\SimulateurFormRequest;
+use App\Http\Requests\SimulateurUpdateFormRequest;
 use Intervention\Image\Facades\Image;
 
 class SimulateurController extends Controller
@@ -289,6 +290,7 @@ class SimulateurController extends Controller
         return view('contact.simulateur.show',compact('simulateur','titre'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -309,7 +311,7 @@ class SimulateurController extends Controller
      * @param  \App\Simulateur  $simulateur
      * @return \Illuminate\Http\Response
      */
-    public function update(SimulateurFormRequest $request, Simulateur $simulateur)
+    public function update(SimulateurUpdateFormRequest $request, Simulateur $simulateur)
     {
 
 

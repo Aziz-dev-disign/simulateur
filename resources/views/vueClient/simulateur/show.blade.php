@@ -10,30 +10,104 @@
                     <div id="simulateurGlob" class="simulateur container">
                         <div class="row justify-content-between">
                             <div id="simulateur" class="col-md-5 pt-10  mr-0 ml-2">   
-                                <div class="row">
-                                    <div class="col-md-6 mt-2"><a href="{{route('index')}}">Retour</a></div>    
-                                </div>   
-                                <div id="MontantDuCredit" class="MontantDuCredit pt-2">
-                                    <label for="montant">Salaire mensuel</label><span class="inputCred"><input type="text" id="inputMensu" class="inputMensu" placeholder="50 000" /><span>FCFA</span></span>
-                                    <p class="font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam at odio quod, doloribus dolor veniam voluptate suscipit rerum sed cum sint nulla animi iusto accusantium alias corrupti repellat! Beatae, rerum.</p>
-                                </div>
-                                <p class="inputMensu-001">
-                                    <span id="qte"><b>NB:</b><em>la Mensualitée ne doit pas être supperieur cette somme = </em></span><span class="result" style="color: red"></span>
-                                </p><hr>
-                                <div id="MontantDuCredit" class="col-md-12 MontantDuCredit pt-3">                                    
-                                    <label for="montant">Montant crédit</label><span class="inputCred"><input type="text" value="{{$simulateur->montantMin}}" id="montant" class="montant" name="montant" /><span>FCFA</span></span>
-                                    <div class="pl-4">
-                                        <input type="text" id="range2" class="range2" value="" name="range2" />
+                                <div class="row smolMenu">
+                                    <div class="col-md-6 mt-1 btnMenu"><a href="{{route('index')}}" class="btnMenu">Retour</a></div>    
+                                </div><br>
+
+                                <h5>Simulation rapide</h5>
+                                <div class="borderCaption">
+                                    <div id="MontantDuCredit" class="col-md-12 MontantDuCredit pt-3">                                    
+                                        <label for="montant">Montant capital</label><span class="inputCred"><input type="text" value="{{$simulateur->montantMin}}" id="montant" class="montant" name="montant" /><span>FCFA</span></span>
+                                        <div class="pl-4">
+                                            <input type="text" id="range2" class="range2" value="" name="range2" />
+                                        </div>
+                                        <input type="hidden" id="range4" class="range4" max="{{$simulateur->montantMax}}" min="{{$simulateur->montantMin}}" value="{{$simulateur->montantMax}}" name="range4" />
                                     </div>
-                                    <input type="hidden" id="range4" class="range4" max="{{$simulateur->montantMax}}" min="{{$simulateur->montantMin}}" value="{{$simulateur->montantMax}}" name="range4" />
-                                </div>
-                                <div id="DureeRange" class="col-md-12 DureeRange">
-                                    <label for="duree">Durée</label><span class="inputCred"><input type="text" value="{{$simulateur->dureeMin}}" id="duree" class="duree" name="duree" /><span>Mois</span></span>
-                                    <input type="text" id="range3" class="range3" min="{{$simulateur->dureeMin}}" max="{{$simulateur->dureeMax}}" value="" name="range3" />
-                                    <input type="hidden" id="range5" class="range5" value="{{$simulateur->dureeMax}}" name="range5" />
-                                </div>
-                                <input type="hidden" id="taux" name="taux" value="{{$simulateur->taux}}">
-                                <input type="button" class="btn ButtonSimul ButtonSimul--launchSimul mb-2" value="Lancer la simulation" />
+                                    <div id="DureeRange" class="col-md-12 DureeRange">
+                                        <label for="duree">Durée</label><span class="inputCred"><input type="text" value="{{$simulateur->dureeMin}}" id="duree" class="duree" name="duree" /><span>Mois</span></span>
+                                        <input type="text" id="range3" class="range3" min="{{$simulateur->dureeMin}}" max="{{$simulateur->dureeMax}}" value="" name="range3" />
+                                        <input type="hidden" id="range5" class="range5" value="{{$simulateur->dureeMax}}" name="range5" />
+                                    </div>
+                                    <input type="hidden" id="taux" name="taux" value="{{$simulateur->taux}}">
+                                    <input type="button" class="btn ButtonSimul ButtonSimul--launchSimul" value="Lancer la simulation" id="btnSimulHide1"/>
+                                </div><br>
+
+                                <div class="row smolMenu hideDiv">
+                                </div><br> 
+
+                                <div class="hideDiv">                                    
+                                    <h5 >Simulation Avancée</h5>
+                                    <div class="borderCaption">                                    
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="nom">Nom</label>
+                                                <input type="text" class="form-control" id="nom" name="" classe="nom" placeholder="nom">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="prenom">Prénom (s)</label>
+                                                <input type="text" class="form-control" id="prenom" name="" classe="prenom" placeholder="prénom">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="numero">Numéro cmpt</label>
+                                                <input type="text" class="form-control" id="numero" name="" classe="numero" placeholder="Numéro compte">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="salaire">Salaire</label>
+                                                <input type="number" class="form-control" id="salaire" name="" classe="salaire" placeholder="salaire">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="autreRevenu">Autres revenus</label>
+                                                <input type="number" class="form-control" id="autreRevenu" name="" classe="autreRevenu" placeholder="Ex: un autre travail">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="engagementPPO">Engagement PPO</label>
+                                                <input type="number" class="form-control" id="engagementPPO" name="" classe="engagementPPO" placeholder="prêt personnel ordinaire">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="engagementPs">engagement PS</label>
+                                                <input type="number" class="form-control" id="engagementPs" name="" classe="engagementPs" placeholder="prêt scolaire">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="autrEngagement">Autres engagement</label>
+                                                <input type="number" class="form-control" id="autrEngagement" name="" classe="autrEngagement" placeholder="Ex: loyer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                
+                                <div class="row smolMenu">
+                                    <div class="col-md-6 mt-1 btnMenu"><a href="#" class="btnMenu" id="btnMenuHide">Fermer&nbsp;la&nbsp;simulation&nbsp;avancée</a></div>    
+                                    <div class="col-md-6 mt-1 btnMenu"><a href="#" class="btnMenu" id="btnMenu">Simulation avancée</a></div>    
+                                </div><br>  
+                                
+                                <div class="hideDiv">
+                                    <h5 >Assurance</h5>
+                                    <div class="borderCaption">   
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="montantAss">Montant</label>
+                                                <input type="number" class="form-control" id="montantAss" name="" classe="montantAss" placeholder="montant">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="dureeAss">Durée</label>
+                                                <input type="number" class="form-control" id="dureeAss" name="" classe="dureeAss" placeholder="Durée">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label for="dateAss">Age (s)</label>
+                                                <input type="number" class="form-control" id="dateAss" name="" classe="dateAss" placeholder="Ex: 38">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <input type="button" class="btn ButtonSimul ButtonSimul--launchSimul" value="Lancer la simulation" id="btnSimulHide2"/>
                             </div>
                             <div class="col-md-6">                                
                                 <div id="resultat" class="resultat w-100" >   
@@ -53,8 +127,40 @@
                                         <span class="label">Durée</span>
                                         <span class="result"></span>
                                     </p>
+                                    <p id="TotalRevenu" class="col-md-12 TotalRevenu hideDiv">
+                                        <span class="label">Total revenus</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="QteCessible" class="col-md-12 QteCessible hideDiv">
+                                        <span class="label">Quotité cessible</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="TotEngagement" class="col-md-12 TotEngagement hideDiv">
+                                        <span class="label">Total Engagements</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="MargeQte" class="col-md-12 MargeQte hideDiv">
+                                        <span class="label">Marge sur Quotité</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="Echeance" class="col-md-12 Echeance hideDiv">
+                                        <span class="label">Echéance</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="Fdocs" class="col-md-12 Fdocs hideDiv">
+                                        <span class="label">Frais de dossiers</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="Assur" class="col-md-12 Assur hideDiv">
+                                        <span class="label">Assurance</span>
+                                        <span class="result"></span>
+                                    </p>
                                     <p id="CoutTotal" class="col-md-12 CoutTotal-3430">
                                         <span class="label">Coût total hors taxes</span>
+                                        <span class="result"></span>
+                                    </p>
+                                    <p id="DesLog" class="col-md-12 DesLog hideDiv">
+                                        <span class="label">Descision logique</span>
                                         <span class="result"></span>
                                     </p>
                                     <input type="button" class="col-md-6 ButtonSimul ButtonSimul--getPdf" value="Enregistrer au format pdf"  />
@@ -70,5 +176,26 @@
 </div>
 @include('vueClient.partials.footer')
 
-<script src="{{asset('js/qte.js')}}"></script>
 <script src="{{asset('js/simulateurJS.js')}}"></script>
+<script src="{{asset('js/qte.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.hideDiv').hide();
+        $('#btnSimulHide2').hide();
+        $('#btnMenuHide').hide();
+        $('#btnMenu').click(function () {
+            $('.hideDiv').show();
+            $('#btnMenuHide').show();
+            $('#btnMenu').hide();
+            $('#btnSimulHide2').show();
+            $('#btnSimulHide1').hide();
+        });
+        $('#btnMenuHide').click(function () {
+            $('.hideDiv').hide();
+            $('#btnMenu').show();
+            $('#btnMenuHide').hide();
+            $('#btnSimulHide1').show();
+            $('#btnSimulHide2').hide();
+        });
+    });
+</script>

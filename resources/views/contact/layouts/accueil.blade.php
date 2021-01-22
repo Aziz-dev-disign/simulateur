@@ -9,7 +9,7 @@
 
     <title>SGBF | SIMULATEUR </title>
     <!-- favicon -->	
-    <link rel="icon" type="image/png" href="{{('assets/images/logo.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('assets/images/logo.png')}}"/>
 
     <!-- Bootstrap -->
     <link href="{{asset('admin/source/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -88,8 +88,11 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
               </a>
             </div>
             <!-- /menu footer buttons -->
@@ -148,10 +151,7 @@
     <!-- jQuery --> 
     <script src="{{asset('admin/source/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
-   <script src="{{asset('admin/source/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>   
-    <!-- Parsley -->
-    <script src="{{asset('admin/source/parsley/parsley.js')}}"></script>
-    <script src="{{asset('admin/source/parsley/parsley.min.js.map')}}"></script>
+   <script src="{{asset('admin/source/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
     <!-- FastClick -->
     <script src="{{asset('admin/source/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
@@ -174,13 +174,13 @@
     <!-- Select2 -->
     <script src="{{asset('admin/source/select2/select2.full.min.js')}}"></script>
     <!-- Autosize -->
-    <script src="{{asset('admin/source/autosize/autosize.min.js')}}"></script>
+    <script src="{{asset('admin/source/autosize/dist/autosize.min.js')}}"></script>
     <!-- starrr -->
     <script src="{{asset('admin/source/starrr/starrr.js')}}"></script>    
     <!-- Custom Theme Scripts -->
     <script src="{{asset('admin/build/js/custom.min.js')}}"></script>
-    <!-- Full calendar -->    
-    <script src="{{asset('admin/source/fullcalendar/fullcalendar.min.js')}}"></script>
+    <!-- Print page -->    
+    <script src="{{asset('admin/build/js/jQuery.print.js')}}"></script>
     <!-- Datatables -->
     <script src="{{asset('admin/source/datatables/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/source/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
@@ -198,9 +198,10 @@
     <script src="{{asset('admin/source/datatables/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{asset('admin/source/datatables/pdfmake/build/vfs_fonts.js')}}"></script>
     <!--/ Datatables -->
+    <!--/ Datatables -->
     @yield('script')
     <!-- Notify -->
-          @notifyJs
+    @notifyJs
         <!--/ Notify -->
   
   </body>

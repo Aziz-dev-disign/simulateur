@@ -48,8 +48,8 @@
         <label for="status" class="col-md-4 col-form-label">{{ __('statut') }} <span>*</span></label>
         <div class="col-md-6">
             <select id="status" type="text" class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}"  name="status">
-                <option value="inactif">Inactif</option>
                 <option value="actif">Actif</option>
+                <option value="inactif">Inactif</option>
             </select>
             @if($errors->has('status'))
                 <div class="invalid-feedback">
@@ -85,8 +85,4 @@
     </div>
 </form>
 
-@endsection
-
-@section('script')
-    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

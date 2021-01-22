@@ -18,7 +18,7 @@
     left: 0;
     transition: all 0.2s ease-in-out;
     opacity: 0;
-    background-color: rgba(7, 7, 7, 0.616) !important;
+    background-color: rgba(7, 7, 7, 0.397) !important;
   }
 
 .form-control.focus:focus {
@@ -101,11 +101,45 @@ input.inputMensu {
   font-size: 15px;
 }
 
-@media screen and (max-width: 600px) {
-  .simulateur{
-    width: 100%;
-  }
-  .resultat{
-    width: 100%;
-  }
+/*
+  Mis en css  du simulation avancée et et du menu de la simulation avancée .
+*/
+
+.smolMenu{
+  background-color: #eaedf0;
+  font-size: 15px;
+  height: 35px;
+}
+
+a.btnMenu {
+  text-decoration: none;
+  background-color: #fff;
+  color: red;
+  border:1px solid rgba(0, 0, 0, 0.315);
+  padding: 5px;
+  border-top: 0px;
+  border-left: 0px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.616);
+}
+
+.borderCaption{
+  border: 1px solid rgba(0, 0, 0, 0.534);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+input#nom,
+input#prenom,
+input#salaire,
+input#numero,
+input#autreRevenu,
+input#engagementPPO,
+input#engagementPs,
+input#autrEngagement,
+input#montantAss,
+input#dureeAss,
+input#dateAss
+ {
+   border-color: rgba(255, 0, 0, 0.295);
+   border-radius: 0;
 }

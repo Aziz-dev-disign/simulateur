@@ -26,8 +26,8 @@ class Simulateur extends Model
 
     public function getStatusOptions(){
         return [
-            'inactif'  =>'Inactif',
-            'actif'   =>'Actif'
+            'actif'   =>'Actif',
+            'inactif'  =>'Inactif'
         ];
     }
 }

@@ -11,14 +11,14 @@
               {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item"  href="#">Aller au simulateur</a>
+              <a class="dropdown-item"  href="{{route('index')}}">Aller au simulateur</a>
               <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="fa fa-sign-out pull-right"></i>Déconnexion</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
+                  <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                      <i class="fa fa-sign-out pull-right"></i>Déconnexion</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
             </div>
           </li>
         </ul>

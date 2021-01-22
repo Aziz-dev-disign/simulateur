@@ -8,12 +8,12 @@
         @method('patch')
         @csrf
         <div class="form-group">
-            <label class="required" for="permissions">Permissions</label>
+            <label  for="permissions">Permissions</label>
             <div style="padding-bottom: 4px">
                 <span class="btn btn-info btn-xs select-all" style="border-radius: 0">Tout selectionner</span>
                 <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">Tout déselectionner</span>
             </div>
-            <select class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}" name="permissions[]" id="permissions" multiple required>
+            <select class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}" name="permissions[]" id="permissions" multiple >
                 @foreach($permissions as $id => $permissions)
                     <option value="{{ $id }}" {{ (in_array($id, old('permissions', [])) || $role->permissions->contains($id)) ? 'selected' : '' }}>{{ $permissions }}</option>
                 @endforeach
@@ -25,8 +25,8 @@
             @endif
         </div>
         <div class="form-group">
-            <label class="required" for="nom">Nom</label>
-            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom', $role->nom) }}" required>
+            <label  for="nom">Nom</label>
+            <input class="form-control {{ $errors->has('nom') ? 'is-invalid' : '' }}" type="text" name="nom" id="nom" value="{{ old('nom', $role->nom) }}" >
             @if($errors->has('nom'))
                 <div class="invalid-feedback">
                     {{ $errors->first('nom') }}

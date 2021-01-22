@@ -101,6 +101,7 @@ class LoginController extends Controller
  * @redirectTo() est une function qui pemet de rediriger vers le /home
  */
     protected function redirectTo(){
+        
         if (Auth::user()->roles()->pluck('nom')) {
             return '/admin/home';
         }else {

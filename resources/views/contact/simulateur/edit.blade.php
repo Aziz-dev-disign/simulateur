@@ -23,7 +23,7 @@
     </div>
     <div class=" form-group ">
         <label for="nom">Nom du simulateur <span>*</span></label>
-        <input type="text" id="nom"  ="" class="form-control  {{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}"  autocomplete="nom" autofocus>            
+        <input type="text" id="nom" class="form-control  {{ $errors->has('nom') ? 'is-invalid' : '' }} " name="nom" placeholder="Veillez entrez un nom"  value="{{ old('nom') ?? $simulateur->nom }}"  autocomplete="nom" >            
         @if($errors->has('nom'))
             <div class="invalid-feedback">
                 {{ $errors->first('nom') }}
@@ -32,7 +32,7 @@
     </div>
     <div class=" form-group ">
         <label for="slug">Sous titre <span>*</span></label>
-        <input type="text" id="slug"  ="" class="form-control  {{ $errors->has('slug') ? 'is-invalid' : '' }} " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}"  autocomplete="slug" autofocus>            
+        <input type="text" id="slug" class="form-control  {{ $errors->has('slug') ? 'is-invalid' : '' }} " name="slug" placeholder="Veillez entrez un slug"  value="{{ old('slug') ?? $simulateur->slug }}"  autocomplete="slug" >            
         @if($errors->has('slug'))
             <div class="invalid-feedback">
                 {{ $errors->first('slug') }}
@@ -54,7 +54,7 @@
     </div>
     <div class=" form-group ">
         <label for="montantMin">Montant minmum <span>*</span></label>
-        <input type="number" id="montantMin"  ="" class="form-control  {{ $errors->has('montantMin') ? 'is-invalid' : '' }} " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}"  autocomplete="montantMin" autofocus>            
+        <input type="number" id="montantMin"  ="" class="form-control  {{ $errors->has('montantMin') ? 'is-invalid' : '' }} " name="montantMin" placeholder="Veillez entrez un Montant minmum"  value="{{ old('montantMin') ?? $simulateur->montantMin }}"  autocomplete="montantMin" >            
         @if($errors->has('montantMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMin') }}
@@ -63,7 +63,7 @@
     </div>
     <div class=" form-group ">
         <label for="montantMax">Montant maximum <span>*</span></label>
-        <input type="number" id="montantMax"  ="" class="form-control  {{ $errors->has('montantMax') ? 'is-invalid' : '' }} " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}"  autocomplete="montantMax" autofocus>            
+        <input type="number" id="montantMax"  ="" class="form-control  {{ $errors->has('montantMax') ? 'is-invalid' : '' }} " name="montantMax" placeholder="Veillez entrez un montant maximum"  value="{{ old('montantMax') ?? $simulateur->montantMax }}"  autocomplete="montantMax" >            
         @if($errors->has('montantMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('montantMax') }}
@@ -72,7 +72,7 @@
     </div>
     <div class=" form-group ">
         <label for="taux">Taux <span>*</span></label>
-        <input type="text" id="taux"  ="" class="form-control  {{ $errors->has('taux') ? 'is-invalid' : '' }} " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}"  autocomplete="taux" autofocus>            
+        <input type="text" id="taux"  ="" class="form-control  {{ $errors->has('taux') ? 'is-invalid' : '' }} " name="taux" placeholder="Veillez entrez le taux"  value="{{ old('taux') ?? $simulateur->taux }}"  autocomplete="taux" >            
         @if($errors->has('taux'))
             <div class="invalid-feedback">
                 {{ $errors->first('taux') }}
@@ -81,7 +81,7 @@
     </div>
     <div class=" form-group ">
         <label for="dureeMin">Durée minimum <span>*</span></label>
-        <input type="number" id="dureeMin"  ="" class="form-control  {{ $errors->has('dureeMin') ? 'is-invalid' : '' }} " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}"  autocomplete="dureeMin" autofocus>            
+        <input type="number" id="dureeMin"  ="" class="form-control  {{ $errors->has('dureeMin') ? 'is-invalid' : '' }} " name="dureeMin" placeholder="Veillez entrez une durée minimum"  value="{{ old('dureeMin') ?? $simulateur->dureeMin}}"  autocomplete="dureeMin" >            
         @if($errors->has('dureeMin'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMin') }}
@@ -90,7 +90,7 @@
     </div>
     <div class=" form-group ">
         <label for="dureeMax">Durée maximum <span>*</span></label>
-        <input type="number" id="dureeMax"  ="" class="form-control  {{ $errors->has('dureeMax') ? 'is-invalid' : '' }} " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}"  autocomplete="dureeMax" autofocus>            
+        <input type="number" id="dureeMax"  ="" class="form-control  {{ $errors->has('dureeMax') ? 'is-invalid' : '' }} " name="dureeMax" placeholder="Veillez entrez une durée maximum"  value="{{ old('dureeMax') ?? $simulateur->dureeMax}}"  autocomplete="dureeMax" >            
         @if($errors->has('dureeMax'))
             <div class="invalid-feedback">
                 {{ $errors->first('dureeMax') }}

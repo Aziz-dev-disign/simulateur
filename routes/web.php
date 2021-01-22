@@ -24,15 +24,17 @@ Auth::routes(['register'=>false]);
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth','permission']], function () {
     Route::get('home', 'HomeController@index');
     Route::resource('agence', 'AgenceController');
-    Route::resource('simulateur', 'SimulateurController');
+    Route::resource('simulateur', 'SimulateurController');    
     Route::resource('list-document', 'ListDocumentController');
     Route::resource('permissions', 'PermissionController');
     Route::resource('categorie', 'CategorieListController');
-    Route::resource('rendez-vous', 'RdvController');
     Route::resource('roles', 'RoleController');
     Route::resource('type-simulateur', 'TypeSimulationController');
     Route::resource('user', 'UserController');
+
+    //rendez-vous
     Route::resource('contact','ContactController');
+    Route::get('rendez-vous/previewPage/{rendez_vous}','ContactController@print')->name('print_page');
 });
 
 

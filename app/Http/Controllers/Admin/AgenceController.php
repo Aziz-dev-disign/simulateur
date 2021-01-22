@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Agence;
 use App\Http\Requests\AgenceFormRequest;
-
+use App\Http\Requests\AgenceUpdateFormRequest;
 class AgenceController extends Controller
 {
     /**
@@ -238,7 +238,7 @@ class AgenceController extends Controller
      * @param  \App\Agence  $agence
      * @return \Illuminate\Http\Response
      */
-    public function update(AgenceFormRequest $request, Agence $agence)
+    public function update(AgenceUpdateFormRequest $request, Agence $agence)
     {
         /**
         * @OA\Put(

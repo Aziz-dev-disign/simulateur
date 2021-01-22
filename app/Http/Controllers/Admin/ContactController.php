@@ -93,6 +93,13 @@ class ContactController extends Controller
         return view('contact.contact.show',compact('rdv'));
     }
 
+        
+    public function print($rdv)
+    {
+        $rdv = Rdv::findOrFail($rdv);
+        return view('contact.contact.show',compact('rdv'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -126,6 +133,12 @@ class ContactController extends Controller
     {
         $rdv = Rdv::findOrFail($id);
         $rdv->delete();
-        return redirect()->route('vueClient.contact.index');
+        if ($user) {
+            emotify('success','Les informations de l\'utilisateur ont été supprimer avec succès');
+            return redirect()->route('admin.contact.index');
+        } else {
+            emotify('error','Les informations de l\'utilisateur n\'ont pas été supprimer. Veillez réessayer!');
+            return redirect()->route('admin.contact.index');
+        }
     }
 }
