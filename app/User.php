@@ -37,15 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function getIsAdminAttribute()
+    public function isAdmin()
     {
-        return $this->roles()->where('id', 1)->exists();
+        return $this->roles()->where('nom','adminisitrateur')->first();
     }
-
-    public function getIsQgentAttribute()
+    public function hasAnyRole(array $roles)
     {
-        return $this->roles()->where('id', 2)->exists();
+        return $this->roles()->where('nom',$roles);
     }
 
     public function roles()

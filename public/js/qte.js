@@ -16,7 +16,7 @@
 //===========================================================================================================================//        
             // Calcul de la quotitée mensuelle.
 
-            export function calculQte() 
+            function calculQte() 
             {
                 var salaire = $('#salaire').val();
                 var autreRevenu = $('#autreRevenu').val();

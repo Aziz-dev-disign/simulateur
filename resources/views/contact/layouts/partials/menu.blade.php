@@ -3,7 +3,7 @@
     <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            @can('user_management_access')                
+            @can('user_management')                
             <li><a><i class="fa fa-users"></i> Utilisateurs <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     @can('role_access')                    

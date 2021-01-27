@@ -17,7 +17,7 @@
         var $DureeCred = $simul.find(".DureeCred");
         var isModeTranche = 0;
         var trancheDureeDatas = JSON.parse('[{"begin":"1","end":"24","taux":"7.5"},{"begin":"25","end":"600","taux":"7.5"}]');
-        var contactLink = "fr/particuliers/credits/simulateurs/simulateur-pret-personnel-ordinaire/";
+        var contactLink = "";
 
         // @function qui permet de récuperé le taux. 
 

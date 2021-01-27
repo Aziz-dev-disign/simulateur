@@ -5,7 +5,7 @@
     <meta name="author" content="Société Générale Burkina Faso" />
     <title>Simulateur</title>
     <!-- Favicon-->    
-    <link rel="icon" type="image/png" href="{{('assets/images/logo.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('assets/images/logo.png')}}"/>
     <!-- Font Awesome icons (free version)-->
     <link href="{{asset('admin/source/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- Google fonts-->
