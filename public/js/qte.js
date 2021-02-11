@@ -1,12 +1,12 @@
 /*
 *
-*Le JavaScript qui permet de caluler la quotitée.
+*Le Script qui permet de caluler la quotitée.
 *
 */
 
     (function (window, $) {
             
-            $('.ButtonSimul--launchSimul').click(function () {
+            $('.ButtonSimul-launchSimul').click(function () {
                 calculQte();
             });
 
@@ -20,15 +20,15 @@
             {
                 var salaire = $('#salaire').val();
                 var autreRevenu = $('#autreRevenu').val();
-                var engagementPPO = $('#engagementPPO').val();
-                var engagementPs = $('#engagementPs').val();
-                var autrEngagement = $('#autrEngagement').val();
+                var engagementPPO = $('#engPP0').val();
+                var engagementPs = $('#engPs').val();
+                var autrEngagement = $('#autreEng').val();
                 var qte;
                 var marge;
                 var TotalRevenu = (parseInt(salaire) + parseInt(autreRevenu));
                 var TotEngagement = parseInt(engagementPs) + parseInt(engagementPPO) + parseInt(autrEngagement);
-//===========================================================================================================================//        
-// Calcul de la Quotitée cessible en fonction du salaire.
+                //=====================================================================//        
+                // Calcul de la Quotitée cessible en fonction du salaire.
 
                 var montantRestant = TotalRevenu - TotEngagement;
                 console.log(montantRestant);
@@ -96,7 +96,7 @@
                 else{
                     return null;
                 }
-//===========================================================================================================================//        
+                //===========================================================//        
 
 
 

@@ -153,8 +153,8 @@
 
             $DureeCred.find('.result').html($duree.val()+' Mois');
 
-            var duree = parseInt(String($duree.val()).replaceAll(' ',''));
-            var montant = parseInt(String($montant.val()).replaceAll(' ',''));
+                duree = parseInt(String($duree.val()).replaceAll(' ',''));
+                montant = parseInt(String($montant.val()).replaceAll(' ',''));
             var tauxDiv = '';
 
             taux = getTauxFromDuree(duree);
@@ -182,13 +182,18 @@
             // frais des dossiers
             var fraisDoc = CoutTotal *(1.3/100);
 
-
             //Echéances
+
+            tauxMensu = Math.pow(1+tauxA,1/duree)-1;
+
+            echance = (montant * (tauxA/(1-(1+tauxMensu)^-duree)));
+            console.log(echance);
             
             // Affiche les resultats obtenus.
             jQuery(".Montant-3430 .result").html( format(parseInt($montant.val().replaceAll(' ','')),2,' ',',')+' FCFA');
             jQuery(".Mensu-3430 .result").text(format(mensu,2,' ',',') +' FCFA');
             jQuery(".CoutTotal-3430 .result").text( format(CoutTotal,2,' ',',') +' FCFA');
+            jQuery("#Echeance .result").text( format(echance,2,' ',',') +' FCFA');
             jQuery("#Fdocs .result").text( format(fraisDoc,2,' ',',') +' FCFA');
                
             if(isModeTranche) {
@@ -204,6 +209,135 @@
                 });
             });
             localStorage.setItem('simulCredit', JSON.stringify(simulToSave));
+
+            //===================== Assurance ==============================//
+
+            var differe = $('#diff').val();
+            var dateNaiss = $('#dateNaiss').val();
+            var dateSouscript = $('#dateSouscript').val();
+            var tdpcu = $('#tdpcu').val();
+            var dcepcu = $('#dcepcu').val();
+            valTD = JSON.parse(tdpcu);
+            valDCE = JSON.parse(dcepcu);
+        
+        
+            //calcul de l'age
+            var sousDate = new Date(dateSouscript);
+            var naissDate = new Date(dateNaiss);
+            age = sousDate.getFullYear() - naissDate.getFullYear();
+            var valeurTD = valTD[age].taux;
+            var valeurDCE = valDCE[age].taux;
+            if (age - 17 >= 0 && age <= 65) {
+                let reste = duree % 12 ;
+                if (reste = 0) {
+                    console.log(valeurTD)
+                    pret_in_fine = valeurTD * montant ;
+                    console.log(pret_in_fine);
+                    jQuery("#Assur .result").text(format(pret_in_fine,2,' ',',') +' FCFA');
+                }
+                else {
+                    console.log(valeurTD)
+                    pret_in_fine = valeurDCE * montant ;
+                    console.log(pret_in_fine);
+                    jQuery("#Assur .result").text(format(pret_in_fine,2,' ',',') +' FCFA');
+                }
+            }
+            console.log(age);
+        
+            //calcul de la durée d'ammortissement
+            var dureeAmor = duree - differe;
+            console.log(dureeAmor);
+
+            //===================== END Assurance ==============================//
+
+            //===================== Quotitée ==============================//
+
+                var salaire = $('#salaire').val();
+                var autreRevenu = $('#autreRevenu').val();
+                var engagementPPO = $('#engPP0').val();
+                var engagementPs = $('#engPs').val();
+                var autrEngagement = $('#autreEng').val();
+                var qte;
+                var marge;
+                var TotalRevenu = (parseInt(salaire) + parseInt(autreRevenu));
+                var TotEngagement = parseInt(engagementPs) + parseInt(engagementPPO) + parseInt(autrEngagement);
+                //=====================================================================//        
+                // Calcul de la Quotitée cessible en fonction du salaire.
+
+                var montantRestant = TotalRevenu - TotEngagement;
+                console.log(montantRestant);
+
+                if (montantRestant>=1 && montantRestant<=75000) {
+                    qte = montantRestant* (33/100);
+                    marge = -(mensu - qte);
+                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
+                    if (marge >0 && mensu<qte) {
+                        jQuery("#DesLog .result").text('Prêt accordé');
+                    }
+                    else{
+                        jQuery("#DesLog .result").text('Prêt refusé');
+                    }
+                }
+                else if(montantRestant>=75001 && montantRestant<=100000){
+                    qte = montantRestant* (40/100);
+                    marge = -(mensu - qte);
+                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
+                    if (marge >0 && mensu<qte) {
+                        jQuery("#DesLog .result").text('Prêt accordé');
+                    }
+                    else{
+                        jQuery("#DesLog .result").text('Prêt refusé');
+                    }
+                }
+                else if(montantRestant>=100001 && montantRestant<=200000){
+                    qte = montantRestant* (45/100);
+                    marge = -(mensu - qte);
+                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
+                    if (marge >0 || mensu<qte) {
+                        jQuery("#DesLog .result").text('Prêt accordé');
+                    }
+                    else{
+                        jQuery("#DesLog .result").text('Prêt refusé');
+                    }
+                }
+                else if(montantRestant>=200001 && montantRestant<=300000){
+                    qte = montantRestant* (50/100);
+                    marge = -(mensu - qte);
+                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
+                    if (marge >0 && mensu<qte) {
+                        jQuery("#DesLog .result").text('Prêt accordé');
+                    }
+                    else{
+                        jQuery("#DesLog .result").text('Prêt refusé');
+                    }
+                }
+                else if(montantRestant>=300000){
+                    qte = montantRestant* (55/100);
+                    marge = -(mensu - qte);
+                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
+                    if (marge >0 && mensu<qte) {
+                        jQuery("#DesLog .result").text('Prêt accordé');
+                    }
+                    else{
+                        jQuery("#DesLog .result").text('Prêt refusé');
+                    }
+                }
+                else{
+                    return null;
+                }
+                //===========================================================//        
+
+                console.log(TotalRevenu);
+                jQuery("#TotalRevenu .result").text(format(TotalRevenu,2,' ',',') +' FCFA');
+                jQuery("#TotEngagement .result").text(format(TotEngagement,2,' ',',') +' FCFA');
+
+            //===================== END Qotitée ==============================//
+
             
             $resultat.show();
         }

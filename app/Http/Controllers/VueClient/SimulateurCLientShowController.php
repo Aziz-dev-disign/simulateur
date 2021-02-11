@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Rdv;
 use App\Agence;
 use App\Simulateur;
+use App\ListDocument;
+use App\TDPCU;
+use App\DCEPCU;
 use Illuminate\Http\Request;
 use App\Http\Requests\AccueilFormRequest;
 
@@ -56,8 +59,12 @@ class SimulateurCLientShowController extends Controller
      */
     public function show($id)
     {
+        $tdpcus = TDPCU::select('age','duree','taux')->get();
+        $dcepcus = DCEPCU::select('age','duree','taux')->get();
+        // $tdpcus = response()->json($tdpcu);
         $simulateur = Simulateur::findOrFail($id);
-        return view('vueClient.simulateur.show',compact('simulateur'));
+        $docs = ListDocument::paginate(3);
+        return view('vueClient.simulateur.show',compact('simulateur','docs','tdpcus','dcepcus'));
     }
 
     /**

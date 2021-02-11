@@ -144,6 +144,8 @@
     <script src="{{asset('admin/source/google-code-prettify/prettify.min.js')}}"></script>
     <!-- jQuery Tags Input -->
     <script src="{{asset('admin/source/jquery/jquery.tagsinput.js')}}"></script>
+    <!-- Chart.js -->
+    <script src="{{asset('admin/source/Chart.js/dist/Chart.min.')}}"></script>
     <!-- Switchery -->
     <script src="{{asset('admin/source/switchery/switchery.min.js')}}"></script>
     <!-- Select2 -->
@@ -155,7 +157,15 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('admin/build/js/custom.min.js')}}"></script>
     <!-- Print page -->    
-    <script src="{{asset('admin/build/js/jQuery.print.js')}}"></script>
+    <script src="{{asset('admin/build/js/jQuery.print.js')}}"></script>    
+    <!-- Flot -->
+    <script src="{{asset('admin/source/Flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('admin/source/Flot/jquery.flot.pie.js')}}"></script>
+    <script src="{{asset('admin/source/Flot/jquery.flot.time.js')}}"></script>
+    <script src="{{asset('admin/source/Flot/jquery.flot.stack.js')}}"></script>
+    <script src="{{asset('admin/source/Flot/jquery.flot.resize.js')}}"></script>
+    <!-- DateJS -->
+    <script src="{{asset('admin/source/DateJS/build/date.js')}}"></script>
     <!-- Datatables -->
     <script src="{{asset('admin/source/datatables/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/source/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>

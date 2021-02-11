@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', 'AccueilController');
 
 Route::group(['prefix' => 'simulateur', 'as' => 'simulateur.', 'namespace' => 'VueClient'], function () {
-    Route::resource('contact','ContactController');
     Route::resource('credits','SimulateurCLientShowController');
+    Route::resource('contact','ContactController');
+
 });
 
 Auth::routes(['register'=>false]);
@@ -31,6 +32,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('roles', 'RoleController');
     Route::resource('type-simulateur', 'TypeSimulationController');
     Route::resource('user', 'UserController');
+    //fichier
+    Route::resource('fichier', 'ImportFilesController');
+    Route::post('fichier/dce','ImportFilesController@store_dce')->name('store_dce');
 
     //rendez-vous
     Route::resource('contact','ContactController');

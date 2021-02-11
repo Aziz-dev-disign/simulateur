@@ -115,18 +115,10 @@ a.btnMenu {
   text-decoration: none;
   background-color: #fff;
   color: red;
-  border:1px solid rgba(0, 0, 0, 0.315);
   padding: 5px;
-  border-top: 0px;
-  border-left: 0px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.616);
+  margin-top:15px;
 }
 
-.borderCaption{
-  border: 1px solid rgba(0, 0, 0, 0.534);
-  padding: 5px;
-  border-radius: 5px;
-}
 
 input#nom,
 input#prenom,
@@ -138,8 +130,20 @@ input#engagementPs,
 input#autrEngagement,
 input#montantAss,
 input#dureeAss,
-input#dateAss
+input#dateNaiss,
+input#dateSouscript,
+input#diff
  {
    border-color: rgba(255, 0, 0, 0.295);
    border-radius: 0;
+}
+
+.docs{
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+.docs ul h6{
+  margin-top: 10px;
+
 }

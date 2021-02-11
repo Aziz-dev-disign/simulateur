@@ -18,7 +18,8 @@
         "laravel/passport": "^9.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
-        "mckenziearts/laravel-notify": "^2.1"
+        "mckenziearts/laravel-notify": "^2.1",
+        "spatie/simple-excel": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

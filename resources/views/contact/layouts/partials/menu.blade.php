@@ -23,6 +23,9 @@
             @endcan
             <li><a href="{{route('admin.contact.index')}}"><i class="fa  fa-comment"></i>Rendez-vous</a></li>
             <li><a href="{{route('admin.agence.index')}}"><i class="fa   fa-institution (alias)"></i>Agence</a></li>
+            @can('user_management')                
+            <li><a href="{{route('admin.fichier.index')}}"><i class="fa   fa-database"></i>Fichier assurance</a></li>
+            @endcan
         </ul>
     </div>
     <div class="menu_section">
