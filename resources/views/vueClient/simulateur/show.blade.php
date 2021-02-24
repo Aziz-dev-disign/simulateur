@@ -15,14 +15,14 @@
 <!-- ==================================== Le simulateur rapide =============================================================================-->
                                 <h5>Simulation rapide</h5>
                                 <div id="MontantDuCredit" class="col-md-12 MontantDuCredit pt-3">                                    
-                                    <label for="montant">Montant capital</label><span class="inputCred"><input type="text" value="{{$simulateur->montantMin}}" id="montant" class="montant" name="montant" /><span>FCFA</span></span>
+                                    <label for="montant">Montant capital</label><span class="inputCred"><input type="text" value="{{$simulateur->montantMin}}" id="montant" class="montant press" name="montant" /><span>FCFA</span></span>
                                     <div class="pl-4">
                                         <input type="text" id="range2" class="range2" value="" name="range2" />
                                     </div>
                                     <input type="hidden" id="range4" class="range4" max="{{$simulateur->montantMax}}" min="{{$simulateur->montantMin}}" value="{{$simulateur->montantMax}}" name="range4" />
                                 </div>
                                 <div id="DureeRange" class="col-md-12 DureeRange">
-                                    <label for="duree">Durée</label><span class="inputCred"><input type="text" value="{{$simulateur->dureeMin}}" id="duree" class="duree" name="duree" /><span>Mois</span></span>
+                                    <label for="duree">Durée</label><span class="inputCred"><input type="text" value="{{$simulateur->dureeMin}}" id="duree" class="duree press" name="duree" /><span>Mois</span></span>
                                     <input type="text" id="range3" class="range3" min="{{$simulateur->dureeMin}}" max="{{$simulateur->dureeMax}}" value="" name="range3" />
                                     <input type="hidden" id="range5" class="range5" value="{{$simulateur->dureeMax}}" name="range5" />
                                 </div>
@@ -36,41 +36,41 @@
                                         <div class="row form-group">
                                             <div class="col-md-6">
                                                 <label for="nom">Nom</label>
-                                                <input type="text" class="form-control" id="nom" name="" classe="nom" placeholder="nom">
+                                                <input type="text" class="form-control" id="nom" name=""  placeholder="nom">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="prenom">Prénom (s)</label>
-                                                <input type="text" class="form-control" id="prenom" name="" classe="prenom" placeholder="prénom">
+                                                <input type="text" class="form-control" id="prenom" name="" placeholder="prénom">
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-md-6">
                                                 <label for="numero">Numéro cmpt</label>
-                                                <input type="text" class="form-control" id="numero" name="" classe="numero" placeholder="Numéro compte">
+                                                <input type="text" class="form-control" id="numero" name="" placeholder="Numéro compte">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="salaire">Salaire</label>
-                                                <input type="number" class="form-control" id="salaire" name="" classe="salaire" placeholder="salaire">
+                                                <input type="number" class="form-control" id="salaire" name="" placeholder="salaire">
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-md-6">
                                                 <label for="autreRevenu">Autres revenus</label>
-                                                <input type="number" class="form-control" id="autreRevenu" name="" classe="autreRevenu" placeholder="Ex: un autre travail">
+                                                <input type="number" class="form-control" id="autreRevenu" name="" placeholder="Ex: un autre travail">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="engPP0">Engagement prêt&nbsp;ordinaire</label>
-                                                <input type="number" class="form-control" id="engPP0" name="" classe="engPP0" placeholder="prêt personnel ordinaire">
+                                                <input type="number" class="form-control" id="engPP0" name="" placeholder="prêt personnel ordinaire">
                                             </div>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-md-6">
                                                 <label for="engPs">Engagement prêt scolaire</label>
-                                                <input type="number" class="form-control" id="engPs" name="" classe="engPs" placeholder="prêt scolaire">
+                                                <input type="number" class="form-control" id="engPs" name="" placeholder="prêt scolaire">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="autreEng">Autres Engagement</label>
-                                                <input type="number" class="form-control" id="autreEng" name="" classe="autreEng" placeholder="Ex: loyer">
+                                                <input type="number" class="form-control" id="autreEng" name="" placeholder="Ex: loyer">
                                             </div>
                                         </div>
                                 </div><br>                                
@@ -81,17 +81,17 @@
                                     <div class="row form-group">
                                         <div class="col-md-12">
                                             <label for="diff">Différé</label>
-                                            <input type="text" class="form-control" id="diff" name="" classe="diff">
+                                            <input type="text" class="form-control press" id="diff" name="" >
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-md-6">
                                             <label for="dateNaiss">Date de naissance</label>
-                                            <input type="date" class="form-control" id="dateNaiss" name="" classe="dateNaiss">
+                                            <input type="date" class="form-control" id="dateNaiss" name="" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="dateSouscript">Date de souscription</label>
-                                            <input type="date" class="form-control" id="dateSouscript" name="" classe="dateSouscript">
+                                            <input type="date" class="form-control" id="dateSouscript" name="">
                                         </div>
                                     </div>
                                 </div><br>
@@ -102,7 +102,7 @@
                                 <input type="button" class="btn ButtonSimul ButtonSimul--launchSimul" value="Lancer la simulation" id="btnSimulHide2"/>
                             </div>
 <!-- ==================================== Les resultats =============================================================================-->
-                            <div class="col-md-6" id="contenu">                                
+                            <div class="col-md-6" id="contenu">  
                                 <div id="resultat" class="resultat w-100" >   
                                     <p id="Montant" class="col-md-12 Montant-3430">
                                         <span class="label">Montant crédit :</span>
@@ -184,6 +184,7 @@
             {{$docs->links()}}
         </div>
     </div>
+<!-- ==================================== Fichier xlsx, csv =============================================================================-->
     <div class="row hide">
         <div class="col-md-6">
             <input type="text" name="" id="tdpcu" value="{{$tdpcus}}">
@@ -195,8 +196,6 @@
 </div>
 
 @include('vueClient.partials.footer')
-<!-- xlsx JS-->
-<script src="{{asset('js/assurance.js')}}"></script>
 
 <!-- ==================================== Script bouttons =============================================================================-->
 

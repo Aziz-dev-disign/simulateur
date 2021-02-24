@@ -109,6 +109,9 @@
         });
 
         //Récupere et affiche la durée lorsqu'on change les valeurs
+        $simul.find('.press').keyup( function(e){
+            calculSimul();
+        });
         $duree.on("change", function(){
             new_val = parseInt(String($(this).val()).replaceAll(' ',''));
             if(new_val < parseInt(dureemin)){
@@ -133,6 +136,7 @@
         $simul.find('#trancheSalaire').on('change', function(){
             calculSimul();
         }); // renvoie les éléments descendants de l'élément sélectionné.
+
         $simul.find('.ButtonSimul--launchSimul').on('click', function(){
             calculSimul();
         });
@@ -261,6 +265,10 @@
                 var marge;
                 var TotalRevenu = (parseInt(salaire) + parseInt(autreRevenu));
                 var TotEngagement = parseInt(engagementPs) + parseInt(engagementPPO) + parseInt(autrEngagement);
+                //===========================================================//        
+
+                jQuery("#TotalRevenu .result").text(format(TotalRevenu,2,' ',',') +' FCFA');
+                jQuery("#TotEngagement .result").text(format(TotEngagement,2,' ',',') +' FCFA');
                 //=====================================================================//        
                 // Calcul de la Quotitée cessible en fonction du salaire.
 
@@ -282,7 +290,7 @@
                 else if(montantRestant>=75001 && montantRestant<=100000){
                     qte = montantRestant* (40/100);
                     marge = -(mensu - qte);
-                    jQuery("#QteCessible .result").text(format(qte,2,' ',',') +' FCFA');
+                    jQuery("#QteCessible .result").text(format(qte,2,'0',',') +' FCFA');
                     jQuery("#MargeQte .result").text(format(marge,2,' ',',') +' FCFA');
                     if (marge >0 && mensu<qte) {
                         jQuery("#DesLog .result").text('Prêt accordé');
@@ -330,16 +338,10 @@
                 else{
                     return null;
                 }
-                //===========================================================//        
-
-                console.log(TotalRevenu);
-                jQuery("#TotalRevenu .result").text(format(TotalRevenu,2,' ',',') +' FCFA');
-                jQuery("#TotEngagement .result").text(format(TotEngagement,2,' ',',') +' FCFA');
 
             //===================== END Qotitée ==============================//
 
             
-            $resultat.show();
         }
 
 //===========================================================================================================================//        

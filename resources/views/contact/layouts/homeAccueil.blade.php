@@ -143,9 +143,11 @@
     <script src="{{asset('admin/source/jquery/jquery.hotkeys.js')}}"></script>
     <script src="{{asset('admin/source/google-code-prettify/prettify.min.js')}}"></script>
     <!-- jQuery Tags Input -->
-    <script src="{{asset('admin/source/jquery/jquery.tagsinput.js')}}"></script>
+    <script src="{{asset('admin/source/jquery/jquery.tagsinput.js')}}"></script>    
+    <!-- Custom Theme Scripts -->
+    <script src="{{asset('admin/build/js/custom.min.js')}}"></script>
     <!-- Chart.js -->
-    <script src="{{asset('admin/source/Chart.js/dist/Chart.min.')}}"></script>
+    <script src="{{asset('admin/source/Chart.js/dist/Chart.min.js')}}"></script>
     <!-- Switchery -->
     <script src="{{asset('admin/source/switchery/switchery.min.js')}}"></script>
     <!-- Select2 -->
@@ -154,8 +156,6 @@
     <script src="{{asset('admin/source/autosize/dist/autosize.min.js')}}"></script>
     <!-- starrr -->
     <script src="{{asset('admin/source/starrr/starrr.js')}}"></script>    
-    <!-- Custom Theme Scripts -->
-    <script src="{{asset('admin/build/js/custom.min.js')}}"></script>
     <!-- Print page -->    
     <script src="{{asset('admin/build/js/jQuery.print.js')}}"></script>    
     <!-- Flot -->

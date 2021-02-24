@@ -2181,11 +2181,11 @@ function init_charts() {
             data: {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [{
-                    label: '# of Votes',
+                    label: '# nombre simulation',
                     backgroundColor: "#26B99A",
                     data: [51, 30, 40, 28, 92, 50, 45]
                 }, {
-                    label: '# of Votes',
+                    label: '# nombre simulation',
                     backgroundColor: "#03586A",
                     data: [41, 56, 25, 48, 72, 34, 12]
                 }]
@@ -2296,7 +2296,7 @@ function init_charts() {
                     "#26B99A",
                     "#3498DB"
                 ],
-                label: 'My dataset' // for legend
+                label: 'Nombre simulation' // for legend
             }],
             labels: [
                 "Dark Gray",

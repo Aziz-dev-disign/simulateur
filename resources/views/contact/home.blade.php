@@ -34,10 +34,11 @@
           </div>
         </div><br><br>
         <div class="clearfix"></div><br>
-            <div class="col-md-12 col-sm-12 ">
-              <div class="demo-container" style="height:280px">
-                <div id="chart_plot_02" class="demo-placeholder"></div>
-              </div>
-            </div>
+        <div class="col-md-6" style="height: 100px">
+          <canvas id="mybarChart" ></canvas>
         </div>
+        <div class="col-md-6">
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
 @endsection
